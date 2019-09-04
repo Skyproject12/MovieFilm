@@ -1,9 +1,11 @@
 package com.example.moviefilm.Priview.Main.Fragment;
 
 
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.moviefilm.Priview.Detail.DetailActivity;
 import com.example.moviefilm.R;
 
 import java.util.ArrayList;
@@ -33,6 +36,7 @@ public class MoviesFragment extends Fragment {
     TypedArray dataPhoto;
 
     RecyclerView recyclerView;
+    ConstraintLayout constraintMovie;
     Movie filmFavorit;
     MovieAdapter movieAdapter;
     LinearLayoutManager linearLayoutManager;
@@ -52,10 +56,12 @@ public class MoviesFragment extends Fragment {
         recyclerView.setAdapter(movieAdapter);
         DividerItemDecoration dividerItemDecoration= new DividerItemDecoration(getActivity(), linearLayoutManager.getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);
+        IntentToFile();
         return view;
     }
     public void initial(){
         recyclerView= view.findViewById(R.id.recycler_movie);
+        constraintMovie= view.findViewById(R.id.constraint_film);
     }
     private void addItem(){
         list= new ArrayList<>();
@@ -76,6 +82,16 @@ public class MoviesFragment extends Fragment {
         dataPhoto= getResources().obtainTypedArray(R.array.data_photo);
         tanggalRilis= getResources().getStringArray(R.array.tanggal_film);
         pembuat= getResources().getStringArray(R.array.production);
+    }
+    private void IntentToFile(){
+        movieAdapter.setOnItemClickCallback(new MovieAdapter.OnItemClickCallback() {
+            @Override
+            public void onItmCliked(Movie movie) {
+                Intent moveObjectIntent= new Intent(getActivity(), DetailActivity.class);
+                moveObjectIntent.putExtra("film",list.add(movie));
+                startActivity(moveObjectIntent);
+            }
+        });
     }
 
 }

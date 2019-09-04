@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,6 +18,10 @@ import java.util.ArrayList;
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewMovie> {
     Context context;
     ArrayList<Movie> list;
+    private OnItemClickCallback onItemClickCallback;
+    public void setOnItemClickCallback(OnItemClickCallback onItemClickCallback){
+        this.onItemClickCallback= onItemClickCallback;
+    }
 
     public MovieAdapter(Context context, ArrayList<Movie> list) {
         this.context = context;
@@ -31,11 +36,18 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewMovie> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewMovie holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewMovie holder, final int position) {
         Movie movie= list.get(position);
         holder.image.setImageResource(movie.getImage());
         holder.textJudul.setText(movie.getJudul());
         holder.textDeskripsi.setText(movie.getDeskripsi());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // take the position for give onclick for your recycler
+                onItemClickCallback.onItmCliked(list.get(holder.getAdapterPosition()));
+            }
+        });
     }
 
     @Override
@@ -53,5 +65,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewMovie> {
             textJudul= itemView.findViewById(R.id.text_judul);
             textDeskripsi= itemView.findViewById(R.id.text_deskripsi);
         }
+    }
+    public interface OnItemClickCallback{
+        void onItmCliked(Movie movie);
     }
 }
