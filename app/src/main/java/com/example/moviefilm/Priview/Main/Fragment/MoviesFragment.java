@@ -14,7 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.example.moviefilm.Data.Request.Movie;
 import com.example.moviefilm.Priview.Detail.DetailActivity;
 import com.example.moviefilm.R;
 
@@ -36,6 +39,11 @@ public class MoviesFragment extends Fragment {
     TypedArray dataPhoto;
 
     RecyclerView recyclerView;
+    ImageView imageMovie;
+    TextView textJudulMovie;
+    TextView textPembuatMovie;
+    TextView texttanggalMovie;
+    TextView textDeskripsiMovie;
     ConstraintLayout constraintMovie;
     Movie filmFavorit;
     MovieAdapter movieAdapter;
@@ -62,6 +70,7 @@ public class MoviesFragment extends Fragment {
     public void initial(){
         recyclerView= view.findViewById(R.id.recycler_movie);
         constraintMovie= view.findViewById(R.id.constraint_film);
+
     }
     private void addItem(){
         list= new ArrayList<>();
@@ -88,7 +97,7 @@ public class MoviesFragment extends Fragment {
             @Override
             public void onItmCliked(Movie movie) {
                 Intent moveObjectIntent= new Intent(getActivity(), DetailActivity.class);
-                moveObjectIntent.putExtra("film",list.add(movie));
+                moveObjectIntent.putExtra("film",movie);
                 startActivity(moveObjectIntent);
             }
         });

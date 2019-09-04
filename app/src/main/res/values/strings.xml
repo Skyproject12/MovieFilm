@@ -3,4 +3,69 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="nama_film">
+        <item>Advenger Invinity</item>
+        <item>Bumblebee</item>
+        <item>Deadpool</item>
+        <item>RobinHood</item>
+        <item>Spiderman</item>
+        <item>TheGirl</item>
+        <item>Venom</item>
+        <item>Dragon</item>
+        <item>AquaMan</item>
+        <item>DragonBall</item>
+        <item>Glass</item>
+    </string-array>
+    <string-array name="deskripsi_film">
+        <item>As the Avengers and their allies have continued to protect the world from threats too large for any one hero to handle, a new danger has emerged from the cosmic shadows: Thanos. A despot of intergalactic infamy, his goal is to collect all six Infinity Stones, artifacts of unimaginable power, and use them to inflict his twisted will on all of reality. Everything the Avengers have fought for has led up to this moment - the fate of Earth and existence itself has never been more uncertain.</item>
+        <item>On the run in the year 1987, Bumblebee finds refuge in a junkyard in a small Californian beach town. Charlie, on the cusp of turning 18 and trying to find her place in the world, discovers Bumblebee, battle-scarred and broken. When Charlie revives him, she quickly learns this is no ordinary yellow VW bug. </item>
+        <item>Deadpool tells the origin story of former Special Forces operative turned mercenary Wade Wilson, who after being subjected to a rogue experiment that leaves him with accelerated healing powers, adopts the alter ego Deadpool. Armed with his new abilities and a dark, twisted sense of humor, Deadpool hunts down the man who nearly destroyed his life.</item>
+        <item>This is a story of a brave man who fought and won against all odds, Sarpanch Rupinder Singh Gandhi, a prolific sportsman, daring leader and true friend. This movie shows how circumstances and situations converts him into "Something -else" when he and his friends take decisions that end up making them Outlaws. The man who lived for other people and never worried what he was called ~ Robinhood or a Gangser</item>
+        <item>Italian Spiderman is a film parody of Italian action–adventure films of the 60s and 70s, first released on YouTube in 2007. The parody purports to be a "lost Italian film" by Alrugo Entertainment, an Australian film-making collective formed by Dario Russo, Tait Wilson, David Ashby, Will Spartalis and Boris Repasky.Ostensibly an Italian take on the comic book superhero Spider-Man, the film is a reference to foreign movies that misappropriate popular American superheroes such as the Turkish film "3 Dev Adam" and the Japanese TV series "Spider-Man", both of which alter the character of Spider-Man for foreign audiences. Other notable entries include the Indian version of Superman, I Fantastici Tre Supermen and La Mujer Murcielago. It also resembles the movie The Bathman dal pianeta Eros.A trailer was released, followed by a full-length feature made up of ten mini-episodes.</item>
+        <item>Exceptionally ambitious high schooler Matthew has aspirations for a career in politics when he falls in love with his gorgeous 19-year-old neighbor, Danielle. But Matthews bright future is jeopardized when he finds Danielle was once a porn star. As Danielles past catches up with her, Matthews love for her forces him to re-evaluate his goals.</item>
+        <item>Investigative journalist Eddie Brock attempts a comeback following a scandal, but accidentally becomes the host of Venom, a violent, super powerful alien symbiote. Soon, he must rely on his newfound powers to protect the world from a shadowy organization looking for a symbiote of their own.</item>
+        <item>In St. Jude, drug dealers and corrupt cops have destroyed an urban neighborhood. But newcomer, Hong, has the fighting skills and moral vision to save this town from itself.</item>
+        <item>Once home to the most advanced civilization on Earth, Atlantis is now an underwater kingdom ruled by the power-hungry King Orm. With a vast army at his disposal, Orm plans to conquer the remaining oceanic people and then the surface world. Standing in his way is Arthur Curry, Orms half-human, half-Atlantean brother and true heir to the throne.</item>
+        <item>Long ago in the mountains, a fighting master known as Gohan discovered a strange boy whom he named Goku. Gohan raised him and trained Goku in martial arts until he died. The young and very strong boy was on his own, but easily managed. Then one day, Goku met a teenage girl named Bulma, whose search for the dragon balls brought her to Gokus home. Together, they set off to find all seven dragon balls in an adventure.</item>
+        <item>In a series of escalating encounters, former security guard David Dunn uses his supernatural abilities to track Kevin Wendell Crumb, a disturbed man who has twenty-four personalities. Meanwhile, the shadowy presence of Elijah Price emerges as an orchestrator who holds secrets critical to both men.</item>
+    </string-array>
+    <array name="data_photo">
+        <item>@drawable/poster_avengerinfinity</item>
+        <item>@drawable/poster_bumblebee</item>
+        <item>@drawable/poster_deadpool</item>
+        <item>@drawable/poster_robinhood</item>
+        <item>@drawable/poster_spiderman</item>
+        <item>@drawable/poster_thegirl</item>
+        <item>@drawable/poster_venom</item>
+        <item>@drawable/poster_dragon</item>
+        <item>@drawable/poster_aquaman</item>
+        <item>@drawable/poster_dragonball</item>
+        <item>@drawable/poster_glass</item>
+    </array>
+    <string-array name="tanggal_film">
+        <item>25 April 2018</item>
+        <item>15 December 2018</item>
+        <item>6 February 2016</item>
+        <item>8 September 2017</item>
+        <item>22 May 2008</item>
+        <item>9 April 2004</item>
+        <item>28 September 2018</item>
+        <item>10 May 2012</item>
+        <item>7 December 2018</item>
+        <item>26 February 1986</item>
+        <item>16 January 2019</item>
+    </string-array>
+    <string-array name="production">
+        <item>Joe Russo</item>
+        <item>Christina Hodson</item>
+        <item>Fabian Nicieza</item>
+        <item>Avtar Singh</item>
+        <item>Avtar Singh</item>
+        <item>Brent Goldberg</item>
+        <item>Mike Zeck</item>
+        <item>John Hyams</item>
+        <item>James Wan</item>
+        <item>Akira Toriyama</item>
+        <item>M. Night Shyamalan</item>
+    </string-array>
 </resources>

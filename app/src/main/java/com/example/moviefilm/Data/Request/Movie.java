@@ -1,4 +1,4 @@
-package com.example.moviefilm.Priview.Main.Fragment;
+package com.example.moviefilm.Data.Request;
 
 import android.os.Parcel;
 import android.os.Parcelable;

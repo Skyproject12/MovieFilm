@@ -5,7 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
+import android.media.audiofx.BassBoost;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -61,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.setting:
+                Intent intent= new Intent(Settings.ACTION_LOCALE_SETTINGS);
+                startActivity(intent);
                 break;
         }
         return super.onOptionsItemSelected(item);
