@@ -3,6 +3,9 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="pengaturan">Setting</string>
+    <string name="movies">Movies</string>
+    <string name="tvshow">TvShow</string>
     <string-array name="nama_film">
         <item>Advenger Invinity</item>
         <item>Bumblebee</item>

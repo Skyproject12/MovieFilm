@@ -2,12 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/movies"
-        android:title="Movies"
+        android:title="@string/movies"
         android:icon="@drawable/ic_local_movies"
         />
     <item
         android:id="@+id/tv_show"
-        android:title="TvShow"
+        android:title="@string/tvshow"
         android:icon="@drawable/ic_movie"/>
 
 </menu>
