@@ -7,6 +7,66 @@
     <string name="pengaturan">Pengaturan</string>
     <string name="movies">Film</string>
     <string name="tvshow">TampilanTv</string>
+    <array name="data_photo_model">
+        <item>@drawable/poster_glass</item>
+        <item>@drawable/poster_a_star</item>
+        <item>@drawable/poster_birdbox</item>
+        <item>@drawable/poster_bohemian</item>
+        <item>@drawable/poster_creed</item>
+        <item>@drawable/poster_hunterkiller</item>
+        <item>@drawable/poster_marrypopins</item>
+        <item>@drawable/poster_mortalengine</item>
+        <item>@drawable/poster_preman</item>
+        <item>@drawable/poster_themule</item>
+    </array>
+    <string-array name="nama_film_show">
+        <item>Glass</item>
+        <item>A star</item>
+        <item>BirdBox</item>
+        <item>Bohemian</item>
+        <item>Creed</item>
+        <item>HunterKill</item>
+        <item>MarryPopins</item>
+        <item>Mortalegine</item>
+        <item>Preman</item>
+        <item>themole</item>
+    </string-array>
+    <string-array name="deskripsi_film_movie">
+        <item>Dalam serangkaian pertemuan yang meningkat, mantan penjaga keamanan David Dunn menggunakan kemampuan supernaturalnya untuk melacak Kevin Wendell Crumb, seorang lelaki terganggu yang memiliki dua puluh empat kepribadian. Sementara itu, kehadiran bayangan Elia Price muncul sebagai seorang orkestra yang menyimpan rahasia penting bagi keduanya.</item>
+        <item>Musisi kawakan Jackson Maine menemukan - dan jatuh cinta dengan - artis yang sedang berjuang Ally. Dia baru saja menyerah pada mimpinya untuk menjadi besar sebagai penyanyi - sampai Jack membujuknya menjadi sorotan. Tetapi bahkan ketika karier Ally lepas landas, sisi pribadi dari hubungan mereka hancur, ketika Jack berjuang terus-menerus dengan setan-setan internalnya sendiri. Kru Unggulan</item>
+        <item>Lima tahun setelah kehadiran tak terlihat yang tak menyenangkan membuat sebagian besar masyarakat bunuh diri, seorang yang selamat dan dua anaknya melakukan upaya putus asa untuk mencapai keselamatan.</item>
+        <item>Penyanyi Freddie Mercury, gitaris Brian May, drummer Roger Taylor dan gitaris bass John Deacon mengambil dunia musik dengan badai ketika mereka membentuk band rock n roll Queen pada tahun 1970. Lagu-lagu hit menjadi klasik instan. Ketika gaya hidup Mercury yang semakin liar mulai lepas kendali, Queen segera menghadapi tantangan terbesarnya - menemukan cara untuk menjaga band bersama di tengah kesuksesan dan kelebihan.</item>
+        <item>Antara kewajiban pribadi dan pelatihan untuk pertarungan besar berikutnya melawan lawan yang memiliki ikatan dengan masa lalu keluarganya, Adonis Creed menghadapi tantangan hidupnya.</item>
+        <item>Kapten Glass dari USS Arkansas menemukan bahwa kudeta sedang terjadi di Rusia, jadi ia dan krunya bergabung dengan kelompok elit yang bekerja di lapangan untuk mencegah perang.</item>
+        <item>Ushi Hirosaki harus menikah sesuai dengan tradisi Jepang sebelum ulang tahunnya yang ke-30. Karena waktu hampir habis, keluarganya memutuskan dia harus menikah dengan pegulat sumo besar. Kombinasi yang agak disayangkan, jadi Ushi ingin mencari kandidat yang lebih baik sendiri. Dia melakukan perjalanan setengah dunia untuk menemukan suami impiannya. Sepanjang jalan dia melakukan upaya berani, misalnya untuk belajar sopan santun meja dan kehilangan aksen Jepangnya.</item>
+        <item>Musim pertama Mortal Kombat Legacy adalah prekuel dari game aslinya, menjelaskan kisah latar belakang beberapa karakter dari seri dan mendemonstrasikan alasan mereka untuk berpartisipasi dalam turnamen Mortal Kombat kesepuluh yang akan datang di mana game pertama didasarkan. Kru Unggulan</item>
+        <item>Setelah tiga tahun, bisnis Muslihat (Epi Kusnandar), yang telah pensiun sebagai preman, memiliki masalah. Penurunan penjualan. Muslihat juga menghadapi masalah baru ketika Safira (Safira Maharani), satu-satunya anak perempuannya, tumbuh di masa remaja dan mulai dikunjungi oleh anak laki-laki. Masalah yang lebih besar: gesekan antara mantan bawahannya.</item>
+        <item>Dunia sinema aksi tinggi hadir dengan merangkak melengking dalam seri yang menjatuhkan rahang ini. Api, aliran air, semangka meledak, dan bahkan tembakan paintball titik kosong tidak cocok untuk Slow Mo Guys!</item>
+    </string-array>
+    <string-array name="tanggal_fiml_movie">
+        <item>16 Januari 2019</item>
+        <item>Oktober 3, 2018</item>
+        <item>Desember 13, 2018</item>
+        <item>Oktober 24, 2018</item>
+        <item>November 21, 2018</item>
+        <item>Oktober 19, 2018</item>
+        <item>Februar1 13, 2013</item>
+        <item>April 12, 2011</item>
+        <item>Januar1 17, 2019</item>
+        <item>Januar1 1, 2013</item>
+    </string-array>
+    <string-array name="production_movie">
+        <item>M. Night Shyamalan</item>
+        <item>Bradley Cooper</item>
+        <item>Susanne Bier</item>
+        <item>Anthony McCarten</item>
+        <item>Sylvester Stallone</item>
+        <item>Donovan Marsh</item>
+        <item>Paul Ruven</item>
+        <item>John Tobias</item>
+        <item>Aris Nugraha</item>
+        <item>Gavin Free</item>
+    </string-array>
     <string-array name="nama_film">
         <item>Advenger Invinity</item>
         <item>Bumblebee</item>

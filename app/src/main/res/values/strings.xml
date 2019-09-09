@@ -1,11 +1,82 @@
 <resources>
-    <string name="app_name">MovieFilm</string>
-
     <!-- TODO: Remove or change this placeholder text -->
+    <array name="data_photo">
+        <item>@drawable/poster_avengerinfinity</item>
+        <item>@drawable/poster_bumblebee</item>
+        <item>@drawable/poster_deadpool</item>
+        <item>@drawable/poster_robinhood</item>
+        <item>@drawable/poster_spiderman</item>
+        <item>@drawable/poster_thegirl</item>
+        <item>@drawable/poster_venom</item>
+        <item>@drawable/poster_dragon</item>
+        <item>@drawable/poster_aquaman</item>
+        <item>@drawable/poster_dragonball</item>
+    </array>
+    <string name="app_name">MovieFilm</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="pengaturan">Setting</string>
     <string name="movies">Movies</string>
     <string name="tvshow">TvShow</string>
+    <array name="data_photo_model">
+        <item>@drawable/poster_glass</item>
+        <item>@drawable/poster_a_star</item>
+        <item>@drawable/poster_birdbox</item>
+        <item>@drawable/poster_bohemian</item>
+        <item>@drawable/poster_creed</item>
+        <item>@drawable/poster_hunterkiller</item>
+        <item>@drawable/poster_marrypopins</item>
+        <item>@drawable/poster_mortalengine</item>
+        <item>@drawable/poster_preman</item>
+        <item>@drawable/poster_themule</item>
+    </array>
+    <string-array name="nama_film_show">
+        <item>Glass</item>
+        <item>A star</item>
+        <item>BirdBox</item>
+        <item>Bohemian</item>
+        <item>Creed</item>
+        <item>HunterKill</item>
+        <item>MarryPopins</item>
+        <item>Mortalegine</item>
+        <item>Preman</item>
+        <item>themole</item>
+    </string-array>
+    <string-array name="deskripsi_film_movie">
+        <item>In a series of escalating encounters, former security guard David Dunn uses his supernatural abilities to track Kevin Wendell Crumb, a disturbed man who has twenty-four personalities. Meanwhile, the shadowy presence of Elijah Price emerges as an orchestrator who holds secrets critical to both men.</item>
+        <item>Seasoned musician Jackson Maine discovers — and falls in love with — struggling artist Ally. She has just about given up on her dream to make it big as a singer — until Jack coaxes her into the spotlight. But even as Allys career takes off, the personal side of their relationship is breaking down, as Jack fights an ongoing battle with his own internal demons. Featured Crew</item>
+        <item>Five years after an ominous unseen presence drives most of society to suicide, a survivor and her two children make a desperate bid to reach safety.</item>
+        <item>Singer Freddie Mercury, guitarist Brian May, drummer Roger Taylor and bass guitarist John Deacon take the music world by storm when they form the rock n roll band Queen in 1970. Hit songs become instant classics. When Mercurys increasingly wild lifestyle starts to spiral out of control, Queen soon faces its greatest challenge yet – finding a way to keep the band together amid the success and excess.</item>
+        <item>Between personal obligations and training for his next big fight against an opponent with ties to his familys past, Adonis Creed is up against the challenge of his life.</item>
+        <item>Captain Glass of the USS Arkansas discovers that a coup détat is taking place in Russia, so he and his crew join an elite group working on the ground to prevent a war.</item>
+        <item>Ushi Hirosaki has to marry according to Japanese tradition before her 30th birthday. Because time is running out, her family decides she has to marry a huge sumo wrestler. A rather unfortunate combination, so Ushi wants to look for a nicer candidate herself. She travels halfway around the world to find her dream husband. Along the way she does valiant efforts, for example to learn table manners and to lose her Japanese accent.</item>
+        <item>The first season of Mortal Kombat Legacy is a prequel to the original game, explaining the background stories of several characters from the series and demonstrating their reasons for participating in the upcoming tenth Mortal Kombat tournament on which the first game was based. Featured Crew</item>
+        <item>After three years, the business of Muslihat (Epi Kusnandar), who has retired as a thug, has a problem. Sales decline. Muslihat also faces new problems when Safira (Safira Maharani), her only daughter, grows up in adolescence and begins to be visited by boys. A bigger problem: frictions between his former subordinates.</item>
+        <item>The world of high action cinema comes to a screeching crawl in this jaw-dropping series. Flames, water streams, exploding watermelons, and even a point blank paintball shot are no match for the Slow Mo Guys!</item>
+    </string-array>
+    <string-array name="tanggal_fiml_movie">
+        <item>16 January 2019</item>
+        <item>October 3, 2018</item>
+        <item>December 13, 2018</item>
+        <item>October 24, 2018</item>
+        <item>November 21, 2018</item>
+        <item>October 19, 2018</item>
+        <item>February 13, 2013</item>
+        <item>April 12, 2011</item>
+        <item>January 17, 2019</item>
+        <item>January 1, 2013</item>
+    </string-array>
+    <string-array name="production_movie">
+        <item>M. Night Shyamalan</item>
+        <item>Bradley Cooper</item>
+        <item>Susanne Bier</item>
+        <item>Anthony McCarten</item>
+        <item>Sylvester Stallone</item>
+        <item>Donovan Marsh</item>
+        <item>Paul Ruven</item>
+        <item>John Tobias</item>
+        <item>Aris Nugraha</item>
+        <item>Gavin Free</item>
+    </string-array>
     <string-array name="nama_film">
         <item>Advenger Invinity</item>
         <item>Bumblebee</item>
@@ -17,7 +88,6 @@
         <item>Dragon</item>
         <item>AquaMan</item>
         <item>DragonBall</item>
-        <item>Glass</item>
     </string-array>
     <string-array name="deskripsi_film">
         <item>As the Avengers and their allies have continued to protect the world from threats too large for any one hero to handle, a new danger has emerged from the cosmic shadows: Thanos. A despot of intergalactic infamy, his goal is to collect all six Infinity Stones, artifacts of unimaginable power, and use them to inflict his twisted will on all of reality. Everything the Avengers have fought for has led up to this moment - the fate of Earth and existence itself has never been more uncertain.</item>
@@ -30,21 +100,7 @@
         <item>In St. Jude, drug dealers and corrupt cops have destroyed an urban neighborhood. But newcomer, Hong, has the fighting skills and moral vision to save this town from itself.</item>
         <item>Once home to the most advanced civilization on Earth, Atlantis is now an underwater kingdom ruled by the power-hungry King Orm. With a vast army at his disposal, Orm plans to conquer the remaining oceanic people and then the surface world. Standing in his way is Arthur Curry, Orms half-human, half-Atlantean brother and true heir to the throne.</item>
         <item>Long ago in the mountains, a fighting master known as Gohan discovered a strange boy whom he named Goku. Gohan raised him and trained Goku in martial arts until he died. The young and very strong boy was on his own, but easily managed. Then one day, Goku met a teenage girl named Bulma, whose search for the dragon balls brought her to Gokus home. Together, they set off to find all seven dragon balls in an adventure.</item>
-        <item>In a series of escalating encounters, former security guard David Dunn uses his supernatural abilities to track Kevin Wendell Crumb, a disturbed man who has twenty-four personalities. Meanwhile, the shadowy presence of Elijah Price emerges as an orchestrator who holds secrets critical to both men.</item>
     </string-array>
-    <array name="data_photo">
-        <item>@drawable/poster_avengerinfinity</item>
-        <item>@drawable/poster_bumblebee</item>
-        <item>@drawable/poster_deadpool</item>
-        <item>@drawable/poster_robinhood</item>
-        <item>@drawable/poster_spiderman</item>
-        <item>@drawable/poster_thegirl</item>
-        <item>@drawable/poster_venom</item>
-        <item>@drawable/poster_dragon</item>
-        <item>@drawable/poster_aquaman</item>
-        <item>@drawable/poster_dragonball</item>
-        <item>@drawable/poster_glass</item>
-    </array>
     <string-array name="tanggal_film">
         <item>25 April 2018</item>
         <item>15 December 2018</item>
@@ -56,7 +112,6 @@
         <item>10 May 2012</item>
         <item>7 December 2018</item>
         <item>26 February 1986</item>
-        <item>16 January 2019</item>
     </string-array>
     <string-array name="production">
         <item>Joe Russo</item>
@@ -69,6 +124,5 @@
         <item>John Hyams</item>
         <item>James Wan</item>
         <item>Akira Toriyama</item>
-        <item>M. Night Shyamalan</item>
     </string-array>
 </resources>

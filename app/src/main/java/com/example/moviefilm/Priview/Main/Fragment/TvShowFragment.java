@@ -89,11 +89,11 @@ public class TvShowFragment extends Fragment {
     }
 
     private void convert(){
-        dataFilm= getResources().getStringArray(R.array.nama_film);
-        dataDeskripsi= getResources().getStringArray(R.array.deskripsi_film);
-        dataPhoto= getResources().obtainTypedArray(R.array.data_photo);
-        tanggalRilis= getResources().getStringArray(R.array.tanggal_film);
-        pembuat= getResources().getStringArray(R.array.production);
+        dataFilm= getResources().getStringArray(R.array.nama_film_show);
+        dataDeskripsi= getResources().getStringArray(R.array.deskripsi_film_movie);
+        dataPhoto= getResources().obtainTypedArray(R.array.data_photo_model);
+        tanggalRilis= getResources().getStringArray(R.array.tanggal_fiml_movie);
+        pembuat= getResources().getStringArray(R.array.production_movie);
     }
     private void IntentToFile(){
         movieAdapter.setOnItemClickCallback(new MovieAdapter.OnItemClickCallback() {
