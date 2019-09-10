@@ -43,7 +43,7 @@ public class TvShowFragment extends Fragment {
     TextView textDeskripsiMovie;
     ConstraintLayout constraintMovie;
     Movie filmFavorit;
-    MovieAdapter movieAdapter;
+    ShowAdapter movieAdapter;
     LinearLayoutManager linearLayoutManager;
     ArrayList<Movie> list;
     View view;
@@ -61,7 +61,7 @@ public class TvShowFragment extends Fragment {
         initial();
         convert();
         addItem();
-        movieAdapter= new MovieAdapter(getActivity(), list);
+        movieAdapter= new ShowAdapter(getActivity(), list);
         linearLayoutManager= new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(movieAdapter);
@@ -96,7 +96,7 @@ public class TvShowFragment extends Fragment {
         pembuat= getResources().getStringArray(R.array.production_movie);
     }
     private void IntentToFile(){
-        movieAdapter.setOnItemClickCallback(new MovieAdapter.OnItemClickCallback() {
+        movieAdapter.setOnItemClickCallback(new ShowAdapter.OnItemClickCallback() {
             @Override
             public void onItmCliked(Movie movie) {
                 Intent moveObjectIntent= new Intent(getActivity(), DetailActivity.class);
