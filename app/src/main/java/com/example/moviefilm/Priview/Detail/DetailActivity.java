@@ -37,7 +37,7 @@ public class DetailActivity extends AppCompatActivity {
 
     }
     private void setText(){
-        imageMovie.setImageResource(movie.getImage());
+        //imageMovie.setImageResource(movie.getImage());
         textJudulMovie.setText(movie.getJudul());
         textPembuatMovie.setText(movie.getPembuat());
         texttanggalMovie.setText(movie.getTanggalRilis());
