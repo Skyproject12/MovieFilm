@@ -1,6 +1,7 @@
 package com.example.moviefilm.Priview.Detail;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -17,6 +18,8 @@ public class DetailActivity extends AppCompatActivity {
     TextView textPembuatMovie;
     TextView texttanggalMovie;
     TextView textDeskripsiMovie;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +34,7 @@ public class DetailActivity extends AppCompatActivity {
         textPembuatMovie= findViewById(R.id.text_pembuatmovie);
         texttanggalMovie= findViewById(R.id.textjadwal_movie);
         textDeskripsiMovie= findViewById(R.id.text_deskripsimovie);
+
     }
     private void setText(){
         imageMovie.setImageResource(movie.getImage());

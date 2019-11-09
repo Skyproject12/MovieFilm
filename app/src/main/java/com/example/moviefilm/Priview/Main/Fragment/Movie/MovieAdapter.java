@@ -1,4 +1,4 @@
-package com.example.moviefilm.Priview.Main.Fragment;
+package com.example.moviefilm.Priview.Main.Fragment.Movie;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -14,8 +14,9 @@ import com.example.moviefilm.Data.Request.Movie;
 import com.example.moviefilm.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class ShowAdapter extends RecyclerView.Adapter<ShowAdapter.ViewMovie> {
+public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewMovie> {
     Context context;
     ArrayList<Movie> list;
     private OnItemClickCallback onItemClickCallback;
@@ -23,15 +24,21 @@ public class ShowAdapter extends RecyclerView.Adapter<ShowAdapter.ViewMovie> {
         this.onItemClickCallback= onItemClickCallback;
     }
 
-    public ShowAdapter(Context context, ArrayList<Movie> list) {
+    public MovieAdapter(Context context, ArrayList<Movie> list) {
         this.context = context;
         this.list = list;
     }
 
+//    public void setList(List<Movie> list) {
+//        if(list!=null) return;
+//        this.list.clear();
+//        this.list.addAll(list);
+//    }
+
     @NonNull
     @Override
     public ViewMovie onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(context).inflate(R.layout.item_show, parent, false);
+        View view= LayoutInflater.from(context).inflate(R.layout.item_film, parent, false);
         return new ViewMovie(view);
     }
 
@@ -40,7 +47,7 @@ public class ShowAdapter extends RecyclerView.Adapter<ShowAdapter.ViewMovie> {
         Movie movie= list.get(position);
         holder.image.setImageResource(movie.getImage());
         holder.textJudul.setText(movie.getJudul());
-        holder.textTanggal.setText(movie.getTanggalRilis());
+        holder.textDeskripsi.setText(movie.getDeskripsi());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,12 +65,12 @@ public class ShowAdapter extends RecyclerView.Adapter<ShowAdapter.ViewMovie> {
     public class ViewMovie extends RecyclerView.ViewHolder {
         ImageView image;
         TextView textJudul;
-        TextView textTanggal;
+        TextView textDeskripsi;
         public ViewMovie(@NonNull View itemView) {
             super(itemView);
             image= itemView.findViewById(R.id.image_movie);
             textJudul= itemView.findViewById(R.id.text_judul);
-            textTanggal= itemView.findViewById(R.id.text_tanggal);
+            textDeskripsi= itemView.findViewById(R.id.text_deskripsi);
         }
     }
     public interface OnItemClickCallback{

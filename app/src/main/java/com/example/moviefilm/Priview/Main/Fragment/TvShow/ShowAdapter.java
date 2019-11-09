@@ -1,4 +1,4 @@
-package com.example.moviefilm.Priview.Main.Fragment;
+package com.example.moviefilm.Priview.Main.Fragment.TvShow;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -15,7 +15,7 @@ import com.example.moviefilm.R;
 
 import java.util.ArrayList;
 
-public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewMovie> {
+public class ShowAdapter extends RecyclerView.Adapter<ShowAdapter.ViewMovie> {
     Context context;
     ArrayList<Movie> list;
     private OnItemClickCallback onItemClickCallback;
@@ -23,7 +23,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewMovie> {
         this.onItemClickCallback= onItemClickCallback;
     }
 
-    public MovieAdapter(Context context, ArrayList<Movie> list) {
+    public ShowAdapter(Context context, ArrayList<Movie> list) {
         this.context = context;
         this.list = list;
     }
@@ -31,7 +31,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewMovie> {
     @NonNull
     @Override
     public ViewMovie onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(context).inflate(R.layout.item_film, parent, false);
+        View view= LayoutInflater.from(context).inflate(R.layout.item_show, parent, false);
         return new ViewMovie(view);
     }
 
@@ -40,7 +40,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewMovie> {
         Movie movie= list.get(position);
         holder.image.setImageResource(movie.getImage());
         holder.textJudul.setText(movie.getJudul());
-        holder.textDeskripsi.setText(movie.getDeskripsi());
+        holder.textTanggal.setText(movie.getTanggalRilis());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,12 +58,12 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewMovie> {
     public class ViewMovie extends RecyclerView.ViewHolder {
         ImageView image;
         TextView textJudul;
-        TextView textDeskripsi;
+        TextView textTanggal;
         public ViewMovie(@NonNull View itemView) {
             super(itemView);
             image= itemView.findViewById(R.id.image_movie);
             textJudul= itemView.findViewById(R.id.text_judul);
-            textDeskripsi= itemView.findViewById(R.id.text_deskripsi);
+            textTanggal= itemView.findViewById(R.id.text_tanggal);
         }
     }
     public interface OnItemClickCallback{

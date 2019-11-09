@@ -18,28 +18,28 @@
     <string name="movies">Movies</string>
     <string name="tvshow">TvShow</string>
     <array name="data_photo_model">
-        <item>@drawable/poster_arrow</item>
-        <item>@drawable/poster_doom_patrol</item>
-        <item>@drawable/poster_fairytail</item>
-        <item>@drawable/poster_family_guy</item>
-        <item>@drawable/poster_flash</item>
-        <item>@drawable/poster_god</item>
-        <item>@drawable/poster_gotham</item>
-        <item>@drawable/poster_grey_anatomy</item>
-        <item>@drawable/poster_hanna</item>
-        <item>@drawable/poster_iron_fist</item>
+        <item>@drawable/poster_glass</item>
+        <item>@drawable/poster_a_star</item>
+        <item>@drawable/poster_birdbox</item>
+        <item>@drawable/poster_bohemian</item>
+        <item>@drawable/poster_creed</item>
+        <item>@drawable/poster_hunterkiller</item>
+        <item>@drawable/poster_marrypopins</item>
+        <item>@drawable/poster_mortalengine</item>
+        <item>@drawable/poster_preman</item>
+        <item>@drawable/poster_themule</item>
     </array>
     <string-array name="nama_film_show">
-        <item>Arrow</item>
-        <item>Doom Patrol</item>
-        <item>Fairy Tail</item>
-        <item>Family Guy</item>
-        <item>Flash</item>
-        <item>God</item>
-        <item>Gotham</item>
-        <item>Grey Anatomy</item>
-        <item>Hanna</item>
-        <item>Iron First</item>
+        <item>Glass</item>
+        <item>A star</item>
+        <item>BirdBox</item>
+        <item>Bohemian</item>
+        <item>Creed</item>
+        <item>HunterKill</item>
+        <item>MarryPopins</item>
+        <item>Mortalegine</item>
+        <item>Preman</item>
+        <item>themole</item>
     </string-array>
     <string-array name="deskripsi_film_movie">
         <item>In a series of escalating encounters, former security guard David Dunn uses his supernatural abilities to track Kevin Wendell Crumb, a disturbed man who has twenty-four personalities. Meanwhile, the shadowy presence of Elijah Price emerges as an orchestrator who holds secrets critical to both men.</item>

@@ -6,14 +6,13 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
-import android.media.audiofx.BassBoost;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.moviefilm.Priview.Main.Fragment.MoviesFragment;
-import com.example.moviefilm.Priview.Main.Fragment.TvShowFragment;
+import com.example.moviefilm.Priview.Main.Fragment.Movie.MoviesFragment;
+import com.example.moviefilm.Priview.Main.Fragment.TvShow.TvShowFragment;
 import com.example.moviefilm.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 

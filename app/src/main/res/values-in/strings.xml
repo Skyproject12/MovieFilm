@@ -7,6 +7,8 @@
     <string name="pengaturan">Pengaturan</string>
     <string name="movies">Film</string>
     <string name="tvshow">TampilanTv</string>
+
+<!--    tvshow-->
     <array name="data_photo_model">
         <item>@drawable/poster_glass</item>
         <item>@drawable/poster_a_star</item>
@@ -67,6 +69,8 @@
         <item>Aris Nugraha</item>
         <item>Gavin Free</item>
     </string-array>
+
+<!--    movie-->
     <string-array name="nama_film">
         <item>Advenger Invinity</item>
         <item>Bumblebee</item>
@@ -90,8 +94,7 @@
         <item>Jurnalis investigasi Eddie Brock mencoba untuk kembali setelah skandal, tetapi secara tidak sengaja menjadi tuan rumah Venom, seorang simbiot alien yang sangat kuat dan sakti. Segera, ia harus mengandalkan kekuatan barunya untuk melindungi dunia dari organisasi bayangan yang mencari simbiosis mereka sendiri.</item>
         <item>Di St Yudas, pengedar narkoba dan polisi yang korup telah menghancurkan lingkungan kota. Tetapi pendatang baru, Hong, memiliki keterampilan dan visi moral untuk menyelamatkan kota ini dari dirinya sendiri.</item>
         <item>Dulunya merupakan rumah bagi peradaban paling maju di Bumi, Atlantis sekarang merupakan kerajaan bawah laut yang diperintah oleh Raja Orm yang haus kekuasaan. Dengan pasukan yang sangat besar, Orm berencana untuk menaklukkan orang-orang samudera yang tersisa dan kemudian ke permukaan dunia. Yang menghalangi jalannya adalah Arthur Curry, lelaki setengah manusia Orm, setengah saudara Atlantis dan pewaris sejati takhta.</item>
-        <item>
-Dahulu kala di pegunungan, seorang master pertempuran yang dikenal sebagai Gohan menemukan seorang bocah aneh yang ia beri nama Goku. Gohan membesarkannya dan melatih Goku dalam seni bela diri sampai dia mati. Bocah muda dan sangat kuat itu sendirian, tetapi mudah dikelola. Kemudian suatu hari, Goku bertemu dengan seorang gadis remaja bernama Bulma, yang pencariannya untuk bola naga membawanya ke rumah Gokus. Bersama-sama, mereka berangkat untuk menemukan ketujuh bola naga dalam sebuah petualangan.</item>
+        <item>Dahulu kala di pegunungan, seorang master pertempuran yang dikenal sebagai Gohan menemukan seorang bocah aneh yang ia beri nama Goku. Gohan membesarkannya dan melatih Goku dalam seni bela diri sampai dia mati. Bocah muda dan sangat kuat itu sendirian, tetapi mudah dikelola. Kemudian suatu hari, Goku bertemu dengan seorang gadis remaja bernama Bulma, yang pencariannya untuk bola naga membawanya ke rumah Gokus. Bersama-sama, mereka berangkat untuk menemukan ketujuh bola naga dalam sebuah petualangan.</item>
         <item>Dalam serangkaian pertemuan yang meningkat, mantan penjaga keamanan David Dunn menggunakan kemampuan supernaturalnya untuk melacak Kevin Wendell Crumb, seorang lelaki terganggu yang memiliki dua puluh empat kepribadian. Sementara itu, kehadiran bayangan Elia Price muncul sebagai seorang orkestra yang menyimpan rahasia penting bagi keduanya.</item>
     </string-array>
     <array name="data_photo">
