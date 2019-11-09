@@ -18,13 +18,16 @@ public class DetailActivity extends AppCompatActivity {
     TextView textPembuatMovie;
     TextView texttanggalMovie;
     TextView textDeskripsiMovie;
+    private DetailViewModel detailViewModel; 
+    private String local;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        movie= getIntent().getParcelableExtra("film");
+        movie= getIntent().getParcelableExtra("film"); 
+        local= getIntent().getStringExtra("status");
         initial();
         setText();
     }
@@ -34,15 +37,28 @@ public class DetailActivity extends AppCompatActivity {
         textPembuatMovie= findViewById(R.id.text_pembuatmovie);
         texttanggalMovie= findViewById(R.id.textjadwal_movie);
         textDeskripsiMovie= findViewById(R.id.text_deskripsimovie);
+        detailViewModel= ViewModelProviders.of(DetailActivity.this).get(DetailViewModel.class);
+
 
     }
     private void setText(){
-        //imageMovie.setImageResource(movie.getImage());
-        textJudulMovie.setText(movie.getJudul());
-        textPembuatMovie.setText(movie.getPembuat());
-        texttanggalMovie.setText(movie.getTanggalRilis());
-        textDeskripsiMovie.setText(movie.getDeskripsi());
+        
+        Movie list = null;
+        if(local.equals("movie")) {
+            list = detailViewModel.getList(movie.getId()); 
+            
+        } 
+        else if(local.equals("tvshow")){ 
+            list= detailViewModel.getListm(movie.getId()); 
+            
+        }
+        imageMovie.setImageResource(list.getImage());
+        textJudulMovie.setText(list.getJudul());
+        textPembuatMovie.setText(list.getPembuat());
+        texttanggalMovie.setText(list.getTanggalRilis());
+        textDeskripsiMovie.setText(list.getDeskripsi());
         getSupportActionBar().setTitle("Detail Movie");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
     }
 }

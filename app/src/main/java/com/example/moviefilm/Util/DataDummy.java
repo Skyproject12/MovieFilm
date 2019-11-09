@@ -248,4 +248,25 @@ public class DataDummy {
 
     }
 
+    public static Movie getIdMovie(int movieId){
+        for (int i=0; i<generateMovie().size();i++){
+            Movie movie= generateMovie().get(i);
+            if(movie.getId()==movieId){
+                return movie;
+            }
+        }
+        return null;
+
+    }
+    public static Movie getIdShow(int show){
+        for (int i=0; i<generateShow().size();i++){
+            Movie movie= generateShow().get(i);
+            if(movie.getId()==show){
+                return movie;
+            }
+        }
+        return null;
+
+    }
+
 }

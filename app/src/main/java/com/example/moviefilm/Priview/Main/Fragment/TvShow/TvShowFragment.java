@@ -109,6 +109,8 @@ public class TvShowFragment extends Fragment {
             public void onItmCliked(Movie movie) {
                 Intent moveObjectIntent= new Intent(getActivity(), DetailActivity.class);
                 moveObjectIntent.putExtra("film",movie);
+                String status="tvshow";
+                moveObjectIntent.putExtra("status",status );
                 startActivity(moveObjectIntent);
             }
         });
