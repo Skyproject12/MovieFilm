@@ -124,14 +124,10 @@ public class DataDummy {
         movie.add(new Movie(10,
                 R.drawable.poster_serenity,
                 "Serenity",
-                "Dahulu kala di pegunungan, seorang master pertempuran yang dikenal" +
-                        " sebagai Gohan menemukan seorang bocah aneh yang ia beri nama " +
-                        "Goku. Gohan membesarkannya dan melatih Goku dalam seni bela diri " +
-                        "sampai dia mati. Bocah muda dan sangat kuat itu sendirian, tetapi" +
-                        " mudah dikelola. Kemudian suatu hari, Goku bertemu dengan seorang " +
-                        "gadis remaja bernama Bulma, yang pencariannya untuk bola naga " +
-                        "membawanya ke rumah Gokus. Bersama-sama, mereka berangkat untuk " +
-                        "menemukan ketujuh bola naga dalam sebuah petualangan.",
+                "Kapten kapal penangkap ikan, Baker Dill (Matthew McConaughey) menjalani" +
+                        " kehidupan yang tenang di daerah tropis yang indah yang disebut Pulau " +
+                        "Plymouth. Masa lalu misterius sang kapten kembali menghantuinya, ketika " +
+                        "mantan istrinya, Karen (Anne Hathaway) mendatanginya untuk meminta bantuan",
                 "26 Februari 1986",
                 "Akira Toriyama"));
         return movie;
@@ -142,21 +138,18 @@ public class DataDummy {
         show.add(new Movie(1,
                 R.drawable.poster_arrow,
                 "Arrow",
-                "Dalam serangkaian pertemuan yang meningkat, mantan penjaga keamanan David " +
-                        "Dunn menggunakan kemampuan supernaturalnya untuk melacak Kevin Wendell " +
-                        "Crumb, seorang lelaki terganggu yang memiliki dua puluh empat kepribadian." +
-                        " Sementara itu, kehadiran bayangan Elia Price muncul sebagai seorang orkestra" +
-                        " yang menyimpan rahasia penting bagi keduanya.",
+                "Arrow adalah serial televisi Amerika yang dikembangkan oleh Greg " +
+                        "Berlanti, Andrew Kreisberg, dan Geoff Johns, yang mengudara di The CW. Serial" +
+                        " ini didasari tokoh DC Comics Green Arrow, seorang pahlawan super " +
+                        "berkostum, penumpas-kejahatan yang bersenjatakan busur & panah.",
                 "16 Januari 2019",
                 "M. Night Shyamalan"));
         show.add(new Movie(2,R.drawable.poster_doom_patrol,
                 "Doom Patrol",
-                "Musisi kawakan Jackson Maine menemukan - dan jatuh cinta dengan - artis " +
-                        "yang sedang berjuang Ally. Dia baru saja menyerah pada mimpinya untuk menjadi" +
-                        " besar sebagai penyanyi - sampai Jack membujuknya menjadi sorotan. Tetapi " +
-                        "bahkan ketika karier Ally lepas landas, sisi pribadi dari hubungan mereka " +
-                        "hancur, ketika Jack berjuang terus-menerus dengan setan-setan internalnya " +
-                        "sendiri. Kru Unggulan",
+                "Diterjemahkan dari bahasa Inggris-Doom Patrol adalah serial televisi" +
+                        " web Amerika yang dibuat oleh Jeremy Carver untuk DC Universe. Berdasarkan" +
+                        " tim superhero DC Comics dengan nama yang sama, seri ini menampilkan " +
+                        "Jane, Rita Farr, Vic Stone, Larry Trainor, Cliff Steele, dan Ketua sebagai anggota dari patroli Doom tituler. ",
                 "Oktober 3, 2018",
                 "Bradley Cooper"));
         show.add(new Movie(3,R.drawable.poster_dragon_ball,
@@ -173,11 +166,10 @@ public class DataDummy {
                 "Susanne Bier"));
         show.add(new Movie(4,R.drawable.poster_fairytail,
                 "FairyTail",
-                "mengambil dunia musik dengan badai ketika mereka membentuk band rock n " +
-                        "roll Queen pada tahun 1970. Lagu-lagu hit menjadi klasik instan. Ketika " +
-                        "gaya hidup Mercury yang semakin liar mulai lepas kendali, Queen segera " +
-                        "menghadapi tantangan terbesarnya - menemukan cara untuk menjaga band bersama" +
-                        " di tengah kesuksesan dan kelebihan.",
+                "Fairy Tail adalah sebuah seri manga Jepang yang ditulis dan diilustrasikan" +
+                        " oleh Hiro Mashima. Manga ini dimuat dalam majalah Weekly Shōnen Magazine" +
+                        " sejak tanggal 2 Agustus 2006 hingga 26 Juli 2017, dan telah dibundel dan" +
+                        " diterbitkan menjadi 63 volume tankōbon oleh Kodansha.",
                 "Oktober 24, 2018",
                 "Anthony McCarten"));
         show.add(new Movie(5,R.drawable.poster_family_guy,
@@ -208,11 +200,11 @@ public class DataDummy {
                 "Paul Ruven"));
         show.add(new Movie(8,R.drawable.poster_gotham,
                 "Gotham",
-                "Musim pertama Mortal Kombat Legacy adalah prekuel dari game aslinya," +
-                        " menjelaskan kisah latar belakang beberapa karakter dari seri dan " +
-                        "mendemonstrasikan alasan mereka untuk berpartisipasi dalam turnamen " +
-                        "Mortal Kombat kesepuluh yang akan datang di mana game pertama " +
-                        "didasarkan. Kru Unggulan",
+                "Gotham adalah serial televisi drama kriminal Amerika Serikat yang" +
+                        " dikembangkan oleh Bruno Heller, berdasarkan karakter yang diterbitkan" +
+                        " oleh DC Comics dan muncul dalam waralaba Batman, terutama yang milik " +
+                        "James Gordon dan Bruce Wayne. Heller dan Danny Cannon, yang mengarahkan " +
+                        "pilot, adalah produser eksekutif.",
                 "April 12, 2011",
                 "John Tobias"));
         show.add(new Movie(9,R.drawable.poster_grey_anatomy,

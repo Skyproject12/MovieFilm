@@ -5,24 +5,22 @@ import com.example.moviefilm.Data.Request.Movie;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.List;
-
 import static org.junit.Assert.*;
 
-public class DetailViewModelTest {
+public class DetailShowViewModelTest {
 
-    private DetailViewModel detailViewModel;
+    private DetailShowViewModel detailShowViewModel;
     @Before
     public void setUp(){
-        detailViewModel= new DetailViewModel();
+        detailShowViewModel= new DetailShowViewModel();
     }
 
     @Test
     public  void getDetail(){
 
-        Movie list= detailViewModel.getList(1);
+        Movie list= detailShowViewModel.getListm(1);
         assertNotNull(list);
-        assertEquals("Advenger Invinity",list.getJudul());
+        assertEquals("Arrow",list.getJudul());
 
     }
 

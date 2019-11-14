@@ -59,7 +59,6 @@ public class MoviesFragment extends Fragment {
         // Inflate the layout for this fragment
         view=inflater.inflate(R.layout.fragment_movies, container, false);
         initial();
-        convert();
         addItem();
         movieAdapter= new MovieAdapter(getActivity(), list);
        // movieAdapter.setList(list);
@@ -79,26 +78,9 @@ public class MoviesFragment extends Fragment {
 
     }
     private void addItem(){
-//        list= new ArrayList<>();
-//        for (int i = 0; i <dataFilm.length ; i++) {
-//            filmFavorit= new Movie();
-//            filmFavorit.setJudul(dataFilm[i]);
-//            filmFavorit.setDeskripsi(dataDeskripsi[i]);
-//            filmFavorit.setImage(dataPhoto.getResourceId(i, -1));
-//            filmFavorit.setPembuat(pembuat[i]);
-//            filmFavorit.setTanggalRilis(tanggalRilis[i]);
-//            list.add(filmFavorit);
-//        }
         list.addAll(movieViewModel.getMovie());
     }
 
-    private void convert(){
-        dataFilm= getResources().getStringArray(R.array.nama_film);
-        dataDeskripsi= getResources().getStringArray(R.array.deskripsi_film);
-        dataPhoto= getResources().obtainTypedArray(R.array.data_photo);
-        tanggalRilis= getResources().getStringArray(R.array.tanggal_film);
-        pembuat= getResources().getStringArray(R.array.production);
-    }
     private void IntentToFile(){
         movieAdapter.setOnItemClickCallback(new MovieAdapter.OnItemClickCallback() {
             @Override
