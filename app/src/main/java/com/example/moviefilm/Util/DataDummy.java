@@ -122,8 +122,8 @@ public class DataDummy {
                 "7 Desember 2018",
                 "James Wan"));
         movie.add(new Movie(10,
-                R.drawable.poster_dragonball,
-                "dragon ball",
+                R.drawable.poster_serenity,
+                "Serenity",
                 "Dahulu kala di pegunungan, seorang master pertempuran yang dikenal" +
                         " sebagai Gohan menemukan seorang bocah aneh yang ia beri nama " +
                         "Goku. Gohan membesarkannya dan melatih Goku dalam seni bela diri " +
@@ -134,26 +134,14 @@ public class DataDummy {
                         "menemukan ketujuh bola naga dalam sebuah petualangan.",
                 "26 Februari 1986",
                 "Akira Toriyama"));
-        movie.add(new Movie(11,
-                R.drawable.poster_glass,
-                "glass",
-                "Dalam serangkaian pertemuan yang meningkat, mantan penjaga " +
-                        "keamanan David Dunn menggunakan kemampuan supernaturalnya untuk" +
-                        " melacak Kevin Wendell Crumb, seorang lelaki terganggu yang " +
-                        "memiliki dua puluh empat kepribadian. Sementara itu, kehadiran" +
-                        " bayangan Elia Price muncul sebagai seorang orkestra yang " +
-                        "menyimpan rahasia penting bagi keduanya.",
-                "16 Januari 2019",
-                "M. Night Shyamalan"));
-
         return movie;
 
     }
     public static ArrayList<Movie> generateShow(){
         ArrayList<Movie> show= new ArrayList<>();
         show.add(new Movie(1,
-                R.drawable.poster_glass,
-                "glass",
+                R.drawable.poster_arrow,
+                "Arrow",
                 "Dalam serangkaian pertemuan yang meningkat, mantan penjaga keamanan David " +
                         "Dunn menggunakan kemampuan supernaturalnya untuk melacak Kevin Wendell " +
                         "Crumb, seorang lelaki terganggu yang memiliki dua puluh empat kepribadian." +
@@ -161,8 +149,8 @@ public class DataDummy {
                         " yang menyimpan rahasia penting bagi keduanya.",
                 "16 Januari 2019",
                 "M. Night Shyamalan"));
-        show.add(new Movie(2,R.drawable.poster_a_star,
-                "star",
+        show.add(new Movie(2,R.drawable.poster_doom_patrol,
+                "Doom Patrol",
                 "Musisi kawakan Jackson Maine menemukan - dan jatuh cinta dengan - artis " +
                         "yang sedang berjuang Ally. Dia baru saja menyerah pada mimpinya untuk menjadi" +
                         " besar sebagai penyanyi - sampai Jack membujuknya menjadi sorotan. Tetapi " +
@@ -171,18 +159,20 @@ public class DataDummy {
                         "sendiri. Kru Unggulan",
                 "Oktober 3, 2018",
                 "Bradley Cooper"));
-        show.add(new Movie(3,R.drawable.poster_birdbox,
-                "birdbox",
-                "Seorang penyihir muda, Lucy Heartfilia, pergi ke Fiore untuk bergabung " +
-                        "dengan Persekutuan Fairy Tail. Di tengah jalan, ia bertemu dengan Natsu " +
-                        "Dragneel, seorang pemuda yang sedang mencari naga bernama Igneel, dengan " +
-                        "sahabatnya, Happy. Beberapa saat setelah pertemuan mereka, Lucy ditipu " +
-                        "oleh Bora of Prominence, yang menyamar sebagai Salamander dari Fairy Tail," +
-                        " untuk dijual sebagai budak.",
+        show.add(new Movie(3,R.drawable.poster_dragon_ball,
+                "Dragon Ball",
+                "Dahulu kala di pegunungan, seorang master pertempuran yang dikenal" +
+                        " sebagai Gohan menemukan seorang bocah aneh yang ia beri nama " +
+                        "Goku. Gohan membesarkannya dan melatih Goku dalam seni bela diri " +
+                        "sampai dia mati. Bocah muda dan sangat kuat itu sendirian, tetapi" +
+                        " mudah dikelola. Kemudian suatu hari, Goku bertemu dengan seorang " +
+                        "gadis remaja bernama Bulma, yang pencariannya untuk bola naga " +
+                        "membawanya ke rumah Gokus. Bersama-sama, mereka berangkat untuk " +
+                        "menemukan ketujuh bola naga dalam sebuah petualangan.",
                 "Desember 12, 1998",
                 "Susanne Bier"));
-        show.add(new Movie(4,R.drawable.poster_bohemian,
-                "bohemian",
+        show.add(new Movie(4,R.drawable.poster_fairytail,
+                "FairyTail",
                 "mengambil dunia musik dengan badai ketika mereka membentuk band rock n " +
                         "roll Queen pada tahun 1970. Lagu-lagu hit menjadi klasik instan. Ketika " +
                         "gaya hidup Mercury yang semakin liar mulai lepas kendali, Queen segera " +
@@ -190,22 +180,22 @@ public class DataDummy {
                         " di tengah kesuksesan dan kelebihan.",
                 "Oktober 24, 2018",
                 "Anthony McCarten"));
-        show.add(new Movie(5,R.drawable.poster_creed,
-                "creed",
+        show.add(new Movie(5,R.drawable.poster_family_guy,
+                "Family Guy",
                 "Antara kewajiban pribadi dan pelatihan untuk pertarungan besar berikutnya" +
                         " melawan lawan yang memiliki ikatan dengan masa lalu keluarganya, Adonis " +
                         "Creed menghadapi tantangan hidupnya.",
                 "November 21, 2018",
                 "Sylvester Stallone"));
-        show.add(new Movie(6,R.drawable.poster_hunterkiller,
-                "hunterkiller",
+        show.add(new Movie(6,R.drawable.poster_flash,
+                "Flash",
                 "USS Arkansas menemukan bahwa kudeta sedang terjadi di Rusia, jadi ia dan " +
                         "krunya bergabung dengan kelompok elit yang bekerja di lapangan untuk " +
                         "mencegah perang.",
                 "Oktober 19, 2018",
                 "Donovan Marsh"));
-        show.add(new Movie(7,R.drawable.poster_marrypopins,
-                "marrypopins",
+        show.add(new Movie(7,R.drawable.poster_god,
+                "God",
                 "Ushi Hirosaki harus menikah sesuai dengan tradisi Jepang sebelum " +
                         "ulang tahunnya yang ke-30. Karena waktu hampir habis, keluarganya " +
                         "memutuskan dia harus menikah dengan pegulat sumo besar. Kombinasi " +
@@ -216,8 +206,8 @@ public class DataDummy {
                         "Jepangnya.",
                 "Februar1 13, 2013",
                 "Paul Ruven"));
-        show.add(new Movie(8,R.drawable.poster_mortalengine,
-                "mortalengine",
+        show.add(new Movie(8,R.drawable.poster_gotham,
+                "Gotham",
                 "Musim pertama Mortal Kombat Legacy adalah prekuel dari game aslinya," +
                         " menjelaskan kisah latar belakang beberapa karakter dari seri dan " +
                         "mendemonstrasikan alasan mereka untuk berpartisipasi dalam turnamen " +
@@ -225,8 +215,8 @@ public class DataDummy {
                         "didasarkan. Kru Unggulan",
                 "April 12, 2011",
                 "John Tobias"));
-        show.add(new Movie(9,R.drawable.poster_preman,
-                "preman",
+        show.add(new Movie(9,R.drawable.poster_grey_anatomy,
+                "Grey Anatomy",
                 "Setelah tiga tahun, bisnis Muslihat (Epi Kusnandar), yang telah " +
                         "pensiun sebagai preman, memiliki masalah. Penurunan penjualan. " +
                         "Muslihat juga menghadapi masalah baru ketika Safira (Safira Maharani)" +
@@ -235,8 +225,8 @@ public class DataDummy {
                         "antara mantan bawahannya.",
                 "Januar1 17, 2019",
                 "Aris Nugraha"));
-        show.add(new Movie(10,R.drawable.poster_themule,
-                "themule",
+        show.add(new Movie(10,R.drawable.poster_hanna,
+                "Hanna",
                 "Dunia sinema aksi tinggi hadir dengan merangkak melengking" +
                         " dalam seri yang menjatuhkan rahang ini. Api, aliran air, " +
                         "semangka meledak, dan bahkan tembakan paintball titik kosong" +
