@@ -1,7 +1,7 @@
 package com.example.moviefilm.utils;
 
 
-import com.example.moviefilm.Data.Request.Movie;
+import com.example.moviefilm.Data.source.remote.Response.Movie;
 import com.example.moviefilm.R;
 
 import java.util.ArrayList;

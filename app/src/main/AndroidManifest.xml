@@ -9,11 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Priview.Detail.DetailActivity"
-            android:parentActivityName=".Priview.Main.MainActivity"/>
-        <activity android:name=".Priview.Detail.DetailShowActivity"
-            android:parentActivityName=".Priview.Main.MainActivity"/>
-        <activity android:name=".Priview.Main.MainActivity">
+        <activity android:name=".Ui.Detail.DetailActivity"
+            android:parentActivityName=".Ui.Main.MainActivity"/>
+        <activity android:name=".Ui.Detail.DetailShowActivity"
+            android:parentActivityName=".Ui.Main.MainActivity"/>
+        <activity android:name=".Ui.Main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
