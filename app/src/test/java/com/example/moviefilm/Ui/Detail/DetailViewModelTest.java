@@ -1,6 +1,7 @@
 package com.example.moviefilm.Ui.Detail;
 
-import com.example.moviefilm.Data.source.remote.Response.Movie;
+import com.example.moviefilm.Data.source.local.Movie;
+import com.example.moviefilm.ViewModel.Detail.DetailViewModel;
 
 import org.junit.Before;
 import org.junit.Test;

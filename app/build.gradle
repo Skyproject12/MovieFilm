@@ -17,6 +17,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
 }
 
 ext {
@@ -72,4 +76,7 @@ dependencies {
     androidTestImplementation "androidx.test:rules:$androidXTestVersion"
     androidTestImplementation "androidx.test.espresso:espresso-contrib:$espressoVersion"
     androidTestImplementation "androidx.arch.core:core-testing:$archLifecycleVersion"
+
+    implementation 'com.loopj.android:android-async-http:1.4.9'
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }

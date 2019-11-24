@@ -1,14 +1,16 @@
 package com.example.moviefilm.Ui.Detail;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProviders;
-
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.moviefilm.Data.source.remote.Response.Movie;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
+
+import com.example.moviefilm.Data.source.local.Movie;
 import com.example.moviefilm.R;
+import com.example.moviefilm.ViewModel.Detail.DetailViewModel;
+import com.squareup.picasso.Picasso;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -25,26 +27,26 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        movie= getIntent().getParcelableExtra("film");
+        movie = getIntent().getParcelableExtra("film");
         initial();
         setText();
     }
-    private void initial(){
-        imageMovie= findViewById(R.id.image_movie);
-        textJudulMovie= findViewById(R.id.tex_judulmovie);
-        textPembuatMovie= findViewById(R.id.text_pembuatmovie);
-        texttanggalMovie= findViewById(R.id.textjadwal_movie);
-        textDeskripsiMovie= findViewById(R.id.text_deskripsimovie);
-        detailViewModel= ViewModelProviders.of(DetailActivity.this).get(DetailViewModel.class);
+
+    private void initial() {
+        imageMovie = findViewById(R.id.image_movie);
+        textJudulMovie = findViewById(R.id.tex_judulmovie);
+        texttanggalMovie = findViewById(R.id.textjadwal_movie);
+        textDeskripsiMovie = findViewById(R.id.text_deskripsimovie);
+        detailViewModel = ViewModelProviders.of(DetailActivity.this).get(DetailViewModel.class);
 
 
     }
-    private void setText(){
+
+    private void setText() {
         Movie list = null;
         list = detailViewModel.getList(movie.getId());
-        imageMovie.setImageResource(list.getImage());
+        Picasso.get().load(list.getImage()).into(imageMovie);
         textJudulMovie.setText(list.getJudul());
-        textPembuatMovie.setText(list.getPembuat());
         texttanggalMovie.setText(list.getTanggalRilis());
         textDeskripsiMovie.setText(list.getDeskripsi());
         getSupportActionBar().setTitle("Detail Movie");

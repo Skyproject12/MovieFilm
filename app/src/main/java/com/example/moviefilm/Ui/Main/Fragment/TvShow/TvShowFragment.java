@@ -18,9 +18,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.moviefilm.Data.source.remote.Response.Movie;
+import com.example.moviefilm.Data.source.local.Movie;
 import com.example.moviefilm.Ui.Detail.DetailShowActivity;
 import com.example.moviefilm.R;
+import com.example.moviefilm.ViewModel.TvShow.ShowViewModel;
 
 import java.util.ArrayList;
 
@@ -79,7 +80,7 @@ public class TvShowFragment extends Fragment {
 
     }
     private void addItem(){
-        list.addAll(showViewModel.getShow());
+        //list.addAll(showViewModel.getShow());
 
     }
     private void IntentToFile(){

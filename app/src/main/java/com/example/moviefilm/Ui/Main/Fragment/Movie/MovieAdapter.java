@@ -1,6 +1,6 @@
 package com.example.moviefilm.Ui.Main.Fragment.Movie;
 
-import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,41 +10,38 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.moviefilm.Data.source.remote.Response.Movie;
+import com.example.moviefilm.Data.source.local.Movie;
 import com.example.moviefilm.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewMovie> {
-    Context context;
-    ArrayList<Movie> list;
+    ArrayList<Movie> list = new ArrayList<>();
     private OnItemClickCallback onItemClickCallback;
-    public void setOnItemClickCallback(OnItemClickCallback onItemClickCallback){
-        this.onItemClickCallback= onItemClickCallback;
+
+    public void setOnItemClickCallback(OnItemClickCallback onItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback;
     }
 
-    public MovieAdapter(Context context, ArrayList<Movie> list) {
-        this.context = context;
-        this.list = list;
+    public void setList(ArrayList<Movie> mList) {
+        if (mList == null) return;
+        this.list.clear();
+        this.list.addAll(mList);
+        Log.d("AdapterMovie", "setList: " + list.get(0).getJudul());
     }
-
-//    public void setList(List<Movie> list) {
-//        if(list!=null) return;
-//        this.list.clear();
-//        this.list.addAll(list);
-//    }
 
     @NonNull
     @Override
     public ViewMovie onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(context).inflate(R.layout.item_film, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_film, parent, false);
         return new ViewMovie(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull final ViewMovie holder, final int position) {
-        Movie movie= list.get(position);
-        holder.image.setImageResource(movie.getImage());
+        Movie movie = list.get(position);
+        Picasso.get().load(movie.getImage()).into(holder.image);
         holder.textJudul.setText(movie.getJudul());
         holder.textDeskripsi.setText(movie.getDeskripsi());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -65,14 +62,16 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewMovie> {
         ImageView image;
         TextView textJudul;
         TextView textDeskripsi;
+
         public ViewMovie(@NonNull View itemView) {
             super(itemView);
-            image= itemView.findViewById(R.id.image_movie);
-            textJudul= itemView.findViewById(R.id.text_judul);
-            textDeskripsi= itemView.findViewById(R.id.text_deskripsi);
+            image = itemView.findViewById(R.id.image_movie);
+            textJudul = itemView.findViewById(R.id.text_judul);
+            textDeskripsi = itemView.findViewById(R.id.text_deskripsi);
         }
     }
-    public interface OnItemClickCallback{
+
+    public interface OnItemClickCallback {
         void onItmCliked(Movie movie);
     }
 }

@@ -30,26 +30,15 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/text_pembuatmovie"
+        android:id="@+id/textjadwal_movie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="8dp"
         android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/image_movie"
         app:layout_constraintTop_toBottomOf="@+id/tex_judulmovie" />
-
-    <TextView
-        android:id="@+id/textjadwal_movie"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="6dp"
-        android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/image_movie"
-        app:layout_constraintTop_toBottomOf="@+id/text_pembuatmovie" />
 
     <TextView
         android:id="@+id/text_deskripsimovie"

@@ -10,8 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.moviefilm.Data.source.remote.Response.Movie;
+import com.example.moviefilm.Data.source.local.Movie;
 import com.example.moviefilm.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -38,7 +39,7 @@ public class ShowAdapter extends RecyclerView.Adapter<ShowAdapter.ViewMovie> {
     @Override
     public void onBindViewHolder(@NonNull final ViewMovie holder, final int position) {
         Movie movie= list.get(position);
-        holder.image.setImageResource(movie.getImage());
+        Picasso.get().load(movie.getImage()).into(holder.image);
         holder.textJudul.setText(movie.getJudul());
         holder.textTanggal.setText(movie.getTanggalRilis());
         holder.itemView.setOnClickListener(new View.OnClickListener() {

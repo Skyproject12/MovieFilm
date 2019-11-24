@@ -1,23 +1,21 @@
-package com.example.moviefilm.Data.Request;
+package com.example.moviefilm.Data.source.remote.Response;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Movie implements Parcelable {
+public class TvShowResponse implements Parcelable {
     int id;
-    int image;
+    String image;
     String judul;
     String deskripsi;
     String tanggalRilis;
-    String pembuat;
 
-    public Movie(int id, int image, String judul, String deskripsi, String tanggalRilis, String pembuat) {
+    public TvShowResponse(int id, String image, String judul, String deskripsi, String tanggalRilis) {
         this.id = id;
         this.image = image;
         this.judul = judul;
         this.deskripsi = deskripsi;
         this.tanggalRilis = tanggalRilis;
-        this.pembuat = pembuat;
     }
 
     public int getId() {
@@ -28,11 +26,11 @@ public class Movie implements Parcelable {
         this.id = id;
     }
 
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
@@ -60,12 +58,7 @@ public class Movie implements Parcelable {
         this.tanggalRilis = tanggalRilis;
     }
 
-    public String getPembuat() {
-        return pembuat;
-    }
-
-    public void setPembuat(String pembuat) {
-        this.pembuat = pembuat;
+    public TvShowResponse() {
     }
 
 
@@ -77,31 +70,29 @@ public class Movie implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(this.id);
-        dest.writeInt(this.image);
+        dest.writeString(this.image);
         dest.writeString(this.judul);
         dest.writeString(this.deskripsi);
         dest.writeString(this.tanggalRilis);
-        dest.writeString(this.pembuat);
     }
 
-    protected Movie(Parcel in) {
+    protected TvShowResponse(Parcel in) {
         this.id = in.readInt();
-        this.image = in.readInt();
+        this.image = in.readString();
         this.judul = in.readString();
         this.deskripsi = in.readString();
         this.tanggalRilis = in.readString();
-        this.pembuat = in.readString();
     }
 
-    public static final Creator<Movie> CREATOR = new Creator<Movie>() {
+    public static final Creator<TvShowResponse> CREATOR = new Creator<TvShowResponse>() {
         @Override
-        public Movie createFromParcel(Parcel source) {
-            return new Movie(source);
+        public TvShowResponse createFromParcel(Parcel source) {
+            return new TvShowResponse(source);
         }
 
         @Override
-        public Movie[] newArray(int size) {
-            return new Movie[size];
+        public TvShowResponse[] newArray(int size) {
+            return new TvShowResponse[size];
         }
     };
 }
