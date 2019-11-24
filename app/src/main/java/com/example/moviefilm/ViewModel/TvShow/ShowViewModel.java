@@ -8,6 +8,7 @@ import com.example.moviefilm.Data.source.local.Movie;
 import com.example.moviefilm.Data.source.local.TvshowEntity;
 import com.example.moviefilm.Util.DataDummy;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ShowViewModel extends ViewModel {
@@ -18,9 +19,8 @@ public class ShowViewModel extends ViewModel {
         this.movieFilmRepository = movieFilmRepository;
     }
 
-    public LiveData<List<TvshowEntity>> getShow(){
-        return null;
-
+    public LiveData<ArrayList<TvshowEntity>> getShow(){
+        return movieFilmRepository.getTvshowAll();
     }
 
 }

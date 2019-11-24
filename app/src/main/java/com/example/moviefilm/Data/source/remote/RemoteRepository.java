@@ -2,7 +2,6 @@ package com.example.moviefilm.Data.source.remote;
 
 import android.util.Log;
 
-import com.example.moviefilm.Data.source.local.Movie;
 import com.example.moviefilm.Data.source.remote.Response.MovieResponse;
 import com.example.moviefilm.Data.source.remote.Response.TvShowResponse;
 import com.example.moviefilm.Util.ApiHelper;
@@ -26,29 +25,30 @@ public class RemoteRepository {
     public RemoteRepository(ApiHelper apiHelper) {
         this.apiHelper = apiHelper;
     }
-    public static RemoteRepository getInstance(ApiHelper apiHelper){
-        if(INSTANCE==null){
-            INSTANCE= new RemoteRepository(apiHelper);
+
+    public static RemoteRepository getInstance(ApiHelper apiHelper) {
+        if (INSTANCE == null) {
+            INSTANCE = new RemoteRepository(apiHelper);
         }
         return INSTANCE;
     }
 
-    public void getMovie(LoadMovieCallback callback){
+    public void getMovie(LoadMovieCallback callback) {
         final ArrayList<MovieResponse> list = new ArrayList<>();
-        AsyncHttpClient client= new AsyncHttpClient();
-        String Url= "https://api.themoviedb.org/3/discover/movie?api_key="+ Static.API_KEY + "&language=en-US";
+        AsyncHttpClient client = new AsyncHttpClient();
+        String Url = "https://api.themoviedb.org/3/discover/movie?api_key=" + Static.API_KEY + "&language=en-US";
         client.get(Url, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                String result= new String(responseBody);
+                String result = new String(responseBody);
                 try {
-                    JSONObject responseJson= new JSONObject(result);
-                    JSONArray listArray= responseJson.getJSONArray("results");
-                    for (int i = 0; i <listArray.length() ; i++) {
-                        JSONObject movie= listArray.getJSONObject(i);
-                        MovieResponse movieResponse= new MovieResponse(
+                    JSONObject responseJson = new JSONObject(result);
+                    JSONArray listArray = responseJson.getJSONArray("results");
+                    for (int i = 0; i < listArray.length(); i++) {
+                        JSONObject movie = listArray.getJSONObject(i);
+                        MovieResponse movieResponse = new MovieResponse(
                                 movie.getInt("id"),
-                                "https://image.tmdb.org/t/p/w185/"+movie.getString("poster_path"),
+                                "https://image.tmdb.org/t/p/w185/" + movie.getString("poster_path"),
                                 movie.getString("original_title"),
                                 movie.getString("overview"),
                                 movie.getString("release_date")
@@ -57,10 +57,9 @@ public class RemoteRepository {
                         callback.onSuccess(list);
                     }
 
-                }
-                catch (JSONException e){
+                } catch (JSONException e) {
                     e.printStackTrace();
-                    Log.d("Helper", "onFailed: "+e.getMessage());
+                    Log.d("Helper", "onFailed: " + e.getMessage());
 
                 }
             }
@@ -72,17 +71,53 @@ public class RemoteRepository {
         });
     }
 
-    public void getTvshow(LoadTvshowCallback callback){
-        callback.onSuccess(apiHelper.getTvShow());
+    public void getTvshow(LoadTvshowCallback callback) {
+        final ArrayList<TvShowResponse> list = new ArrayList<>();
+        AsyncHttpClient client = new AsyncHttpClient();
+        String Url = "https://api.themoviedb.org/3/discover/tv?api_key=" + Static.API_KEY + "&language=en-US";
+        client.get(Url, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                String result = new String(responseBody);
+                try {
+                    JSONObject responseJson = new JSONObject(result);
+                    JSONArray listArray = responseJson.getJSONArray("results");
+                    for (int i = 0; i < listArray.length(); i++) {
+                        JSONObject show = listArray.getJSONObject(i);
+                        TvShowResponse tvShowResponse = new TvShowResponse(
+                                show.getInt("id"),
+                                "https://image.tmdb.org/t/p/w185/"+show.getString("poster_path"),
+                                show.getString("name"),
+                                show.getString("overview"),
+                                show.getString("first_air_date")
+                        );
+                        list.add(tvShowResponse);
+                        callback.onSuccess(list);
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Log.d("error", "error show: "+e.getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+
+            }
+        });
     }
 
-    public interface LoadMovieCallback{
+    public interface LoadMovieCallback {
         void onSuccess(List<MovieResponse> movieResponses);
+
         void onNotAvailable();
 
     }
-    public interface LoadTvshowCallback{
+
+    public interface LoadTvshowCallback {
         void onSuccess(List<TvShowResponse> tvShowResponses);
+
         void onNotAvailbale();
 
     }
