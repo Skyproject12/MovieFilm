@@ -49,7 +49,6 @@ public class TvShowFragment extends Fragment {
         showViewModel.getShow().observe(this, show -> {
             showAdapter = new ShowAdapter();
             showAdapter.setList(show);
-            Log.d("ShowCheck", "onCreateView: "+show.get(0).getDeskripsi());
             linearLayoutManager = new LinearLayoutManager(getActivity());
             recyclerView.setLayoutManager(linearLayoutManager);
             recyclerView.setAdapter(showAdapter);
@@ -60,8 +59,6 @@ public class TvShowFragment extends Fragment {
                 public void onItmCliked(TvshowEntity movie) {
                     Intent moveObjectIntent = new Intent(getActivity(), DetailShowActivity.class);
                     moveObjectIntent.putExtra("tvshow", movie);
-                    String status = "tvshow";
-                    moveObjectIntent.putExtra("status", status);
                     startActivity(moveObjectIntent);
                 }
             });

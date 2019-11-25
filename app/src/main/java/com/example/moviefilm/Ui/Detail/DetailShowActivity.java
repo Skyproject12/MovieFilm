@@ -8,13 +8,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.moviefilm.Data.source.local.Movie;
+import com.example.moviefilm.Data.source.local.TvshowEntity;
 import com.example.moviefilm.R;
 import com.example.moviefilm.ViewModel.Detail.DetailShowViewModel;
+import com.example.moviefilm.ViewModel.Detail.DetailViewModel;
+import com.example.moviefilm.ViewModel.ViewModelFactory;
 import com.squareup.picasso.Picasso;
 
 public class DetailShowActivity extends AppCompatActivity {
 
-    Movie movie;
+    TvshowEntity movie;
     ImageView imageMovie;
     TextView textJudulMovie;
     TextView texttanggalMovie;
@@ -36,21 +39,24 @@ public class DetailShowActivity extends AppCompatActivity {
         textJudulMovie = findViewById(R.id.tex_judulmovie);
         texttanggalMovie = findViewById(R.id.textjadwal_movie);
         textDeskripsiMovie = findViewById(R.id.text_deskripsimovie);
-        detailShowViewModel = ViewModelProviders.of(DetailShowActivity.this).get(DetailShowViewModel.class);
-
+        detailShowViewModel= obtainViewModel(DetailShowActivity.this);
 
     }
 
     private void setText() {
-        Movie list = null;
-        list = detailShowViewModel.getListm(movie.getId());
-        Picasso.get().load(list.getImage()).into(imageMovie);
-        textJudulMovie.setText(list.getJudul());
+        detailShowViewModel.getTvshoId(movie.getId()).observe(this, tvshowid->{
+            Picasso.get().load(tvshowid.get(0).getImage()).into(imageMovie);
+            textJudulMovie.setText(tvshowid.get(0).getJudul());
 
-        texttanggalMovie.setText(list.getTanggalRilis());
-        textDeskripsiMovie.setText(list.getDeskripsi());
-        getSupportActionBar().setTitle("Detail Movie");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            texttanggalMovie.setText(tvshowid.get(0).getTanggalRilis());
+            textDeskripsiMovie.setText(tvshowid.get(0).getDeskripsi());
+            getSupportActionBar().setTitle("Detail Movie");
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        });
+    }
 
+    private static DetailShowViewModel obtainViewModel(AppCompatActivity activity){
+        ViewModelFactory factory= ViewModelFactory.getInstance(activity.getApplication());
+        return ViewModelProviders.of(activity, factory).get(DetailShowViewModel.class);
     }
 }

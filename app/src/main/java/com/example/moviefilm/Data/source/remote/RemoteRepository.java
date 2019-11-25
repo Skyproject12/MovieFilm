@@ -86,7 +86,7 @@ public class RemoteRepository {
                         JSONObject show = listArray.getJSONObject(i);
                         TvShowResponse tvShowResponse = new TvShowResponse(
                                 show.getInt("id"),
-                                "https://image.tmdb.org/t/p/w185/"+show.getString("poster_path"),
+                                "https://image.tmdb.org/t/p/w185/" + show.getString("poster_path"),
                                 show.getString("name"),
                                 show.getString("overview"),
                                 show.getString("first_air_date")
@@ -97,7 +97,84 @@ public class RemoteRepository {
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    Log.d("error", "error show: "+e.getMessage());
+                    Log.d("error", "error show: " + e.getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+
+            }
+        });
+    }
+
+    public void getMovieById(int id, LoadMovieCallback calback) {
+        final ArrayList<MovieResponse> list = new ArrayList<>();
+        AsyncHttpClient client = new AsyncHttpClient();
+        String Url = "https://api.themoviedb.org/3/discover/movie?api_key=" + Static.API_KEY + "&language=en-US";
+        client.get(Url, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                String result = new String(responseBody);
+                try {
+                    JSONObject responseJson = new JSONObject(result);
+                    JSONArray listArray = responseJson.getJSONArray("results");
+                    for (int i = 0; i < listArray.length(); i++) {
+                        JSONObject movieId = listArray.getJSONObject(i);
+                        if (id == movieId.getInt("id")) {
+                            MovieResponse movieResponse = new MovieResponse(
+                                    movieId.getInt("id"),
+                                    movieId.getString("poster_path"),
+                                    movieId.getString("original_title"),
+                                    movieId.getString("overview"),
+                                    movieId.getString("release_date")
+                            );
+                            list.add(movieResponse);
+                            calback.onSuccess(list);
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+
+            }
+        });
+    }
+
+
+    public void getTvshowById(int id, LoadTvshowCallback calback) {
+        final ArrayList<TvShowResponse> list = new ArrayList<>();
+        AsyncHttpClient client = new AsyncHttpClient();
+        String Url = "https://api.themoviedb.org/3/discover/tv?api_key=" + Static.API_KEY + "&language=en-US";
+        client.get(Url, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                String result = new String(responseBody);
+                try {
+                    JSONObject responseJson = new JSONObject(result);
+                    JSONArray listArray = responseJson.getJSONArray("results");
+                    for (int i = 0; i < listArray.length(); i++) {
+                        JSONObject tvshowId = listArray.getJSONObject(i);
+                        if (id == tvshowId.getInt("id")) {
+                            TvShowResponse tvShowResponse = new TvShowResponse(
+                                    tvshowId.getInt("id"),
+                                    tvshowId.getString("poster_path"),
+                                    tvshowId.getString("name"),
+                                    tvshowId.getString("overview"),
+                                    tvshowId.getString("first_air_date")
+                            );
+                            list.add(tvShowResponse);
+                            calback.onSuccess(list);
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+
                 }
             }
 

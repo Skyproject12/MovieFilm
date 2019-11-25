@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.moviefilm.Data.source.local.Movie;
 import com.example.moviefilm.R;
 import com.example.moviefilm.ViewModel.Detail.DetailViewModel;
+import com.example.moviefilm.ViewModel.ViewModelFactory;
 import com.squareup.picasso.Picasso;
 
 public class DetailActivity extends AppCompatActivity {
@@ -17,7 +18,6 @@ public class DetailActivity extends AppCompatActivity {
     Movie movie;
     ImageView imageMovie;
     TextView textJudulMovie;
-    TextView textPembuatMovie;
     TextView texttanggalMovie;
     TextView textDeskripsiMovie;
     private DetailViewModel detailViewModel;
@@ -37,20 +37,24 @@ public class DetailActivity extends AppCompatActivity {
         textJudulMovie = findViewById(R.id.tex_judulmovie);
         texttanggalMovie = findViewById(R.id.textjadwal_movie);
         textDeskripsiMovie = findViewById(R.id.text_deskripsimovie);
-        detailViewModel = ViewModelProviders.of(DetailActivity.this).get(DetailViewModel.class);
+        detailViewModel= obtainViewModel(DetailActivity.this);
 
 
     }
 
     private void setText() {
-        Movie list = null;
-        list = detailViewModel.getList(movie.getId());
-        Picasso.get().load(list.getImage()).into(imageMovie);
-        textJudulMovie.setText(list.getJudul());
-        texttanggalMovie.setText(list.getTanggalRilis());
-        textDeskripsiMovie.setText(list.getDeskripsi());
-        getSupportActionBar().setTitle("Detail Movie");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        detailViewModel.getMovieId(movie.getId()).observe(this, movieId-> {
+            Picasso.get().load(movieId.get(0).getImage()).into(imageMovie);
+            textJudulMovie.setText(movieId.get(0).getJudul());
+            texttanggalMovie.setText(movieId.get(0).getTanggalRilis());
+            textDeskripsiMovie.setText(movieId.get(0).getDeskripsi());
+            getSupportActionBar().setTitle("Detail Movie");
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        });
+    }
 
+    private static DetailViewModel obtainViewModel(AppCompatActivity activity){
+        ViewModelFactory factory= ViewModelFactory.getInstance(activity.getApplication());
+        return ViewModelProviders.of(activity, factory).get(DetailViewModel.class);
     }
 }

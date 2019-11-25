@@ -12,5 +12,7 @@ import java.util.List;
 public interface MovieFilmDataSource {
     LiveData<ArrayList<Movie>> getMovieAll();
     LiveData<ArrayList<TvshowEntity>> getTvshowAll();
+    LiveData<ArrayList<Movie>> getMovieId(int id);
+    LiveData<ArrayList<TvshowEntity>> getTvshowId(int id);
 
 }

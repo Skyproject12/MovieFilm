@@ -95,4 +95,69 @@ public class MovieFilmRepository implements MovieFilmDataSource {
         return tvshowEntity;
 
     }
+
+    @Override
+    public LiveData<ArrayList<Movie>> getMovieId(int id) {
+        MutableLiveData<ArrayList<Movie>> movieEntity = new MutableLiveData<>();
+        remoteRepository.getMovieById(id, new RemoteRepository.LoadMovieCallback() {
+            @Override
+            public void onSuccess(List<MovieResponse> movieResponses) {
+                ArrayList<Movie> listMovie = new ArrayList<>();
+                for (int i = 0; i < movieResponses.size(); i++) {
+                    MovieResponse movieResponse = movieResponses.get(i);
+                    if (id == movieResponse.getId()) {
+                        Movie movieTemp = new Movie(
+                                movieResponse.getId(),
+                                movieResponse.getImage(),
+                                movieResponse.getJudul(),
+                                movieResponse.getDeskripsi(),
+                                movieResponse.getTanggalRilis()
+                        );
+                        listMovie.add(movieTemp);
+                    }
+                }
+                movieEntity.postValue(listMovie);
+            }
+
+            @Override
+            public void onNotAvailable() {
+
+            }
+        });
+        return movieEntity;
+
+    }
+
+    @Override
+    public LiveData<ArrayList<TvshowEntity>> getTvshowId(int id) {
+        MutableLiveData<ArrayList<TvshowEntity>> tvshowEntity = new MutableLiveData<>();
+        remoteRepository.getTvshowById(id, new RemoteRepository.LoadTvshowCallback() {
+            @Override
+            public void onSuccess(List<TvShowResponse> tvshowResponses) {
+                ArrayList<TvshowEntity> listTvshow = new ArrayList<>();
+                for (int i = 0; i < tvshowResponses.size(); i++) {
+                    TvShowResponse tvShowResponse = tvshowResponses.get(i);
+                    if (id == tvShowResponse.getId()) {
+                        TvshowEntity tvshowTemp = new TvshowEntity(
+                                tvShowResponse.getId(),
+                                tvShowResponse.getImage(),
+                                tvShowResponse.getJudul(),
+                                tvShowResponse.getDeskripsi(),
+                                tvShowResponse.getTanggalRilis()
+                        );
+                        listTvshow.add(tvshowTemp);
+                    }
+                }
+                tvshowEntity.postValue(listTvshow);
+            }
+
+            @Override
+            public void onNotAvailbale() {
+
+            }
+        });
+        return tvshowEntity;
+
+    }
+
 }
