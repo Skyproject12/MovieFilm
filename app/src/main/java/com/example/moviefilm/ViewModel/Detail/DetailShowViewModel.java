@@ -13,6 +13,7 @@ import java.util.ArrayList;
 public class DetailShowViewModel extends ViewModel {
 
     private MovieFilmRepository movieFilmRepository;
+    private  int tvshowId;
 
     public DetailShowViewModel(MovieFilmRepository movieFilmRepository) {
         this.movieFilmRepository = movieFilmRepository;
@@ -22,4 +23,7 @@ public class DetailShowViewModel extends ViewModel {
         return movieFilmRepository.getTvshowId(id);
     }
 
+    public void setTvshowId(int tvshowId) {
+        this.tvshowId = tvshowId;
+    }
 }

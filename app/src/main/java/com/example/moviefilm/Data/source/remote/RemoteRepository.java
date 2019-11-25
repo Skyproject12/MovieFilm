@@ -124,7 +124,7 @@ public class RemoteRepository {
                         if (id == movieId.getInt("id")) {
                             MovieResponse movieResponse = new MovieResponse(
                                     movieId.getInt("id"),
-                                    movieId.getString("poster_path"),
+                                    "https://image.tmdb.org/t/p/w185/"+movieId.getString("poster_path"),
                                     movieId.getString("original_title"),
                                     movieId.getString("overview"),
                                     movieId.getString("release_date")
@@ -163,7 +163,7 @@ public class RemoteRepository {
                         if (id == tvshowId.getInt("id")) {
                             TvShowResponse tvShowResponse = new TvShowResponse(
                                     tvshowId.getInt("id"),
-                                    tvshowId.getString("poster_path"),
+                                    "https://image.tmdb.org/t/p/w185/"+tvshowId.getString("poster_path"),
                                     tvshowId.getString("name"),
                                     tvshowId.getString("overview"),
                                     tvshowId.getString("first_air_date")

@@ -1,255 +1,437 @@
 package com.example.moviefilm.utils;
 
 
+import android.util.Log;
+
 import com.example.moviefilm.Data.source.local.Movie;
+import com.example.moviefilm.Data.source.local.TvshowEntity;
+import com.example.moviefilm.Data.source.remote.Response.MovieResponse;
 import com.example.moviefilm.R;
+import com.example.moviefilm.Util.Static;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import cz.msebera.android.httpclient.Header;
+
 public class FakeDataDummy {
 
-//    public static ArrayList<Movie> generateMovie(){
-//        ArrayList<Movie> movie= new ArrayList<>();
-//        movie.add(new Movie(1,
-//                R.drawable.poster_avengerinfinity,
-//                "Advenger Invinity",
-//                "Ketika Avengers dan sekutu mereka terus melindungi dunia dari " +
-//                        "ancaman yang terlalu besar untuk ditangani oleh satu pahlawan, " +
-//                        "bahaya baru telah muncul dari bayang-bayang kosmik: Thanos. " +
-//                        "Seorang lalim penghinaan intergalaksi, tujuannya adalah untuk " +
-//                        "mengumpulkan semua enam Batu Infinity, artefak kekuatan tak " +
-//                        "terbayangkan, dan menggunakannya untuk menimbulkan keinginanny" +
-//                        "a yang terpelintir pada semua kenyataan. Segala yang Avengers " +
-//                        "telah perjuangkan telah mengarah ke saat ini - nasib Bumi dan " +
-//                        "keberadaannya tidak pernah lebih pasti.",
-//                "25 April 2018",
-//                "Joe Russo"));
-//        movie.add(new Movie(2,
-//                R.drawable.poster_bumblebee,
-//                "Bumbelbee",
-//                "Dalam pelarian pada tahun 1987, Bumblebee menemukan tempat " +
-//                        "perlindungan di tempat barang rongsokan di kota pantai kecil " +
-//                        "California. Charlie, di puncak usia 18 dan berusaha menemukan " +
-//                        "tempatnya di dunia, menemukan Bumblebee, bekas luka pertempuran" +
-//                        " dan patah. Ketika Charlie menghidupkannya, dia dengan cepat " +
-//                        "mengetahui bahwa ini bukan bug VW kuning biasa.",
-//                "15 Desember 2018",
-//                "Christina Hodson"));
-//        movie.add(new Movie(3,
-//                R.drawable.poster_deadpool,
-//                "Deadpool",
-//                "Deadpool menceritakan kisah asal-usul mantan anggota Pasukan" +
-//                        " Khusus yang berubah menjadi tentara bayaran Wade Wilson, yang" +
-//                        " setelah menjadi sasaran percobaan jahat yang membuatnya memiliki" +
-//                        " kekuatan penyembuhan yang dipercepat, mengadopsi Deadpool alter" +
-//                        " ego. Dipersenjatai dengan kemampuan barunya dan selera humornya" +
-//                        " yang gelap dan berputar-putar, Deadpool memburu pria yang hampir" +
-//                        " menghancurkan hidupnya.",
-//                "6 Februari 2016",
-//                "Fabian Nicieza"));
-//        movie.add(new Movie(4,
-//                R.drawable.poster_robinhood,
-//                "Robinhood",
-//                "Ini adalah kisah tentang seorang pria pemberani yang bertarung" +
-//                        " dan menang melawan segala rintangan, Sarpanch Rupinder Singh " +
-//                        "Gandhi, seorang olahragawan yang produktif, pemimpin yang berani" +
-//                        " dan teman sejati. Film ini menunjukkan bagaimana keadaan dan " +
-//                        "situasi mengubahnya menjadi \"Sesuatu-lain\" ketika ia dan " +
-//                        "teman-temannya mengambil keputusan yang akhirnya menjadikan " +
-//                        "mereka Penjahat. Pria yang hidup untuk orang lain dan tidak " +
-//                        "pernah khawatir apa yang disebut ~ Robinhood atau Gangser",
-//                "8 September 2017",
-//                "Avtar Singh"));
-//        movie.add(new Movie(5,
-//                R.drawable.poster_spiderman,
-//                "spiderman",
-//                "Italian Spiderman adalah parodi film dari film aksi-petualangan" +
-//                        " Italia tahun 60-an dan 70-an, pertama kali dirilis di YouTube" +
-//                        " pada 2007. Parodi ini dimaksudkan untuk menjadi \"film Italia" +
-//                        "yang hilang\" oleh Alrugo Entertainment, sebuah kolektif pembuat" +
-//                        " film Australia yang dibentuk oleh Dario Russo , Tait Wilson, " +
-//                        "David Ashby, Will Spartalis dan Boris Repasky. Rupanya orang " +
-//                        "Italia mengambil superhero buku komik Spider-Man, film ini adalah" +
-//                        " referensi ke film asing yang menyalahgunakan pahlawan super " +
-//                        "Amerika populer seperti film Turki \"3 Dev Adam\" dan serial TV" +
-//                        " Jepang \"Spider-Man\", yang keduanya mengubah karakter " +
-//                        "Spider-Man untuk pemirsa asing. Entri terkenal lainnya termasuk" +
-//                        " versi India Superman, I Fantastici Tre Supermen dan La Mujer " +
-//                        "Murcielago. Ini juga menyerupai film The Bathman dal pianeta " +
-//                        "Eros. Trailer dirilis, diikuti oleh fitur lengkap yang terdiri" +
-//                        " dari sepuluh episode mini.",
-//                "22 Mei 2008",
-//                "Avtar Singh"));
-//        movie.add(new Movie(6,
-//                R.drawable.poster_thegirl,
-//                "the girl",
-//                "Matthew, seorang siswa sekolah menengah yang sangat ambisius," +
-//                        " memiliki cita-cita untuk berkarir di dunia politik ketika ia" +
-//                        " jatuh cinta pada tetangganya yang berusia 19 tahun, Danielle." +
-//                        " Namun masa depan Matthews yang cerah terancam ketika ia " +
-//                        "menemukan Danielle pernah menjadi bintang porno. Sebagai " +
-//                        "Danielles masa lalu mengejar ketinggalan",
-//                "9 April 2004",
-//                "Brent Goldberg"));
-//        movie.add(new Movie(7,
-//                R.drawable.poster_venom,
-//                "venom",
-//                "Jurnalis investigasi Eddie Brock mencoba untuk kembali setelah" +
-//                        " skandal, tetapi secara tidak sengaja menjadi tuan rumah " +
-//                        "Venom, seorang simbiot alien yang sangat kuat dan sakti. Segera" +
-//                        ", ia harus mengandalkan kekuatan barunya untuk melindungi dunia" +
-//                        " dari organisasi bayangan yang mencari simbiosis mereka sendiri.",
-//                "28 September 2018",
-//                "Mike Zeck"));
-//        movie.add(new Movie(8,
-//                R.drawable.poster_dragon,
-//                "dragon",
-//                "Di St Yudas, pengedar narkoba dan polisi yang korup telah " +
-//                        "menghancurkan lingkungan kota. Tetapi pendatang baru, Hong, " +
-//                        "memiliki keterampilan dan visi moral untuk menyelamatkan kota" +
-//                        " ini dari dirinya sendiri.",
-//                "10 Mei 2012",
-//                "John Hyams"));
-//        movie.add(new Movie(9,
-//                R.drawable.poster_aquaman,
-//                "aquaman",
-//                "Dulunya merupakan rumah bagi peradaban paling maju di Bumi, " +
-//                        "Atlantis sekarang merupakan kerajaan bawah laut yang diperintah" +
-//                        " oleh Raja Orm yang haus kekuasaan. Dengan pasukan yang sangat" +
-//                        " besar, Orm berencana untuk menaklukkan orang-orang samudera yang" +
-//                        " tersisa dan kemudian ke permukaan dunia. Yang menghalangi jalannya" +
-//                        " adalah Arthur Curry, lelaki setengah manusia Orm, setengah saudara" +
-//                        " Atlantis dan pewaris sejati takhta.",
-//                "7 Desember 2018",
-//                "James Wan"));
-//        movie.add(new Movie(10,
-//                R.drawable.poster_serenity,
-//                "Serenity",
-//                "Kapten kapal penangkap ikan, Baker Dill (Matthew McConaughey) menjalani" +
-//                        " kehidupan yang tenang di daerah tropis yang indah yang disebut Pulau " +
-//                        "Plymouth. Masa lalu misterius sang kapten kembali menghantuinya, ketika " +
-//                        "mantan istrinya, Karen (Anne Hathaway) mendatanginya untuk meminta bantuan",
-//                "26 Februari 1986",
-//                "Akira Toriyama"));
-//        return movie;
-//
-//    }
-//    public static ArrayList<Movie> generateShow(){
-//        ArrayList<Movie> show= new ArrayList<>();
-//        show.add(new Movie(1,
-//                R.drawable.poster_arrow,
-//                "Arrow",
-//                "Arrow adalah serial televisi Amerika yang dikembangkan oleh Greg " +
-//                        "Berlanti, Andrew Kreisberg, dan Geoff Johns, yang mengudara di The CW. Serial" +
-//                        " ini didasari tokoh DC Comics Green Arrow, seorang pahlawan super " +
-//                        "berkostum, penumpas-kejahatan yang bersenjatakan busur & panah.",
-//                "16 Januari 2019",
-//                "M. Night Shyamalan"));
-//        show.add(new Movie(2,R.drawable.poster_doom_patrol,
-//                "Doom Patrol",
-//                "Diterjemahkan dari bahasa Inggris-Doom Patrol adalah serial televisi" +
-//                        " web Amerika yang dibuat oleh Jeremy Carver untuk DC Universe. Berdasarkan" +
-//                        " tim superhero DC Comics dengan nama yang sama, seri ini menampilkan " +
-//                        "Jane, Rita Farr, Vic Stone, Larry Trainor, Cliff Steele, dan Ketua sebagai anggota dari patroli Doom tituler. ",
-//                "Oktober 3, 2018",
-//                "Bradley Cooper"));
-//        show.add(new Movie(3,R.drawable.poster_dragon_ball,
-//                "Dragon Ball",
-//                "Dahulu kala di pegunungan, seorang master pertempuran yang dikenal" +
-//                        " sebagai Gohan menemukan seorang bocah aneh yang ia beri nama " +
-//                        "Goku. Gohan membesarkannya dan melatih Goku dalam seni bela diri " +
-//                        "sampai dia mati. Bocah muda dan sangat kuat itu sendirian, tetapi" +
-//                        " mudah dikelola. Kemudian suatu hari, Goku bertemu dengan seorang " +
-//                        "gadis remaja bernama Bulma, yang pencariannya untuk bola naga " +
-//                        "membawanya ke rumah Gokus. Bersama-sama, mereka berangkat untuk " +
-//                        "menemukan ketujuh bola naga dalam sebuah petualangan.",
-//                "Desember 12, 1998",
-//                "Susanne Bier"));
-//        show.add(new Movie(4,R.drawable.poster_fairytail,
-//                "FairyTail",
-//                "Fairy Tail adalah sebuah seri manga Jepang yang ditulis dan diilustrasikan" +
-//                        " oleh Hiro Mashima. Manga ini dimuat dalam majalah Weekly Shōnen Magazine" +
-//                        " sejak tanggal 2 Agustus 2006 hingga 26 Juli 2017, dan telah dibundel dan" +
-//                        " diterbitkan menjadi 63 volume tankōbon oleh Kodansha.",
-//                "Oktober 24, 2018",
-//                "Anthony McCarten"));
-//        show.add(new Movie(5,R.drawable.poster_family_guy,
-//                "Family Guy",
-//                "Antara kewajiban pribadi dan pelatihan untuk pertarungan besar berikutnya" +
-//                        " melawan lawan yang memiliki ikatan dengan masa lalu keluarganya, Adonis " +
-//                        "Creed menghadapi tantangan hidupnya.",
-//                "November 21, 2018",
-//                "Sylvester Stallone"));
-//        show.add(new Movie(6,R.drawable.poster_flash,
-//                "Flash",
-//                "USS Arkansas menemukan bahwa kudeta sedang terjadi di Rusia, jadi ia dan " +
-//                        "krunya bergabung dengan kelompok elit yang bekerja di lapangan untuk " +
-//                        "mencegah perang.",
-//                "Oktober 19, 2018",
-//                "Donovan Marsh"));
-//        show.add(new Movie(7,R.drawable.poster_god,
-//                "God",
-//                "Ushi Hirosaki harus menikah sesuai dengan tradisi Jepang sebelum " +
-//                        "ulang tahunnya yang ke-30. Karena waktu hampir habis, keluarganya " +
-//                        "memutuskan dia harus menikah dengan pegulat sumo besar. Kombinasi " +
-//                        "yang agak disayangkan, jadi Ushi ingin mencari kandidat yang lebih " +
-//                        "baik sendiri. Dia melakukan perjalanan setengah dunia untuk menemukan" +
-//                        " suami impiannya. Sepanjang jalan dia melakukan upaya berani, " +
-//                        "misalnya untuk belajar sopan santun meja dan kehilangan aksen " +
-//                        "Jepangnya.",
-//                "Februar1 13, 2013",
-//                "Paul Ruven"));
-//        show.add(new Movie(8,R.drawable.poster_gotham,
-//                "Gotham",
-//                "Gotham adalah serial televisi drama kriminal Amerika Serikat yang" +
-//                        " dikembangkan oleh Bruno Heller, berdasarkan karakter yang diterbitkan" +
-//                        " oleh DC Comics dan muncul dalam waralaba Batman, terutama yang milik " +
-//                        "James Gordon dan Bruce Wayne. Heller dan Danny Cannon, yang mengarahkan " +
-//                        "pilot, adalah produser eksekutif.",
-//                "April 12, 2011",
-//                "John Tobias"));
-//        show.add(new Movie(9,R.drawable.poster_grey_anatomy,
-//                "Grey Anatomy",
-//                "Setelah tiga tahun, bisnis Muslihat (Epi Kusnandar), yang telah " +
-//                        "pensiun sebagai preman, memiliki masalah. Penurunan penjualan. " +
-//                        "Muslihat juga menghadapi masalah baru ketika Safira (Safira Maharani)" +
-//                        ", satu-satunya anak perempuannya, tumbuh di masa remaja dan mulai " +
-//                        "dikunjungi oleh anak laki-laki. Masalah yang lebih besar: gesekan " +
-//                        "antara mantan bawahannya.",
-//                "Januar1 17, 2019",
-//                "Aris Nugraha"));
-//        show.add(new Movie(10,R.drawable.poster_hanna,
-//                "Hanna",
-//                "Dunia sinema aksi tinggi hadir dengan merangkak melengking" +
-//                        " dalam seri yang menjatuhkan rahang ini. Api, aliran air, " +
-//                        "semangka meledak, dan bahkan tembakan paintball titik kosong" +
-//                        " tidak cocok untuk Slow Mo Guys!",
-//                "Januar1 1, 2013",
-//                "Gavin Free"));
-//
-//        return show;
-//
-//    }
-//
-//    public static Movie getIdMovie(int movieId){
-//        for (int i=0; i<generateMovie().size();i++){
-//            Movie movie= generateMovie().get(i);
-//            if(movie.getId()==movieId){
-//                return movie;
-//            }
-//        }
-//        return null;
-//
-//    }
-//    public static Movie getIdShow(int show){
-//        for (int i=0; i<generateShow().size();i++){
-//            Movie movie= generateShow().get(i);
-//            if(movie.getId()==show){
-//                return movie;
-//            }
-//        }
-//        return null;
-//
-//    }
+    public static ArrayList<Movie> generateMovie(){
+        ArrayList<Movie> movie= new ArrayList<>();
+        movie.add(new Movie(330457,
+                "https://image.tmdb.org/t/p/w185/qdfARIhgpgZOBh3vfNhWS4hmSo3.jpg",
+                "Frozen II",
+                "Elsa, Anna, Kristoff and Olaf are going far in the forest to know the truth about an ancient mystery of their kingdom.",
+                "2019-11-20"));
+        movie.add(new Movie(429617,
+                "https://image.tmdb.org/t/p/w185/lcq8dVxeeOqHvvgcte707K0KVx5.jpg",
+                "Spider-Man: Far from Home",
+                "Peter Parker and his friends go on a summer trip to Europe. However," +
+                        " they will hardly be able to rest - Peter will have to agree to help Nick" +
+                        " Fury uncover the mystery of creatures that cause natural disasters and " +
+                        "destruction throughout the continent.",
+                "2019-06-28"));
+        movie.add(new Movie(475557,
+                "https://image.tmdb.org/t/p/w185/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg",
+                "Joker",
+                "During the 1980s, a failed stand-up comedian is driven insane" +
+                        " and turns to a life of crime and chaos in Gotham City while becoming" +
+                        " an infamous psychopathic crime figure.",
+                "2019-10-02"));
+
+        movie.add(new Movie(420818,
+                "https://image.tmdb.org/t/p/w185/2bXbqYdUdNVa8VIWXVfclP2ICtT.jpg",
+                "The Lion King",
+                "Simba idolizes his father, King Mufasa, and takes to heart his own" +
+                        " royal destiny. But not everyone in the kingdom celebrates the new cubs" +
+                        " arrival. Scar, Mufasa's brother—and former heir to the throne—has plans" +
+                        " of his own. The battle for Pride Rock is ravaged with betrayal, tragedy " +
+                        "and drama, ultimately resulting in Simba's exile. With help from a curious" +
+                        " pair of newfound friends, Simba will have to figure out how to grow up and" +
+                        " take back what is rightfully his.",
+                "2019-07-12"));
+
+        movie.add(new Movie(466272,
+                "https://image.tmdb.org/t/p/w185/8j58iEBw9pOXFD2L0nt0ZXeHviB.jpg",
+                "Once Upon a Time... in Hollywood",
+                "A faded television actor and his stunt double strive to achieve" +
+                        " fame and success in the film industry during the final years of " +
+                        "Hollywood's Golden Age in 1969 Los Angeles.",
+                "2019-07-25"));
+
+        movie.add(new Movie(645541,
+                "https://image.tmdb.org/t/p/w185/4I0CQfnMy6sRR7QhgqsXR16TmIs.jpg",
+                "Ellipse",
+                "A man and his dog are stranded on a volatile, oval-shaped planet and are" +
+                        " forced to adapt and escape before time destroys them both.",
+                "2019-11-05"));
+
+        movie.add(new Movie(290859,
+                "https://image.tmdb.org/t/p/w185/vqzNJRH4YyquRiWxCCOH0aXggHI.jpg",
+                "Terminator: Dark Fate",
+                "Decades after Sarah Connor prevented Judgment Day, a lethal new " +
+                        "Terminator is sent to eliminate the future leader of the resistance." +
+                        " In a fight to save mankind, battle-hardened Sarah Connor teams up " +
+                        "with an unexpected ally and an enhanced super soldier to stop the " +
+                        "deadliest Terminator yet.",
+                "2019-10-23"));
+
+        movie.add(new Movie(474350,
+                "https://image.tmdb.org/t/p/w185/zfE0R94v1E8cuKAerbskfD3VfUt.jpg",
+                "It Chapter Two",
+                "27 years after overcoming the malevolent supernatural entity Pennywise," +
+                        " the former members of the Losers' Club, who have grown up and moved away" +
+                        " from Derry, are brought back together by a devastating phone call.",
+                "2019-09-04"));
+
+        movie.add(new Movie(568012,
+                "https://image.tmdb.org/t/p/w185/4E2lyUGLEr3yH4q6kJxPkQUhX7n.jpg",
+                "One Piece: Stampede",
+                "One Piece: Stampede is a stand-alone film that celebrates the animes" +
+                        " 20th Anniversary and takes place outside the canon of the \\\"One Piece\\\"" +
+                        " TV series. Monkey D. Luffy and his Straw Hat pirate crew are invited to " +
+                        "a massive Pirate Festival that brings many of the most iconic characters" +
+                        " from throughout the franchise to participate in competition with the " +
+                        "Straw Hats to find Rogers treasure. It also pits the Straw Hats against" +
+                        " a new enemy named Bullet, a former member of Rogers crew.",
+                "2019-08-09"));
+
+        movie.add(new Movie(453405,
+                "https://image.tmdb.org/t/p/w185/uTALxjQU8e1lhmNjP9nnJ3t2pRU.jpg",
+                "Gemini Man",
+                "Ageing assassin, Henry Brogen tries to get out of the business but" +
+                        " finds himself in the ultimate battle—fighting his own clone who is" +
+                        " 25 years younger than him, and at the peak of his abilities.",
+                "2019-10-02"));
+
+        movie.add(new Movie(480042,
+                "https://image.tmdb.org/t/p/w185/r15SUgzjL8bablcdEkHk9T7TSRl.jpg",
+                "Escape Plan: The Extractors",
+                "After security expert Ray Breslin is hired to rescue the kidnapped " +
+                        "daughter of a Hong Kong tech mogul from a formidable Latvian prison," +
+                        " Breslin's girlfriend is also captured. Now he and his team must pull" +
+                        " off a deadly rescue mission to confront their sadistic foe and save" +
+                        " the hostages before time runs out.",
+                "2019-06-20"));
+
+        movie.add(new Movie(423204,
+                "https://image.tmdb.org/t/p/w185/fapXd3v9qTcNBTm39ZC4KUVQDNf.jpg",
+                "Angel Has Fallen",
+                "After the events in the previous film, Secret Service agent Mike" +
+                        "Banning finds himself framed for an assassination attempt on the " +
+                        "President. Pursued by his own agency and the FBI, Banning races to" +
+                        " clear his name and uncover the real terrorist threat which has set " +
+                        "its sights on Air Force One.",
+                "2019-08-21"));
+
+        movie.add(new Movie(920,
+                "https://image.tmdb.org/t/p/w185/jpfkzbIXgKZqCZAkEkFH2VYF63s.jpg",
+                "Cars",
+                "Lightning McQueen, a hotshot rookie race car driven to succeed, " +
+                        "discovers that life is about the journey, not the finish line, when he" +
+                        " finds himself unexpectedly detoured in the sleepy Route 66 town of " +
+                        "Radiator Springs. On route across the country to the big Piston Cup " +
+                        "Championship in California to compete against two seasoned pros, McQueen" +
+                        " gets to know the town's offbeat characters.",
+                "2006-06-08"));
+
+        movie.add(new Movie(486589,
+                "https://image.tmdb.org/t/p/w185/MBiKqTsouYqAACLYNDadsjhhC0.jpg",
+                "Red Shoes 2019",
+                "Princes who have been turned into Dwarfs seek the red shoes of a lady" +
+                        " in order to break the spell, although it will not be easy.",
+                "2019-07-25"));
+
+        movie.add(new Movie(458897,
+                "https://image.tmdb.org/t/p/w185/r5WnfZPYAVhBA9FuZGn6THWaGHD.jpg",
+                "Charlies Angels",
+                "When a systems engineer blows the whistle on a dangerous technology," +
+                        " Charlie's Angels from across the globe are called into action, putting" +
+                        " their lives on the line to protect society.",
+                "2019-11-14"));
+
+        movie.add(new Movie(384018,
+                "https://image.tmdb.org/t/p/w185/kvpNZAQow5es1tSY6XW2jAZuPPG.jpg",
+                "Fast & Furious Presents: Hobbs & Shaw",
+                "Ever since US Diplomatic Security Service Agent Hobbs and lawless outcast" +
+                        "Shaw first faced off, they just have swapped smacks and bad words. But when" +
+                        " cyber-genetically enhanced anarchist Brixton's ruthless actions threaten the" +
+                        " future of humanity, both join forces to defeat him. (A spin-off of “The Fate" +
+                        " of the Furious,” focusing on Johnson's Luke Hobbs and Statham's Deckard Shaw.)",
+                "2019-08-01"));
+
+        movie.add(new Movie(359724,
+                "https://image.tmdb.org/t/p/w185/6ApDtO7xaWAfPqfi2IARXIzj8QS.jpg",
+                "Ford v Ferrari",
+                "American car designer Carroll Shelby and the British-born driver" +
+                        " Ken Miles work together to battle corporate interference, the laws" +
+                        " of physics, and their own personal demons to build a revolutionary " +
+                        "race car for Ford Motor Company and take on the dominating race cars " +
+                        "of Enzo Ferrari at the 24 Hours of Le Mans in France in 1966.",
+                "2019-10-10"));
+
+        movie.add(new Movie(449924,
+                "https://image.tmdb.org/t/p/w185/vn94LlNrbUWIZZyAdmvUepFBeaY.jpg",
+                "葉問4",
+                "Ip Man 4 is an upcoming Hong Kong biographical martial arts film" +
+                        " directed by Wilson Yip and produced by Raymond Wong. It is the fourth" +
+                        " in the Ip Man film series based on the life of the Wing Chun grandmaster" +
+                        " of the same name and features Donnie Yen reprising the role. The film " +
+                        "began production in April 2018 and ended in July the same year.",
+                "2019-12-20"));
+
+        movie.add(new Movie(420817,
+                "https://image.tmdb.org/t/p/w185/3iYQTLGoy7QnjcUYRJy4YrAgGvp.jpg",
+                "Aladdin",
+                "A kindhearted street urchin named Aladdin embarks on a magical adventure" +
+                        " after finding a lamp that releases a wisecracking genie while a " +
+                        "power-hungry Grand Vizier vies for the same lamp that has the power " +
+                        "to make their deepest wishes come true.",
+                "2019-05-22"));
+
+        movie.add(new Movie(476631,
+                "https://image.tmdb.org/t/p/w185/3HbGrs1V1QS9kxjzPagMZaSxhKK.jpg",
+                "Barbie: Dolphin Magic",
+                "Barbie and her sisters take off on another exciting, global adventure" +
+                        " to visit their friend Ken at his summer internship at a beautiful and" +
+                        " exotic coral reef.",
+                "2017-10-13"));
+
+        return movie;
+
+    }
+
+
+    public static ArrayList<TvshowEntity> generateShow(){
+        ArrayList<TvshowEntity> show= new ArrayList<>();
+        show.add(new TvshowEntity(82856,
+                "https://image.tmdb.org/t/p/w185/BbNvKCuEF4SRzFXR16aK6ISFtR.jpg",
+                "The Mandalorian",
+                "Set after the fall of the Empire and before the emergence of the First Order, we follow the travails of a lone gunfighter in the outer reaches of the galaxy far from the authority of the New Republic.",
+                "2019-11-12"));
+
+        show.add(new TvshowEntity(60625,
+                "https://image.tmdb.org/t/p/w185/qJdfO3ahgAMf2rcmhoqngjBBZW1.jpg",
+                "Rick and Morty",
+                "Rick is a mentally-unbalanced but scientifically-gifted old man " +
+                        "who has recently reconnected with his family. He spends most of his " +
+                        "time involving his young grandson Morty in dangerous, outlandish " +
+                        "adventures throughout space and alternate universes. Compounded " +
+                        "with Morty's already unstable family life, these events cause Morty " +
+                        "much distress at home and school.",
+                "2019-11-12"));
+
+        show.add(new TvshowEntity(1412,
+                "https://image.tmdb.org/t/p/w185/gKG5QGz5Ngf8fgWpBsWtlg5L2SF.jpg",
+                "Arrow",
+                "Spoiled billionaire playboy Oliver Queen is missing and presumed " +
+                        "dead when his yacht is lost at sea. He returns five years later a" +
+                        " changed man, determined to clean up the city as a hooded vigilante" +
+                        " armed with a bow.",
+                "2012-10-10"));
+
+        show.add(new TvshowEntity(71641,
+                "https://image.tmdb.org/t/p/w185/jVObyxtNxuPbG5czuKvm7pW56EV.jpg",
+                "4 Blocks",
+                "Based in Neukölln, Berlin Toni manages the daily business of dealing" +
+                        " with the Arabic gangs and ends up wanting to leave his old life behind" +
+                        " for his family, but as expected, its never that simple.",
+                "2017-05-08"));
+
+        show.add(new TvshowEntity(68507,
+                "https://image.tmdb.org/t/p/w185/xOjRNnQw5hqR1EULJ2iHkGwJVA4.jpg",
+                "His Dark Materials",
+                "Lyra is an orphan who lives in a parallel universe in which " +
+                        "science, theology and magic are entwined. Lyra's search for a kidnapped" +
+                        " friend uncovers a sinister plot involving stolen children, and turns " +
+                        "into a quest to understand a mysterious phenomenon called Dust. She is" +
+                        " later joined on her journey by Will, a boy who possesses a knife that " +
+                        "can cut windows between worlds. As Lyra learns the truth about her " +
+                        "parents and her prophesied destiny, the two young people are caught up" +
+                        " in a war against celestial powers that ranges across many worlds.",
+                "2019-11-03"));
+
+        show.add(new TvshowEntity(456,
+                "https://image.tmdb.org/t/p/w185/yTZQkSsxUFJZJe67IenRM0AEklc.jpg",
+                "The Simpsons",
+                "Set in Springfield, the average American town, the show focuses on the" +
+                        " antics and everyday adventures of the Simpson family; Homer, Marge, Bart," +
+                        " Lisa and Maggie, as well as a virtual cast of thousands. Since the beginning," +
+                        " the series has been a pop culture icon, attracting hundreds of celebrities to" +
+                        " guest star. The show has also made name for itself in its fearless satirical" +
+                        " take on politics, media and American life in general.",
+                "1989-12-17"));
+
+        show.add(new TvshowEntity(60735,
+                "https://image.tmdb.org/t/p/w185/wHa6KOJAoNTFLFtp7wguUJKSnju.jpg",
+                "The Flash",
+                "After a particle accelerator causes a freak storm, CSI Investigator" +
+                        " Barry Allen is struck by lightning and falls into a coma. Months later" +
+                        " he awakens with the power of super speed, granting him the ability to" +
+                        " move through Central City like an unseen guardian angel. Though " +
+                        "initially excited by his newfound powers, Barry is shocked to discover " +
+                        "he is not the only \\\"meta-human\\\" who was created in the wake" +
+                        " of the accelerator explosion -- and not everyone is using their new" +
+                        " powers for good. Barry partners with S.T.A.R. Labs and dedicates his" +
+                        " life to protect the innocent. For now, only a few close friends and" +
+                        " associates know that Barry is literally the fastest man alive, but" +
+                        " it won't be long before the world learns what Barry Allen has " +
+                        "become...The Flash.",
+                "2014-10-07"));
+
+        show.add(new TvshowEntity(1622,
+                "https://image.tmdb.org/t/p/w185/KoYWXbnYuS3b0GyQPkbuexlVK9.jpg",
+                "Supernatural",
+                "When they were boys, Sam and Dean Winchester lost their mother to" +
+                        " a mysterious and demonic supernatural force. Subsequently, their " +
+                        "father raised them to be soldiers. He taught them about the paranormal" +
+                        " evil that lives in the dark corners and on the back roads of America" +
+                        " ... and he taught them how to kill it. Now, the Winchester brothers " +
+                        "crisscross the country in their '67 Chevy Impala, battling every kind " +
+                        "of supernatural threat they encounter along the way.",
+                "2005-09-13"));
+
+        show.add(new TvshowEntity(62286,
+                "https://image.tmdb.org/t/p/w185/lZMb3R3e5vqukPbeDMeyYGf2ZNG.jpg",
+                "Fear the Walking Dead",
+                "What did the world look like as it was transforming into" +
+                        " the horrifying apocalypse depicted in \\\"The Walking Dead\\\"?" +
+                        " This spin-off set in Los Angeles, following new characters as they" +
+                        "face the beginning of the end of the world, will answer that question.",
+                "2015-08-23"));
+
+        show.add(new TvshowEntity(1416,
+                "https://image.tmdb.org/t/p/w185/jnsvc7gCKocXnrTXF6p03cICTWb.jpg",
+                "Greys Anatomy",
+                "Follows the personal and professional lives of a group of doctors" +
+                        " at Seattle’s Grey Sloan Memorial Hospital.",
+                "2005-03-27"));
+
+        show.add(new TvshowEntity(69050,
+                "https://image.tmdb.org/t/p/w185/4X7o1ssOEvp4BFLim1AZmPNcYbU.jpg",
+                "Riverdale",
+                "Set in the present, the series offers a bold, subversive take on Archie," +
+                        " Betty, Veronica and their friends, exploring the surreality of small" +
+                        "-town life, the darkness and weirdness bubbling beneath Riverdales " +
+                        "wholesome facade.",
+                "2017-01-26"));
+
+        show.add(new TvshowEntity(2734,
+                "https://image.tmdb.org/t/p/w185/6t6r1VGQTTQecN4V0sZeqsmdU9g.jpg",
+                "Law & Order: Special Victims Unit",
+                "In the criminal justice system, sexually-based offenses are considered" +
+                        " especially heinous. In New York City, the dedicated detectives who" +
+                        " investigate these vicious felonies are members of an elite squad known" +
+                        " as the Special Victims Unit. These are their stories.",
+                "1999-09-20"));
+
+        show.add(new TvshowEntity(79460,
+                "https://image.tmdb.org/t/p/w185/rb64COqdpRRfWOc6gWTfC7WxzXP.jpg",
+                "Legacies",
+                "In a place where young witches, vampires, and werewolves are nurtured" +
+                        " to be their best selves in spite of their worst impulses, Klaus " +
+                        "Mikaelson’s daughter, 17-year-old Hope Mikaelson, Alaric Saltzmans " +
+                        "twins, Lizzie and Josie Saltzman, among others, come of age into heroes" +
+                        " and villains at The Salvatore School for the Young and Gifted.",
+                "2018-10-25"));
+
+        show.add(new TvshowEntity(80752,
+                "https://image.tmdb.org/t/p/w185/g3JsScc7mQCfc3e5e5rXwu7xVVP.jpg",
+                "See",
+                "A virus has decimated humankind. Those who survived emerged blind." +
+                        " Centuries later when twins are born with the mythic ability to see," +
+                        "their father must protect his tribe against a threatened queen.",
+                "2019-11-01"));
+
+        show.add(new TvshowEntity(1434,
+                "https://image.tmdb.org/t/p/w185/gBGUL1UTUNmdRQT8gA1LUV4yg39.jpg",
+                "Family Guy",
+                "Sick, twisted, politically incorrect and Freakin Sweet animated series" +
+                        " featuring the adventures of the dysfunctional Griffin family. Bumbling" +
+                        " Peter and long-suffering Lois have three kids. Stewie (a brilliant but" +
+                        " sadistic baby bent on killing his mother and taking over the world)," +
+                        " Meg (the oldest, and is the most unpopular girl in town) and Chris " +
+                        "(the middle kid, he's not very bright but has a passion for movies). " +
+                        "The final member of the family is Brian - a talking dog and much more " +
+                        "than a pet, he keeps Stewie in check whilst sipping Martinis and sorting" +
+                        " through his own life issues.",
+                "1999-01-31"));
+
+        show.add(new TvshowEntity(1402,
+                "https://image.tmdb.org/t/p/w185/reKs8y4mPwPkZG99ZpbKRhBPKsX.jpg",
+                "The Walking Dead",
+                "Sheriffs deputy Rick Grimes awakens from a coma to find a post" +
+                        "-apocalyptic world dominated by flesh-eating zombies. He sets out" +
+                        " to find his family and encounters many other survivors along the way.",
+                "2010-10-31"));
+
+        show.add(new TvshowEntity(46952,
+                "https://image.tmdb.org/t/p/w185/bgbQCW4fE9b6wSOSC6Fb4FfVzsW.jpg",
+                "The Blacklist",
+                "Raymond \\\"Red\\\" Reddington, one of the FBI's most wanted fugitives," +
+                        " surrenders in person at FBI Headquarters in Washington, D.C. He claims" +
+                        " that he and the FBI have the same interests: bringing down dangerous " +
+                        "criminals and terrorists. In the last two decades, he's made a list of " +
+                        "criminals and terrorists that matter the most but the FBI cannot find " +
+                        "because it does not know they exist. Reddington calls this \\\"The " +
+                        "Blacklist\\\". Reddington will co-operate, but insists that he will " +
+                        "speak only to Elizabeth Keen, a rookie FBI profiler.",
+                "2013-09-23"));
+
+        show.add(new TvshowEntity(1399,
+                "https://image.tmdb.org/t/p/w185/u3bZgnGQ9T01sWNhyveQz0wH0Hl.jpg",
+                "Game of Thrones",
+                "Seven noble families fight for control of the mythical land of Westeros." +
+                        " Friction between the houses leads to full-scale war. All while a very " +
+                        "ancient evil awakens in the farthest north. Amidst the war, a neglected" +
+                        " military order of misfits, the Night's Watch, is all that stands between" +
+                        " the realms of men and icy horrors beyond.",
+                "2011-04-17"));
+
+        show.add(new TvshowEntity(2190,
+                "https://image.tmdb.org/t/p/w185/v9zc0cZpy5aPSfAy6Tgb6I1zWgV.jpg",
+                "South Park",
+                "Follows the misadventures of four irreverent grade-schoolers in the quiet" +
+                        ", dysfunctional town of South Park, Colorado.",
+                "1997-08-13"));
+
+        show.add(new TvshowEntity(57243,
+                "https://image.tmdb.org/t/p/w185/3psF5STWO7n9NoXYul27TU8g2GA.jpg",
+                "Doctor Who",
+                "The Doctor is a Time Lord: a 900 year old alien with 2 hearts, " +
+                        "part of a gifted civilization who mastered time travel. The Doctor" +
+                        " saves planets for a living—more of a hobby actually, and the Doctors" +
+                        " very, very good at it.",
+                "2005-03-26"));
+
+        return show;
+
+    }
+
+    public static Movie getIdMovie(int movieId){
+        for (int i=0; i<generateMovie().size();i++){
+            Movie movie= generateMovie().get(i);
+            if(movie.getId()==movieId){
+                return movie;
+            }
+        }
+        return null;
+
+    }
+    public static TvshowEntity getIdShow(int show){
+        for (int i=0; i<generateShow().size();i++){
+            TvshowEntity movie= generateShow().get(i);
+            if(movie.getId()==show){
+                return movie;
+            }
+        }
+        return null;
+
+    }
 
 }

@@ -1,8 +1,10 @@
 package com.example.moviefilm.Ui.Detail;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
@@ -44,6 +46,7 @@ public class DetailActivity extends AppCompatActivity {
 
     private void setText() {
         detailViewModel.getMovieId(movie.getId()).observe(this, movieId-> {
+            Log.d("DetailActivity", "setText: "+movieId.get(0).getImage());
             Picasso.get().load(movieId.get(0).getImage()).into(imageMovie);
             textJudulMovie.setText(movieId.get(0).getJudul());
             texttanggalMovie.setText(movieId.get(0).getTanggalRilis());

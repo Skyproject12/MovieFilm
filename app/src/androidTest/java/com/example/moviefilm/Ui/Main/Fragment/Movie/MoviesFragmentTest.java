@@ -26,9 +26,15 @@ public class MoviesFragmentTest {
     }
     @Test
     public void loadMovie(){
-        onView(withId(R.id.recycler_movie)).check(matches(isDisplayed()));
-        onView(withId(R.id.recycler_movie)).check(new RecyclerViewItemCountAssertion(11));
+        try {
+            Thread.sleep(10000);
+        }
+        catch(InterruptedException e){
+            e.printStackTrace();
 
+        }
+        onView(withId(R.id.recycler_movie)).check(matches(isDisplayed()));
+        onView(withId(R.id.recycler_movie)).check(new RecyclerViewItemCountAssertion(20));
     }
 
 }

@@ -21,26 +21,39 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 public class DetailActivityTest {
 
-//    private Movie movie=FakeDataDummy.generateMovie().get(0);
-//    @Rule
-//    public ActivityTestRule<DetailActivity> activityTestRule= new ActivityTestRule<DetailActivity>(DetailActivity.class){
-//        @Override
-//        protected Intent getActivityIntent() {
-//            Context targetContext= InstrumentationRegistry.getInstrumentation().getTargetContext();
-//            Intent result= new Intent(targetContext, DetailActivity.class);
-//            result.putExtra("film", movie);
-//            return result;
-//
-//        }
-//    };
-//    @Test
-//    public void loadMovie(){
-//
-//        onView(withId(R.id.tex_judulmovie)).check(matches(isDisplayed()));
-//        onView(withId(R.id.tex_judulmovie)).check(matches(withText(movie.getJudul())));
-//        onView(withId(R.id.text_deskripsimovie)).check(matches(isDisplayed()));
-//        onView(withId(R.id.text_deskripsimovie)).check(matches(withText(movie.getDeskripsi())));
-//
-//    }
+    private Movie movie=FakeDataDummy.generateMovie().get(0);
+    @Rule
+    public ActivityTestRule<DetailActivity> activityTestRule= new ActivityTestRule<DetailActivity>(DetailActivity.class){
+        @Override
+        protected Intent getActivityIntent() {
+            Context targetContext= InstrumentationRegistry.getInstrumentation().getTargetContext();
+            Intent result= new Intent(targetContext, DetailActivity.class);
+            result.putExtra("film", movie);
+            return result;
+
+        }
+    };
+    @Test
+    public void loadMovie(){
+        try {
+            Thread.sleep(10000);
+        }
+        catch(InterruptedException e){
+            e.printStackTrace();
+
+        }
+        onView(withId(R.id.tex_judulmovie)).check(matches(isDisplayed()));
+        onView(withId(R.id.tex_judulmovie)).check(matches(withText(movie.getJudul())));
+        try {
+            Thread.sleep(10000);
+        }
+        catch(InterruptedException e){
+            e.printStackTrace();
+
+        }
+        onView(withId(R.id.text_deskripsimovie)).check(matches(isDisplayed()));
+        onView(withId(R.id.text_deskripsimovie)).check(matches(withText(movie.getDeskripsi())));
+
+    }
 
 }
