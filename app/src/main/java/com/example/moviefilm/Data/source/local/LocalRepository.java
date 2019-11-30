@@ -8,7 +8,7 @@ import com.example.moviefilm.Data.source.local.Room.Entity.TvshowEntity;
 
 import java.util.List;
 
-public class LocalRepository{
+public class LocalRepository {
     private final MovieFilmDao movieFilmDao;
 
     public LocalRepository(MovieFilmDao movieFilmDao) {
@@ -16,23 +16,37 @@ public class LocalRepository{
     }
 
     private static LocalRepository INSTANCE;
-    public static LocalRepository getInstance(MovieFilmDao movieFilmDao){
-        if(INSTANCE==null){
-            INSTANCE= new LocalRepository(movieFilmDao);
+
+    public static LocalRepository getInstance(MovieFilmDao movieFilmDao) {
+        if (INSTANCE == null) {
+            INSTANCE = new LocalRepository(movieFilmDao);
         }
         return INSTANCE;
     }
 
-    public LiveData<List<MovieEntity>> getAllMovie(){
+    public LiveData<List<MovieEntity>> getAllMovie() {
         return movieFilmDao.getMovie();
     }
-    public LiveData<List<TvshowEntity>> getAllTvshow(){
+
+    public LiveData<List<TvshowEntity>> getAllTvshow() {
         return movieFilmDao.getTvshow();
     }
-    public LiveData<MovieEntity> getAllMovieById(String movieId){
+
+    public LiveData<List<MovieEntity>> getAllMovieById(int movieId) {
         return movieFilmDao.getMovieById(movieId);
     }
-    public LiveData<TvshowEntity> getAllTvshoeById(String tvshowId){
+
+    public LiveData<List<TvshowEntity>> getAllTvshoeById(int tvshowId) {
         return movieFilmDao.getTvshowId(tvshowId);
+    }
+
+    public void insertMovie(List<MovieEntity> movie) {
+        movieFilmDao.insertMovie(movie);
+
+    }
+
+    public void insertTvshow(List<TvshowEntity> tvshow) {
+        movieFilmDao.insertTvshow(tvshow);
+
     }
 }

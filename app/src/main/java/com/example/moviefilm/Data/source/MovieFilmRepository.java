@@ -25,10 +25,10 @@ public class MovieFilmRepository implements MovieFilmDataSource {
     private final LocalRepository localRepository;
     private final AppExecutors appExecutor;
 
-    public MovieFilmRepository(@NonNull LocalRepository localRepository,@NonNull RemoteRepository remoteRepository, AppExecutors appExecutor) {
-        this.localRepository= localRepository;
+    public MovieFilmRepository(@NonNull LocalRepository localRepository, @NonNull RemoteRepository remoteRepository, AppExecutors appExecutor) {
+        this.localRepository = localRepository;
         this.remoteRepository = remoteRepository;
-        this.appExecutor= appExecutor;
+        this.appExecutor = appExecutor;
     }
 
     public static MovieFilmRepository getInstance(@NonNull LocalRepository localRepository, @NonNull RemoteRepository remoteRepository, AppExecutors appExecutor) {
@@ -51,16 +51,30 @@ public class MovieFilmRepository implements MovieFilmDataSource {
             @Override
             protected LiveData<List<MovieEntity>> loadFormDB() {
                 return null;
+
             }
 
             @Override
             protected Boolean shouldFetch(List<MovieEntity> data) {
-                return null;
+                return (data == null) || (data.size() == 0);
             }
 
             @Override
             protected LiveData<ApiResponse<List<MovieResponse>>> createCall() {
-                return null;
+                final MutableLiveData<ApiResponse<List<MovieResponse>>> movieResponse = new MutableLiveData<>();
+                remoteRepository.getAllMovie(new RemoteRepository.LoadMovieCallback() {
+                    @Override
+                    public void onSuccess(ApiResponse<List<MovieResponse>> movieSend) {
+                        movieResponse.setValue(movieSend);
+                    }
+
+                    @Override
+                    public void onNotAvailable() {
+
+                    }
+                });
+                return movieResponse;
+
             }
 
             @Override
@@ -71,17 +85,148 @@ public class MovieFilmRepository implements MovieFilmDataSource {
     }
 
     @Override
-    public LiveData<Resource<ArrayList<TvshowEntity>>> getTvshowAll() {
-        return null;
+    public LiveData<Resource<List<TvshowEntity>>> getTvshowAll() {
+        return new NetworkBoundResource<List<TvshowEntity>, List<TvShowResponse>>(appExecutor) {
+            @Override
+            protected LiveData<List<TvshowEntity>> loadFormDB() {
+                return null;
+
+            }
+
+            @Override
+            protected Boolean shouldFetch(List<TvshowEntity> data) {
+                return (data == null) || (data.size() == 0);
+
+            }
+
+            @Override
+            protected LiveData<ApiResponse<List<TvShowResponse>>> createCall() {
+                final MutableLiveData<ApiResponse<List<TvShowResponse>>> tvshowResponse = new MutableLiveData<>();
+
+                remoteRepository.getTvshow(new RemoteRepository.LoadTvshowCallback() {
+                    @Override
+                    public void onSuccess(ApiResponse<List<TvShowResponse>> tvshowSend) {
+                        tvshowResponse.setValue(tvshowSend);
+                    }
+
+                    @Override
+                    public void onNotAvailbale() {
+
+                    }
+                });
+                return tvshowResponse;
+
+            }
+
+            @Override
+            protected void saveCallResult(List<TvShowResponse> data) {
+
+            }
+        }.asLiveData();
+
     }
 
     @Override
-    public LiveData<Resource<ArrayList<MovieEntity>>> getMovieId(int id) {
-        return null;
+    public LiveData<Resource<List<MovieEntity>>> getMovieId(int id) {
+        return new NetworkBoundResource<List<MovieEntity>, List<MovieResponse>>(appExecutor) {
+            @Override
+            protected LiveData<List<MovieEntity>> loadFormDB() {
+                return localRepository.getAllMovieById(id);
+            }
+
+            @Override
+            protected Boolean shouldFetch(List<MovieEntity> data) {
+                return (data == null) || (data.size() == 0);
+
+            }
+
+            @Override
+            protected LiveData<ApiResponse<List<MovieResponse>>> createCall() {
+                MutableLiveData<ApiResponse<List<MovieResponse>>> movieResponse = new MutableLiveData<>();
+                remoteRepository.getMovieById(id, new RemoteRepository.LoadMovieCallback() {
+                    @Override
+                    public void onSuccess(ApiResponse<List<MovieResponse>> movieSend) {
+                        movieResponse.setValue(movieSend);
+                    }
+
+                    @Override
+                    public void onNotAvailable() {
+
+                    }
+                });
+                return movieResponse;
+
+            }
+
+            @Override
+            protected void saveCallResult(List<MovieResponse> data) {
+                List<MovieEntity> movieEntityList = new ArrayList<>();
+                for (MovieResponse movieResponse : data) {
+                    movieEntityList.add(new MovieEntity(
+                            movieResponse.getId(),
+                            movieResponse.getImage(),
+                            movieResponse.getJudul(),
+                            movieResponse.getDeskripsi(),
+                            movieResponse.getTanggalRilis()
+                    ));
+                }
+                localRepository.insertMovie(movieEntityList);
+            }
+        }.asLiveData();
+
     }
 
     @Override
-    public LiveData<Resource<ArrayList<TvshowEntity>>> getTvshowId(int id) {
-        return null;
+    public LiveData<Resource<List<TvshowEntity>>> getTvshowId(int id) {
+        return new NetworkBoundResource<List<TvshowEntity>, List<TvShowResponse>>(appExecutor) {
+            @Override
+            protected LiveData<List<TvshowEntity>> loadFormDB() {
+                return localRepository.getAllTvshoeById(id);
+
+            }
+
+            @Override
+            protected Boolean shouldFetch(List<TvshowEntity> data) {
+                return (data == null) || (data.size() == 0);
+
+            }
+
+            @Override
+            protected LiveData<ApiResponse<List<TvShowResponse>>> createCall() {
+                MutableLiveData<ApiResponse<List<TvShowResponse>>> tvshowResponse = new MutableLiveData<>();
+
+                remoteRepository.getTvshowById(id, new RemoteRepository.LoadTvshowCallback() {
+                    @Override
+                    public void onSuccess(ApiResponse<List<TvShowResponse>> tvshowSend) {
+                        tvshowResponse.setValue(tvshowSend);
+
+                    }
+
+                    @Override
+                    public void onNotAvailbale() {
+
+                    }
+                });
+                return tvshowResponse;
+
+            }
+
+            @Override
+            protected void saveCallResult(List<TvShowResponse> data) {
+                List<TvshowEntity> tvshowEntityList = new ArrayList<>();
+                for (TvShowResponse tvShowResponse : data) {
+                    tvshowEntityList.add(new TvshowEntity(
+                            tvShowResponse.getId(),
+                            tvShowResponse.getImage(),
+                            tvShowResponse.getJudul(),
+                            tvShowResponse.getDeskripsi(),
+                            tvShowResponse.getTanggalRilis()
+                    ));
+                }
+                localRepository.insertTvshow(tvshowEntityList);
+
+            }
+        }.asLiveData();
+
     }
 }

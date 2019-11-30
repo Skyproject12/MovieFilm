@@ -5,8 +5,10 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.moviefilm.Data.source.MovieFilmRepository;
 import com.example.moviefilm.Data.source.local.Room.Entity.MovieEntity;
+import com.example.moviefilm.Data.source.remote.ApiResponse;
+import com.example.moviefilm.ValueObject.Resource;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class MovieViewModel extends ViewModel {
 
@@ -16,7 +18,7 @@ public class MovieViewModel extends ViewModel {
         this.movieFilmRepository = movieFilmRepository;
     }
 
-    public LiveData<ArrayList<MovieEntity>> getMovie(){
+    public LiveData<Resource<List<MovieEntity>>> getMovie(){
         return movieFilmRepository.getMovieAll();
 
     }

@@ -36,10 +36,9 @@ public class RemoteRepository {
         return INSTANCE;
     }
 
-    public void getAllCoursesAsLiveData(LoadMovieCallback callback) {
+    public void getAllMovie(LoadMovieCallback callback) {
         IddlingTesting.increment();
         // menampung hasil dari request jsonHelper.loadCourse
-        MutableLiveData<ApiResponse<List<MovieResponse>>> resultMutable = new MutableLiveData<>();
         AsyncHttpClient client = new AsyncHttpClient();
         String Url = "https://api.themoviedb.org/3/discover/movie?api_key=" + Static.API_KEY + "&language=en-US";
         client.get(Url, new AsyncHttpResponseHandler() {
@@ -60,8 +59,7 @@ public class RemoteRepository {
                                 movie.getString("release_date")
                         );
                         list.add(movieResponse);
-                        resultMutable.setValue(ApiResponse.success(list));
-                        callback.onSuccess(resultMutable);
+                        callback.onSuccess(ApiResponse.success(list));
                         if (!IddlingTesting.getIddlingTesting().isIdleNow()) {
                             IddlingTesting.decrement();
                         }
@@ -83,7 +81,6 @@ public class RemoteRepository {
 
     public void getTvshow(LoadTvshowCallback callback) {
         IddlingTesting.increment();
-        MutableLiveData<ApiResponse<List<TvShowResponse>>> resultMutable = new MutableLiveData<>();
         AsyncHttpClient client = new AsyncHttpClient();
         String Url = "https://api.themoviedb.org/3/discover/tv?api_key=" + Static.API_KEY + "&language=en-US";
         client.get(Url, new AsyncHttpResponseHandler() {
@@ -104,8 +101,7 @@ public class RemoteRepository {
                                 show.getString("first_air_date")
                         );
                         list.add(tvShowResponse);
-                        resultMutable.setValue(ApiResponse.success(list));
-                        callback.onSuccess(resultMutable);
+                        callback.onSuccess(ApiResponse.success(list));
 
                         if (!IddlingTesting.getIddlingTesting().isIdleNow()) {
                             IddlingTesting.decrement();
@@ -127,7 +123,6 @@ public class RemoteRepository {
 
     public void getMovieById(int id, LoadMovieCallback calback) {
         IddlingTesting.increment();
-        MutableLiveData<ApiResponse<List<MovieResponse>>> resultMutable = new MutableLiveData<>();
         AsyncHttpClient client = new AsyncHttpClient();
         String Url = "https://api.themoviedb.org/3/discover/movie?api_key=" + Static.API_KEY + "&language=en-US";
         client.get(Url, new AsyncHttpResponseHandler() {
@@ -149,8 +144,7 @@ public class RemoteRepository {
                                     movieId.getString("release_date")
                             );
                             list.add(movieResponse);
-                            resultMutable.setValue(ApiResponse.success(list));
-                            calback.onSuccess(resultMutable);
+                            calback.onSuccess(ApiResponse.success(list));
 
                             if (!IddlingTesting.getIddlingTesting().isIdleNow()) {
                                 IddlingTesting.decrement();
@@ -173,8 +167,6 @@ public class RemoteRepository {
 
     public void getTvshowById(int id, LoadTvshowCallback calback) {
         IddlingTesting.increment();
-        MutableLiveData<ApiResponse<List<TvShowResponse>>> resultMutable = new MutableLiveData<>();
-
         AsyncHttpClient client = new AsyncHttpClient();
         String Url = "https://api.themoviedb.org/3/discover/tv?api_key=" + Static.API_KEY + "&language=en-US";
         client.get(Url, new AsyncHttpResponseHandler() {
@@ -197,8 +189,7 @@ public class RemoteRepository {
                                     tvshowId.getString("first_air_date")
                             );
                             list.add(tvShowResponse);
-                            resultMutable.setValue(ApiResponse.success(list));
-                            calback.onSuccess(resultMutable);
+                            calback.onSuccess(ApiResponse.success(list));
 
                             if (!IddlingTesting.getIddlingTesting().isIdleNow()) {
                                 IddlingTesting.decrement();
@@ -219,14 +210,14 @@ public class RemoteRepository {
     }
 
     public interface LoadMovieCallback {
-        void onSuccess(MutableLiveData<ApiResponse<List<MovieResponse>>> movieResponse);
+        void onSuccess(ApiResponse<List<MovieResponse>> movieResponse);
 
         void onNotAvailable();
 
     }
 
     public interface LoadTvshowCallback {
-        void onSuccess(MutableLiveData<ApiResponse<List<TvShowResponse>>> tvshowResponse);
+        void onSuccess(ApiResponse<List<TvShowResponse>> tvshowResponse);
 
         void onNotAvailbale();
 

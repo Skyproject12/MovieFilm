@@ -3,6 +3,8 @@ package com.example.moviefilm.Data.source.local.Room.Dao;
 import androidx.annotation.WorkerThread;
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Transaction;
 
@@ -23,10 +25,16 @@ public interface MovieFilmDao {
 
   @Transaction
   @Query("SELECT * FROM movie WHERE movieId = :movieId")
-  LiveData<MovieEntity> getMovieById(String movieId);
+  LiveData<List<MovieEntity>> getMovieById(int movieId);
 
   @Transaction
   @Query("SELECT * FROM tvshow WHERE tvshowId= :tvshowId")
-  LiveData<TvshowEntity> getTvshowId(String tvshowId);
+  LiveData<List<TvshowEntity>> getTvshowId(int tvshowId);
+
+  @Insert(onConflict = OnConflictStrategy.REPLACE)
+  long[] insertMovie(List<MovieEntity> movie);
+
+  @Insert(onConflict= OnConflictStrategy.REPLACE)
+  long[] insertTvshow(List<TvshowEntity> tvshow);
 
 }
