@@ -57,6 +57,7 @@ public class DetailActivity extends AppCompatActivity {
             textDeskripsiMovie.setText(movieId.get(0).getDeskripsi());
             getSupportActionBar().setTitle("Detail MovieEntity");
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         });
     }
 

@@ -16,6 +16,7 @@ public abstract class NetworkBoundResource<ResultType, RequestType> {
 
     }
 
+    // medefinisikan class abstract
     protected abstract LiveData<ResultType> loadFormDB();
     protected abstract Boolean shouldFetch(ResultType data);
     protected abstract LiveData<ApiResponse<RequestType>> createCall();
@@ -24,10 +25,13 @@ public abstract class NetworkBoundResource<ResultType, RequestType> {
     public NetworkBoundResource(AppExecutors appExecutors){
         this.executors= appExecutors;
         result.setValue(Resource.loading(null));
+        // get data from database
         LiveData<ResultType> dbSource= loadFormDB();
         result.addSource(dbSource, data->{
             result.removeSource(dbSource);
+            // melakukan pengecekan apakah data kosong atau tidak
             if(shouldFetch(data)){
+                // jika ya maka request ke intenet
                 fetchFromNetwork(dbSource);
             }
             else{
@@ -38,6 +42,7 @@ public abstract class NetworkBoundResource<ResultType, RequestType> {
 
     // fetch data from network
     private void fetchFromNetwork(LiveData<ResultType> dbSOurce){
+        // melakukan menampilkan  all data from internet
         LiveData<ApiResponse<RequestType>> apiResponse= createCall();
         result.addSource(dbSOurce, mData-> result.setValue(Resource.loading(mData)));
         result.addSource(apiResponse, response->{
@@ -45,7 +50,9 @@ public abstract class NetworkBoundResource<ResultType, RequestType> {
             result.removeSource(dbSOurce);
             switch (response.status){
                 case SUCCESS:
+                    // jiks menampilkan data from internet success
                     executors.diskIO().execute(()->{
+                        // maka saveData dari intenet into database
                         saveCallResult(response.body);
                         executors.mainThread().execute(()->result.addSource(loadFormDB(), newData-> result.setValue(Resource.success(newData))));
                     });
@@ -61,8 +68,11 @@ public abstract class NetworkBoundResource<ResultType, RequestType> {
         });
     }
 
+    // memberi nilai berupa hasil pengembalian dimana berupa beberapa hasil dari livedata
     public LiveData<Resource<ResultType>> asLiveData(){
         return result;
     }
 
+
+    // mediator livedata dapat menampung beberapa live data
 }
