@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
@@ -32,8 +34,8 @@ public class TvShowFragment extends Fragment {
     ConstraintLayout constraintMovie;
     ShowAdapter showAdapter;
     LinearLayoutManager linearLayoutManager;
-    ArrayList<MovieEntity> list;
     View view;
+    ProgressBar tvprogressTvshow;
 
     public TvShowFragment() {
         // Required empty public constructor
@@ -45,31 +47,45 @@ public class TvShowFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_tv_show, container, false);
         initial();
-        showViewModel.getShow().observe(this, show -> {
-            showAdapter = new ShowAdapter();
-            showAdapter.setList(show);
-            linearLayoutManager = new LinearLayoutManager(getActivity());
-            recyclerView.setLayoutManager(linearLayoutManager);
-            recyclerView.setAdapter(showAdapter);
-            DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getActivity(), linearLayoutManager.getOrientation());
-            recyclerView.addItemDecoration(dividerItemDecoration);
-            showAdapter.setOnItemClickCallback(new ShowAdapter.OnItemClickCallback() {
-                @Override
-                public void onItmCliked(TvshowEntity movie) {
-                    Intent moveObjectIntent = new Intent(getActivity(), DetailShowActivity.class);
-                    moveObjectIntent.putExtra("tvshow", movie);
-                    startActivity(moveObjectIntent);
+        showViewModel.getShow().observe(this, tvshow->{
+            if(tvshow!=null){
+                switch (tvshow.status){
+                    case LOADING:
+                        tvprogressTvshow.setVisibility(View.VISIBLE);
+                        break;
+                    case SUCCESS:
+                        tvprogressTvshow.setVisibility(View.GONE);
+                        showAdapter = new ShowAdapter();
+                        showAdapter.setList(tvshow.data);
+                        linearLayoutManager = new LinearLayoutManager(getActivity());
+                        recyclerView.setLayoutManager(linearLayoutManager);
+                        recyclerView.setAdapter(showAdapter);
+                        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getActivity(), linearLayoutManager.getOrientation());
+                        recyclerView.addItemDecoration(dividerItemDecoration);
+                        showAdapter.setOnItemClickCallback(new ShowAdapter.OnItemClickCallback() {
+                            @Override
+                            public void onItmCliked(TvshowEntity movie) {
+                                Intent moveObjectIntent = new Intent(getActivity(), DetailShowActivity.class);
+                                moveObjectIntent.putExtra("tvshow", movie);
+                                startActivity(moveObjectIntent);
+                            }
+                        });
+                    case ERROR:
+                        Toast.makeText(getActivity(), "error"+tvshow.data, Toast.LENGTH_SHORT).show();
+                        tvprogressTvshow.setVisibility(View.GONE);
+                        break;
+
                 }
-            });
+            }
         });
         return view;
     }
 
     public void initial() {
         recyclerView = view.findViewById(R.id.recycler_tvshow);
-        list = new ArrayList<>();
         constraintMovie = view.findViewById(R.id.constraint_film);
         showViewModel = obtainViewModel(getActivity());
+        tvprogressTvshow= view.findViewById(R.id.progress_tvshow);
 
     }
 

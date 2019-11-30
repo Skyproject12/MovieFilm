@@ -37,24 +37,35 @@ public class DetailShowActivity extends AppCompatActivity {
         textJudulMovie = findViewById(R.id.tex_judulmovie);
         texttanggalMovie = findViewById(R.id.textjadwal_movie);
         textDeskripsiMovie = findViewById(R.id.text_deskripsimovie);
-        detailShowViewModel= obtainViewModel(DetailShowActivity.this);
+        detailShowViewModel = obtainViewModel(DetailShowActivity.this);
 
     }
 
     private void setText() {
-        detailShowViewModel.getTvshoId(movie.getId()).observe(this, tvshowid->{
-            Picasso.get().load(tvshowid.get(0).getImage()).into(imageMovie);
-            textJudulMovie.setText(tvshowid.get(0).getJudul());
+        detailShowViewModel.getTvshoId(movie.getId()).observe(this, tvshowId -> {
+            if (tvshowId != null) {
+                switch (tvshowId.status) {
+                    case LOADING:
+                        break;
+                    case SUCCESS:
+                        Picasso.get().load(tvshowId.data.get(0).getImage()).into(imageMovie);
+                        textJudulMovie.setText(tvshowId.data.get(0).getJudul());
 
-            texttanggalMovie.setText(tvshowid.get(0).getTanggalRilis());
-            textDeskripsiMovie.setText(tvshowid.get(0).getDeskripsi());
-            getSupportActionBar().setTitle("Detail MovieEntity");
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                        texttanggalMovie.setText(tvshowId.data.get(0).getTanggalRilis());
+                        textDeskripsiMovie.setText(tvshowId.data.get(0).getDeskripsi());
+                        getSupportActionBar().setTitle("Detail MovieEntity");
+                        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                        break;
+                    case ERROR:
+                        break;
+
+                }
+            }
         });
     }
 
-    private static DetailShowViewModel obtainViewModel(AppCompatActivity activity){
-        ViewModelFactory factory= ViewModelFactory.getInstance(activity.getApplication());
+    private static DetailShowViewModel obtainViewModel(AppCompatActivity activity) {
+        ViewModelFactory factory = ViewModelFactory.getInstance(activity.getApplication());
         return ViewModelProviders.of(activity, factory).get(DetailShowViewModel.class);
     }
 }

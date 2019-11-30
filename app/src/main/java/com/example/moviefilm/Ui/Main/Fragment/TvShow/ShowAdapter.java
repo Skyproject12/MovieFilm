@@ -14,6 +14,7 @@ import com.example.moviefilm.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ShowAdapter extends RecyclerView.Adapter<ShowAdapter.ViewMovie> {
     ArrayList<TvshowEntity> list= new ArrayList<>();
@@ -23,7 +24,7 @@ public class ShowAdapter extends RecyclerView.Adapter<ShowAdapter.ViewMovie> {
         this.onItemClickCallback = onItemClickCallback;
     }
 
-    public void setList(ArrayList<TvshowEntity> mList) {
+    public void setList(List<TvshowEntity> mList) {
         if (list == null) return;
         this.list.clear();
         this.list.addAll(mList);

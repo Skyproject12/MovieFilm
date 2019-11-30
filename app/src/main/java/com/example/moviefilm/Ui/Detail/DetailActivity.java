@@ -43,26 +43,36 @@ public class DetailActivity extends AppCompatActivity {
         textJudulMovie = findViewById(R.id.tex_judulmovie);
         texttanggalMovie = findViewById(R.id.textjadwal_movie);
         textDeskripsiMovie = findViewById(R.id.text_deskripsimovie);
-        detailViewModel= obtainViewModel(DetailActivity.this);
+        detailViewModel = obtainViewModel(DetailActivity.this);
 
 
     }
 
     private void setText() {
-        detailViewModel.getMovieId(movieEntity.getId()).observe(this, movieId-> {
-            Log.d("DetailActivity", "setText: "+movieId.get(0).getImage());
-            Picasso.get().load(movieId.get(0).getImage()).into(imageMovie);
-            textJudulMovie.setText(movieId.get(0).getJudul());
-            texttanggalMovie.setText(movieId.get(0).getTanggalRilis());
-            textDeskripsiMovie.setText(movieId.get(0).getDeskripsi());
-            getSupportActionBar().setTitle("Detail MovieEntity");
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        detailViewModel.getMovieId(movieEntity.getId()).observe(this, movieId -> {
+            if (movieId != null) {
+                switch (movieId.status) {
+                    case LOADING:
+                        break;
+                    case SUCCESS:
+                        Log.d("DetailActivity", "setText: " + movieId.data.get(0).getImage());
+                        Picasso.get().load(movieId.data.get(0).getImage()).into(imageMovie);
+                        textJudulMovie.setText(movieId.data.get(0).getJudul());
+                        texttanggalMovie.setText(movieId.data.get(0).getTanggalRilis());
+                        textDeskripsiMovie.setText(movieId.data.get(0).getDeskripsi());
+                        getSupportActionBar().setTitle("Detail MovieEntity");
+                        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                        break;
+                    case ERROR:
+                        break;
 
+                }
+            }
         });
     }
 
-    private static DetailViewModel obtainViewModel(AppCompatActivity activity){
-        ViewModelFactory factory= ViewModelFactory.getInstance(activity.getApplication());
+    private static DetailViewModel obtainViewModel(AppCompatActivity activity) {
+        ViewModelFactory factory = ViewModelFactory.getInstance(activity.getApplication());
         return ViewModelProviders.of(activity, factory).get(DetailViewModel.class);
     }
 
@@ -70,7 +80,7 @@ public class DetailActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         //this.menu= menu;
         getMenuInflater().inflate(R.menu.menu_favorite, menu);
-        MenuItem menuItem= menu.findItem(R.id.favorite);
+        MenuItem menuItem = menu.findItem(R.id.favorite);
 //        if(favoriteHelper.getAllByMovieId(movieEntity.getId())){
 //            menuItem.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_star));
 //        }else if(!favoriteHelper.getAllByMovieId(movieEntity.getId())){
@@ -82,7 +92,7 @@ public class DetailActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         //MenuItem menuItem= menu.findItem(R.id.favorite);
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.favorite:
 //                if(favoriteHelper.getAllByMovieId(movieEntity.getId())){
 //                    Toast.makeText(this, "delete", Toast.LENGTH_SHORT).show();
@@ -95,11 +105,12 @@ public class DetailActivity extends AppCompatActivity {
 //                }
                 break;
             case R.id.home:
-                Intent intent= new  Intent(DetailActivity.this, MainActivity.class);
+                Intent intent = new Intent(DetailActivity.this, MainActivity.class);
                 startActivity(intent);
             default:
                 break;
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

@@ -1,0 +1,25 @@
+{
+  "tvshow": [
+    {
+      "id": "82856",
+      "image": "https://image.tmdb.org/t/p/w185/BbNvKCuEF4SRzFXR16aK6ISFtR.jpg",
+      "judul": "The Mandalorian",
+      "deskripsi": "Set after the fall of the Empire and before the emergence of the First Order, we follow the travails of a lone gunfighter in the outer reaches of the galaxy far from the authority of the New Republic.",
+	  "tanggalRilis": "2019-11-12"
+    },
+     {
+       "id": "60625",
+      "image": "https://image.tmdb.org/t/p/w185/qJdfO3ahgAMf2rcmhoqngjBBZW1.jpg",
+      "judul": "Rick and Morty",
+      "deskripsi": "Elsa, Anna, Kristoff and Olaf are going far in the forest to know the truth about an ancient mystery of their kingdom.",
+	  "tanggalRilis": "2019-11-20"
+    },
+    {
+      "id": "330458",
+      "image": "https://image.tmdb.org/t/p/w185/qdfARIhgpgZOBh3vfNhWS4hmSo3.jpg",
+      "judul": "Frozen",
+      "deskripsi": "Elsa, Anna, Kristoff and Olaf are going far in the forest to know the truth about an ancient mystery of their kingdom.",
+      "tanggalRilis": "2019-11-20"
+    }
+  ]
+}

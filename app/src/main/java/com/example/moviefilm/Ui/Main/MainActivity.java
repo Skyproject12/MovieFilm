@@ -43,16 +43,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()){
-                    case R.id.movies:
-                        setFragment(movieFragment);
-                        return true;
+//                    case R.id.movies:
+//                        setFragment(movieFragment);
+//                        return true;
                     case R.id.tv_show:
                         setFragment(tvShowFragment);
                         return true;
-
-                    case R.id.favorite:
-                        setFragment(favoriteFragment);
-                        return true;
+//
+//                    case R.id.favorite:
+//                        setFragment(favoriteFragment);
+//                        return true;
 
                     default:
                         return false;

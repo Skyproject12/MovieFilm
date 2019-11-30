@@ -1,5 +1,7 @@
 package com.example.moviefilm.Data.source;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 
@@ -7,72 +9,89 @@ import com.example.moviefilm.Data.source.remote.ApiResponse;
 import com.example.moviefilm.Util.AppExecutors;
 import com.example.moviefilm.ValueObject.Resource;
 
+// class ini akan berjalan ketika local tidak menyediakan data secara actual
 public abstract class NetworkBoundResource<ResultType, RequestType> {
-    public String message;
+
     private MediatorLiveData<Resource<ResultType>> result = new MediatorLiveData<>();
-    private AppExecutors executors;
 
-    protected void onFetchFailed(){
+    private AppExecutors mExecutors;
 
+    protected void onFetchFailed() {
     }
 
-    // medefinisikan class abstract
-    protected abstract LiveData<ResultType> loadFormDB();
+    protected abstract LiveData<ResultType> loadFromDB();
+
     protected abstract Boolean shouldFetch(ResultType data);
+
     protected abstract LiveData<ApiResponse<RequestType>> createCall();
+
     protected abstract void saveCallResult(RequestType data);
 
-    public NetworkBoundResource(AppExecutors appExecutors){
-        this.executors= appExecutors;
+    public NetworkBoundResource(AppExecutors appExecutors) {
+        this.mExecutors = appExecutors;
         result.setValue(Resource.loading(null));
-        // get data from database
-        LiveData<ResultType> dbSource= loadFormDB();
-        result.addSource(dbSource, data->{
-            result.removeSource(dbSource);
-            // melakukan pengecekan apakah data kosong atau tidak
-            if(shouldFetch(data)){
-                // jika ya maka request ke intenet
+
+        LiveData<ResultType> dbSource = loadFromDB();
+
+        if(dbSource!=null) {
+            result.addSource(dbSource, data -> {
+                  result.removeSource(dbSource);
+                if (shouldFetch(data)) {
                 fetchFromNetwork(dbSource);
-            }
-            else{
-                result.addSource(dbSource, newData-> result.setValue(Resource.success(newData)));
-            }
-        });
+                } else {
+                 result.addSource(dbSource, newData -> result.setValue(Resource.success(newData)));
+                }
+            });
+        }
+        else{
+            Log.d("ErrorNull", "NetworkBoundResource: null");
+        }
+
     }
 
-    // fetch data from network
-    private void fetchFromNetwork(LiveData<ResultType> dbSOurce){
-        // melakukan menampilkan  all data from internet
-        LiveData<ApiResponse<RequestType>> apiResponse= createCall();
-        result.addSource(dbSOurce, mData-> result.setValue(Resource.loading(mData)));
-        result.addSource(apiResponse, response->{
+    private void fetchFromNetwork(LiveData<ResultType> dbSource) {
+
+        LiveData<ApiResponse<RequestType>> apiResponse = createCall();
+
+        result.addSource(dbSource, newData ->
+                result.setValue(Resource.loading(newData))
+        );
+        result.addSource(apiResponse, response -> {
+
             result.removeSource(apiResponse);
-            result.removeSource(dbSOurce);
-            switch (response.status){
+            result.removeSource(dbSource);
+
+            switch (response.status) {
                 case SUCCESS:
-                    // jiks menampilkan data from internet success
-                    executors.diskIO().execute(()->{
-                        // maka saveData dari intenet into database
+                    mExecutors.diskIO().execute(() -> {
+
                         saveCallResult(response.body);
-                        executors.mainThread().execute(()->result.addSource(loadFormDB(), newData-> result.setValue(Resource.success(newData))));
+
+                        mExecutors.mainThread().execute(() ->
+                                result.addSource(loadFromDB(),
+                                        newData -> result.setValue(Resource.success(newData))));
+
                     });
                     break;
+
                 case EMPTY:
-                    executors.mainThread().execute(()-> result.addSource(loadFormDB(), newData->result.setValue(Resource.success(newData))));
+                    mExecutors.mainThread().execute(() ->
+                            result.addSource(loadFromDB(),
+                                    newData -> result.setValue(Resource.success(newData))));
+
                     break;
                 case ERROR:
                     onFetchFailed();
-                    result.addSource(dbSOurce, newData->result.setValue(Resource.error(response.message, newData)));
+                    result.addSource(dbSource, newData ->
+                            result.setValue(Resource.error(response.message, newData)));
                     break;
             }
         });
     }
 
-    // memberi nilai berupa hasil pengembalian dimana berupa beberapa hasil dari livedata
-    public LiveData<Resource<ResultType>> asLiveData(){
+    public LiveData<Resource<ResultType>> asLiveData() {
         return result;
     }
 
 
-    // mediator livedata dapat menampung beberapa live data
 }

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
@@ -20,8 +21,6 @@ import com.example.moviefilm.R;
 import com.example.moviefilm.Ui.Detail.DetailActivity;
 import com.example.moviefilm.ViewModel.Movie.MovieViewModel;
 import com.example.moviefilm.ViewModel.ViewModelFactory;
-
-import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -38,8 +37,8 @@ public class MoviesFragment extends Fragment {
     ConstraintLayout constraintMovie;
     MovieAdapter movieAdapter;
     LinearLayoutManager linearLayoutManager;
-    ArrayList<MovieEntity> list;
     View view;
+    ProgressBar progressMovie;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,36 +46,51 @@ public class MoviesFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_movies, container, false);
         initial();
-        movieViewModel.getMovie().observe(this, movie->{
-            movieAdapter = new MovieAdapter();
-            movieAdapter.setList(movie);
-            linearLayoutManager = new LinearLayoutManager(getActivity());
-            recyclerView.setLayoutManager(linearLayoutManager);
-            recyclerView.setAdapter(movieAdapter);
-            DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getActivity(), linearLayoutManager.getOrientation());
-            recyclerView.addItemDecoration(dividerItemDecoration);
-            movieAdapter.setOnItemClickCallback(new MovieAdapter.OnItemClickCallback() {
-                @Override
-                public void onItmCliked(MovieEntity movieEntity) {
-                    Intent moveObjectIntent = new Intent(getActivity(), DetailActivity.class);
-                    moveObjectIntent.putExtra("film", movieEntity);
-                    moveObjectIntent.putExtra("status", "movieEntity");
-                    startActivity(moveObjectIntent);
-                }
-            });
-        });
+//        movieViewModel.getMovie().observe(this, movie -> {
+//            if (movie != null) {
+//                switch (movie.status) {
+//                    case LOADING:
+//                        progressMovie.setVisibility(View.VISIBLE);
+//                        break;
+//                    case SUCCESS:
+//                        movieAdapter = new MovieAdapter();
+//                        progressMovie.setVisibility(View.GONE);
+//
+//                        movieAdapter.setList(movie.data);
+//                        linearLayoutManager = new LinearLayoutManager(getActivity());
+//                        recyclerView.setLayoutManager(linearLayoutManager);
+//                        recyclerView.setAdapter(movieAdapter);
+//                        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getActivity(), linearLayoutManager.getOrientation());
+//                        recyclerView.addItemDecoration(dividerItemDecoration);
+//                        movieAdapter.setOnItemClickCallback(new MovieAdapter.OnItemClickCallback() {
+//                            @Override
+//                            public void onItmCliked(MovieEntity movieEntity) {
+//                                Intent moveObjectIntent = new Intent(getActivity(), DetailActivity.class);
+//                                moveObjectIntent.putExtra("film", movieEntity);
+//                                moveObjectIntent.putExtra("status", "movieEntity");
+//                                startActivity(moveObjectIntent);
+//                            }
+//                        });
+//                        break;
+//                    case ERROR:
+//                        progressMovie.setVisibility(View.GONE);
+//                        break;
+//                }
+//            }
+//        });
         return view;
     }
 
     public void initial() {
         recyclerView = view.findViewById(R.id.recycler_movie);
         constraintMovie = view.findViewById(R.id.constraint_film);
-        list = new ArrayList<>();
-        movieViewModel= obtainViewModel(getActivity());
+        movieViewModel = obtainViewModel(getActivity());
+        //progressMovie = view.findViewById(R.id.progress_movie);
 
     }
-    private static MovieViewModel obtainViewModel(FragmentActivity activity){
-        ViewModelFactory factory= ViewModelFactory.getInstance(activity.getApplication());
+
+    private static MovieViewModel obtainViewModel(FragmentActivity activity) {
+        ViewModelFactory factory = ViewModelFactory.getInstance(activity.getApplication());
         return ViewModelProviders.of(activity, factory).get(MovieViewModel.class);
     }
 
