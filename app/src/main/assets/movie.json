@@ -1,0 +1,144 @@
+{
+	"movie" : [
+		{
+			"id": "330457",
+			"image": "https://image.tmdb.org/t/p/w185/qdfARIhgpgZOBh3vfNhWS4hmSo3.jpg",
+			"judul": "Frozen II",
+			"deskripsi": "Elsa, Anna, Kristoff and Olaf head far into the forest to learn the truth about an ancient mystery of their kingdom.",
+			"tanggalRilis": "2019-11-20"
+		},
+		{
+			"id": "466272",
+			"image": "https://image.tmdb.org/t/p/w185/8j58iEBw9pOXFD2L0nt0ZXeHviB.jpg",
+			"judul": "Once Upon a Time... in Hollywood",
+			"deskripsi": "A faded television actor and his stunt double strive to achieve fame and success in the film industry during the final years of Hollywood's Golden Age in 1969 Los Angeles.",
+			"tanggalRilis": "2019-07-25"
+		},
+		{
+			"id": "475557",
+			"image": "https://image.tmdb.org/t/p/w185/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg",
+			"judul": "Joker",
+			"deskripsi": "During the 1980s, a failed stand-up comedian is driven insane and turns to a life of crime and chaos in Gotham City while becoming an infamous psychopathic crime figure.",
+			"tanggalRilis": "2019-10-02"
+		},
+		{
+			"id": "290859",
+			"image": "https://image.tmdb.org/t/p/w185/vqzNJRH4YyquRiWxCCOH0aXggHI.jpg",
+			"judul": "Terminator: Dark Fate",
+			"deskripsi": "Decades after Sarah Connor prevented Judgment Day, a lethal new Terminator is sent to eliminate the future leader of the resistance. In a fight to save mankind, battle-hardened Sarah Connor teams up with an unexpected ally and an enhanced super soldier to stop the deadliest Terminator yet.",
+			"tanggalRilis": "2019-10-23"
+		},
+		{
+			"id": "398978",
+			"image": "https://image.tmdb.org/t/p/w185/mbm8k3GFhXS0ROd9AD1gqYbIFbM.jpg",
+			"judul": "The Irishman",
+			"deskripsi": "Pennsylvania, 1956. Frank Sheeran, a war veteran of Irish origin who works as a truck driver, accidentally meets mobster Russell Bufalino. Once Frank becomes his trusted man, Bufalino sends him to Chicago with the task of helping Jimmy Hoffa, a powerful union leader related to organized crime, with whom Frank will maintain a close friendship for nearly twenty years.",
+			"tanggalRilis": "2019-11-01"
+		},
+		{
+			"id": "540901",
+			"image": "https://image.tmdb.org/t/p/w185/zBhv8rsLOfpFW2M5b6wW78Uoojs.jpg",
+			"judul": "Hustlers",
+			"deskripsi": "A crew of savvy former strip club employees band together to turn the tables on their Wall Street clients.",
+			"tanggalRilis": "2019-09-12"
+		},
+		{
+			"id": "645541",
+			"image": "https://image.tmdb.org/t/p/w185/4I0CQfnMy6sRR7QhgqsXR16TmIs.jpg",
+			"judul": "Ellipse",
+			"deskripsi": "A man and his dog are stranded on a volatile, oval-shaped planet and are forced to adapt and escape before time destroys them both.",
+			"tanggalRilis": "2019-11-05"
+		},
+		{
+			"id": "429617",
+			"image": "https://image.tmdb.org/t/p/w185/lcq8dVxeeOqHvvgcte707K0KVx5.jpg",
+			"judul": "Spider-Man: Far from Home",
+			"deskripsi": "Peter Parker and his friends go on a summer trip to Europe. However, they will hardly be able to rest - Peter will have to agree to help Nick Fury uncover the mystery of creatures that cause natural disasters and destruction throughout the continent.",
+			"tanggalRilis": "2019-06-28"
+		},
+		{
+			"id": "423204",
+			"image": "https://image.tmdb.org/t/p/w185/fapXd3v9qTcNBTm39ZC4KUVQDNf.jpg",
+			"judul": "Spider-Man: Far from Home",
+			"deskripsi": "After the events in the previous film, Secret Service agent Mike Banning finds himself framed for an assassination attempt on the President. Pursued by his own agency and the FBI, Banning races to clear his name and uncover the real terrorist threat which has set its sights on Air Force One.",
+			"tanggalRilis": "2019-08-21"
+		},
+		{
+			"id": "546554",
+			"image": "https://image.tmdb.org/t/p/w185/pThyQovXQrw2m0s9x82twj48Jq4.jpg",
+			"judul": "Knives Out",
+			"deskripsi": "When renowned crime novelist Harlan Thrombey is found dead at his estate just after his 85th birthday, the inquisitive and debonair Detective Benoit Blanc is mysteriously enlisted to investigate. From Harlan's dysfunctional family to his devoted staff, Blanc sifts through a web of red herrings and self-serving lies to uncover the truth behind Harlan's untimely death.",
+			"tanggalRilis": "2019-11-27"
+		},
+		{
+			"id": "420818",
+			"image": "https://image.tmdb.org/t/p/w185/2bXbqYdUdNVa8VIWXVfclP2ICtT.jpg",
+			"judul": "The Lion King",
+			"deskripsi": "Simba idolizes his father, King Mufasa, and takes to heart his own royal destiny. But not everyone in the kingdom celebrates the new cub's arrival. Scar, Mufasa's brother—and former heir to the throne—has plans of his own. The battle for Pride Rock is ravaged with betrayal, tragedy and drama, ultimately resulting in Simba's exile. With help from a curious pair of newfound friends, Simba will have to figure out how to grow up and take back what is rightfully his.",
+			"tanggalRilis": "2019-07-12"
+		},
+		{
+			"id": "474350",
+			"image": "https://image.tmdb.org/t/p/w185/zfE0R94v1E8cuKAerbskfD3VfUt.jpg",
+			"judul": "It Chapter Two",
+			"deskripsi": "27 years after overcoming the malevolent supernatural entity Pennywise, the former members of the Losers' Club, who have grown up and moved away from Derry, are brought back together by a devastating phone call.",
+			"tanggalRilis": "2019-09-04"
+		},
+		{
+			"id": "283995",
+			"image": "https://image.tmdb.org/t/p/w185/y4MBh0EjBlMuOzv9axM4qJlmhzz.jpg",
+			"judul": "Guardians of the Galaxy Vol. 2",
+			"deskripsi": "The Guardians must fight to keep their newfound family together as they unravel the mysteries of Peter Quill's true parentage.",
+			"tanggalRilis": "2017-04-19"
+		},
+		{
+			"id": "567609",
+			"image": "https://image.tmdb.org/t/p/w185/vOl6shtL0wknjaIs6JdKCpcHvg8.jpg",
+			"judul": "Ready or Not",
+			"deskripsi": "A bride's wedding night takes a sinister turn when her eccentric new in-laws force her to take part in a terrifying game.",
+			"tanggalRilis": "2019-08-21"
+		},
+		{
+			"id": "568012",
+			"image": "https://image.tmdb.org/t/p/w185/4E2lyUGLEr3yH4q6kJxPkQUhX7n.jpg",
+			"judul": "One Piece: Stampede",
+			"deskripsi": "One Piece: Stampede is a stand-alone film that celebrates the anime's 20th Anniversary and takes place outside the canon of the \\\"One Piece\\\" TV series. Monkey D. Luffy and his Straw Hat pirate crew are invited to a massive Pirate Festival that brings many of the most iconic characters from throughout the franchise to participate in competition with the Straw Hats to find Roger's treasure. It also pits the Straw Hats against a new enemy named Bullet, a former member of Roger's crew.",
+			"tanggalRilis": "2019-08-09"
+		},
+		{
+			"id": "109445",
+			"image": "https://image.tmdb.org/t/p/w185/eFnGmj63QPUpK7QUWSOUhypIQOT.jpg",
+			"judul": "Frozen",
+			"deskripsi": "Young princess Anna of Arendelle dreams about finding true love at her sister Elsa’s coronation. Fate takes her on a dangerous journey in an attempt to end the eternal winter that has fallen over the kingdom. She's accompanied by ice delivery man Kristoff, his reindeer Sven, and snowman Olaf. On an adventure where she will find out what friendship, courage, family, and true love really means.",
+			"tanggalRilis": "2013-11-27"
+		},
+		{
+			"id": "420817",
+			"image": "https://image.tmdb.org/t/p/w185/3iYQTLGoy7QnjcUYRJy4YrAgGvp.jpg",
+			"judul": "Aladdin",
+			"deskripsi": "A kindhearted street urchin named Aladdin embarks on a magical adventure after finding a lamp that releases a wisecracking genie while a power-hungry Grand Vizier vies for the same lamp that has the power to make their deepest wishes come true.",
+			"tanggalRilis": "2019-05-22"
+		},
+		{
+			"id": "920",
+			"image": "https://image.tmdb.org/t/p/w185/jpfkzbIXgKZqCZAkEkFH2VYF63s.jpg",
+			"judul": "Cars",
+			"deskripsi": "Lightning McQueen, a hotshot rookie race car driven to succeed, discovers that life is about the journey, not the finish line, when he finds himself unexpectedly detoured in the sleepy Route 66 town of Radiator Springs. On route across the country to the big Piston Cup Championship in California to compete against two seasoned pros, McQueen gets to know the town's offbeat characters.",
+			"tanggalRilis": "2006-06-08"
+		},
+		{
+			"id": "359724",
+			"image": "https://image.tmdb.org/t/p/w185/6ApDtO7xaWAfPqfi2IARXIzj8QS.jpg",
+			"judul": "Ford v Ferrari",
+			"deskripsi": "American car designer Carroll Shelby and the British-born driver Ken Miles work together to battle corporate interference, the laws of physics, and their own personal demons to build a revolutionary race car for Ford Motor Company and take on the dominating race cars of Enzo Ferrari at the 24 Hours of Le Mans in France in 1966.",
+			"tanggalRilis": "2019-11-13"
+		},
+		{
+			"id": "449924",
+			"image": "https://image.tmdb.org/t/p/w185/vn94LlNrbUWIZZyAdmvUepFBeaY.jpg",
+			"judul": "葉問4",
+			"deskripsi": "Ip Man 4 is an upcoming Hong Kong biographical martial arts film directed by Wilson Yip and produced by Raymond Wong. It is the fourth in the Ip Man film series based on the life of the Wing Chun grandmaster of the same name and features Donnie Yen reprising the role. The film began production in April 2018 and ended in July the same year.",
+			"tanggalRilis": "2019-12-20"
+		}
+	]
+} 
