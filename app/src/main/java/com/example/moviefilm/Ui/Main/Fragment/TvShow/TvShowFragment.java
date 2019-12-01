@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
@@ -17,14 +16,11 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.moviefilm.Data.source.local.Room.Entity.MovieEntity;
 import com.example.moviefilm.Data.source.local.Room.Entity.TvshowEntity;
 import com.example.moviefilm.R;
 import com.example.moviefilm.Ui.Detail.DetailShowActivity;
 import com.example.moviefilm.ViewModel.TvShow.ShowViewModel;
 import com.example.moviefilm.ViewModel.ViewModelFactory;
-
-import java.util.ArrayList;
 
 public class TvShowFragment extends Fragment {
 
@@ -44,12 +40,11 @@ public class TvShowFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_tv_show, container, false);
         initial();
-        showViewModel.getShow().observe(this, tvshow->{
-            if(tvshow!=null){
-                switch (tvshow.status){
+        showViewModel.getShow().observe(this, tvshow -> {
+            if (tvshow != null) {
+                switch (tvshow.status) {
                     case LOADING:
                         tvprogressTvshow.setVisibility(View.VISIBLE);
                         break;
@@ -71,7 +66,6 @@ public class TvShowFragment extends Fragment {
                             }
                         });
                     case ERROR:
-                        Toast.makeText(getActivity(), "error"+tvshow.data, Toast.LENGTH_SHORT).show();
                         tvprogressTvshow.setVisibility(View.GONE);
                         break;
 
@@ -85,7 +79,7 @@ public class TvShowFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recycler_tvshow);
         constraintMovie = view.findViewById(R.id.constraint_film);
         showViewModel = obtainViewModel(getActivity());
-        tvprogressTvshow= view.findViewById(R.id.progress_tvshow);
+        tvprogressTvshow = view.findViewById(R.id.progress_tvshow);
 
     }
 

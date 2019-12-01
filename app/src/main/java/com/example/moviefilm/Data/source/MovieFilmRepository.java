@@ -1,7 +1,5 @@
 package com.example.moviefilm.Data.source;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -33,7 +31,7 @@ public class MovieFilmRepository implements MovieFilmDataSource {
         this.appExecutor = appExecutor;
     }
 
-    public static MovieFilmRepository getInstance( LocalRepository localRepository, RemoteRepository remoteRepository, AppExecutors appExecutor) {
+    public static MovieFilmRepository getInstance(LocalRepository localRepository, RemoteRepository remoteRepository, AppExecutors appExecutor) {
         if (INSTANCE == null) {
             synchronized (MovieFilmRepository.class) {
                 if (INSTANCE == null) {
@@ -52,7 +50,7 @@ public class MovieFilmRepository implements MovieFilmDataSource {
         return new NetworkBoundResource<List<MovieEntity>, List<MovieResponse>>(appExecutor) {
             @Override
             protected LiveData<List<MovieEntity>> loadFromDB() {
-                return null;
+                return localRepository.getAllMovie();
 
             }
 
@@ -63,25 +61,23 @@ public class MovieFilmRepository implements MovieFilmDataSource {
 
             @Override
             protected LiveData<ApiResponse<List<MovieResponse>>> createCall() {
-                final MutableLiveData<ApiResponse<List<MovieResponse>>> movieResponse = new MutableLiveData<>();
-                remoteRepository.getAllMovie(new RemoteRepository.LoadMovieCallback() {
-                    @Override
-                    public void onSuccess(ApiResponse<List<MovieResponse>> movieSend) {
-                        movieResponse.setValue(movieSend);
-                    }
-
-                    @Override
-                    public void onNotAvailable() {
-
-                    }
-                });
-                return movieResponse;
+                return remoteRepository.getAllMovie();
 
             }
 
             @Override
             protected void saveCallResult(List<MovieResponse> data) {
-
+                List<MovieEntity> movieEntityList = new ArrayList<>();
+                for (MovieResponse movieResponse : data) {
+                    movieEntityList.add(new MovieEntity(
+                            movieResponse.getId(),
+                            movieResponse.getImage(),
+                            movieResponse.getJudul(),
+                            movieResponse.getDeskripsi(),
+                            movieResponse.getTanggalRilis()
+                    ));
+                }
+                localRepository.insertMovie(movieEntityList);
             }
         }.asLiveData();
     }
@@ -128,49 +124,46 @@ public class MovieFilmRepository implements MovieFilmDataSource {
         return new NetworkBoundResource<List<MovieEntity>, List<MovieResponse>>(appExecutor) {
             @Override
             protected LiveData<List<MovieEntity>> loadFromDB() {
-                //return localRepository.getAllMovieById(id);
-                return null;
+                return localRepository.getAllMovieById(id);
             }
 
             @Override
             protected Boolean shouldFetch(List<MovieEntity> data) {
-                //return (data == null) || (data.size() == 0);
-                return null;
+                return (data == null) || (data.size() == 0);
 
             }
 
             @Override
             protected LiveData<ApiResponse<List<MovieResponse>>> createCall() {
-//                MutableLiveData<ApiResponse<List<MovieResponse>>> movieResponse = new MutableLiveData<>();
-//                remoteRepository.getMovieById(id, new RemoteRepository.LoadMovieCallback() {
-//                    @Override
-//                    public void onSuccess(ApiResponse<List<MovieResponse>> movieSend) {
-//                        movieResponse.setValue(movieSend);
-//                    }
-//
-//                    @Override
-//                    public void onNotAvailable() {
-//
-//                    }
-//                });
-//                return movieResponse;
-                return null;
+                MutableLiveData<ApiResponse<List<MovieResponse>>> movieResponse = new MutableLiveData<>();
+                remoteRepository.getMovieById(id, new RemoteRepository.LoadMovieCallback() {
+                    @Override
+                    public void onSuccess(ApiResponse<List<MovieResponse>> movieSend) {
+                        movieResponse.setValue(movieSend);
+                    }
+
+                    @Override
+                    public void onNotAvailable() {
+
+                    }
+                });
+                return movieResponse;
 
             }
 
             @Override
             protected void saveCallResult(List<MovieResponse> data) {
-//                List<MovieEntity> movieEntityList = new ArrayList<>();
-//                for (MovieResponse movieResponse : data) {
-//                    movieEntityList.add(new MovieEntity(
-//                            movieResponse.getId(),
-//                            movieResponse.getImage(),
-//                            movieResponse.getJudul(),
-//                            movieResponse.getDeskripsi(),
-//                            movieResponse.getTanggalRilis()
-//                    ));
-//                }
-//                localRepository.insertMovie(movieEntityList);
+                List<MovieEntity> movieEntityList = new ArrayList<>();
+                for (MovieResponse movieResponse : data) {
+                    movieEntityList.add(new MovieEntity(
+                            movieResponse.getId(),
+                            movieResponse.getImage(),
+                            movieResponse.getJudul(),
+                            movieResponse.getDeskripsi(),
+                            movieResponse.getTanggalRilis()
+                    ));
+                }
+                localRepository.insertMovie(movieEntityList);
             }
         }.asLiveData();
 

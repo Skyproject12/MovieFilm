@@ -47,7 +47,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewMovie> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // take the position for give onclick for your recycler
                 onItemClickCallback.onItmCliked(list.get(holder.getAdapterPosition()));
             }
         });

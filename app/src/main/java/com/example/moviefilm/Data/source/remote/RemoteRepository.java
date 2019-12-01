@@ -1,6 +1,5 @@
 package com.example.moviefilm.Data.source.remote;
 
-import android.os.Handler;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
@@ -212,17 +211,15 @@ public class RemoteRepository {
     }
 
     public LiveData<ApiResponse<List<TvShowResponse>>> getAllTvshow() {
-        // start iddling testin
-        // menampung hasil dari request jsonHelper.loadCourse
-        MutableLiveData<ApiResponse<List<TvShowResponse>>> resultCourse = new MutableLiveData<>();
-        Handler handler = new Handler();
-        // give delay 2000 second in handler
-            // ketika api response berjalan success
-            resultCourse.setValue(ApiResponse.success(apiHelper.loadCourse()));
-            Log.d("value", "getAllTvshow: "+resultCourse.getValue().body);
-            // netralkan iddling testing
+        MutableLiveData<ApiResponse<List<TvShowResponse>>> result = new MutableLiveData<>();
+        result.setValue(ApiResponse.success(apiHelper.loadTvshow()));
+        return result;
+    }
 
-        return resultCourse;
+    public LiveData<ApiResponse<List<MovieResponse>>> getAllMovie() {
+        MutableLiveData<ApiResponse<List<MovieResponse>>> result = new MutableLiveData<>();
+        result.setValue(ApiResponse.success(apiHelper.loadMovie()));
+        return result;
     }
 
     public interface LoadMovieCallback {

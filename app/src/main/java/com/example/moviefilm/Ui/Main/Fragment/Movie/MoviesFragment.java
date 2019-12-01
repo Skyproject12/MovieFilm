@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
@@ -41,43 +42,42 @@ public class MoviesFragment extends Fragment {
     ProgressBar progressMovie;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_movies, container, false);
         initial();
-//        movieViewModel.getMovie().observe(this, movie -> {
-//            if (movie != null) {
-//                switch (movie.status) {
-//                    case LOADING:
-//                        progressMovie.setVisibility(View.VISIBLE);
-//                        break;
-//                    case SUCCESS:
-//                        movieAdapter = new MovieAdapter();
-//                        progressMovie.setVisibility(View.GONE);
-//
-//                        movieAdapter.setList(movie.data);
-//                        linearLayoutManager = new LinearLayoutManager(getActivity());
-//                        recyclerView.setLayoutManager(linearLayoutManager);
-//                        recyclerView.setAdapter(movieAdapter);
-//                        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getActivity(), linearLayoutManager.getOrientation());
-//                        recyclerView.addItemDecoration(dividerItemDecoration);
-//                        movieAdapter.setOnItemClickCallback(new MovieAdapter.OnItemClickCallback() {
-//                            @Override
-//                            public void onItmCliked(MovieEntity movieEntity) {
-//                                Intent moveObjectIntent = new Intent(getActivity(), DetailActivity.class);
-//                                moveObjectIntent.putExtra("film", movieEntity);
-//                                moveObjectIntent.putExtra("status", "movieEntity");
-//                                startActivity(moveObjectIntent);
-//                            }
-//                        });
-//                        break;
-//                    case ERROR:
-//                        progressMovie.setVisibility(View.GONE);
-//                        break;
-//                }
-//            }
-//        });
+        movieViewModel.getMovie().observe(this, movie -> {
+            if (movie != null) {
+                switch (movie.status) {
+                    case LOADING:
+                        progressMovie.setVisibility(View.VISIBLE);
+                        break;
+                    case SUCCESS:
+                        movieAdapter = new MovieAdapter();
+                        progressMovie.setVisibility(View.GONE);
+
+                        movieAdapter.setList(movie.data);
+                        linearLayoutManager = new LinearLayoutManager(getActivity());
+                        recyclerView.setLayoutManager(linearLayoutManager);
+                        recyclerView.setAdapter(movieAdapter);
+                        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getActivity(), linearLayoutManager.getOrientation());
+                        recyclerView.addItemDecoration(dividerItemDecoration);
+                        movieAdapter.setOnItemClickCallback(new MovieAdapter.OnItemClickCallback() {
+                            @Override
+                            public void onItmCliked(MovieEntity movieEntity) {
+                                Intent moveObjectIntent = new Intent(getActivity(), DetailActivity.class);
+                                moveObjectIntent.putExtra("film", movieEntity);
+                                moveObjectIntent.putExtra("status", "movieEntity");
+                                startActivity(moveObjectIntent);
+                            }
+                        });
+                        break;
+                    case ERROR:
+                        Toast.makeText(getActivity(), "error"+movie.data.get(0).getDeskripsi(), Toast.LENGTH_SHORT).show();
+                        progressMovie.setVisibility(View.GONE);
+                        break;
+                }
+            }
+        });
         return view;
     }
 
@@ -85,7 +85,7 @@ public class MoviesFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recycler_movie);
         constraintMovie = view.findViewById(R.id.constraint_film);
         movieViewModel = obtainViewModel(getActivity());
-        //progressMovie = view.findViewById(R.id.progress_movie);
+        progressMovie = view.findViewById(R.id.progress_movie);
 
     }
 
