@@ -8,31 +8,37 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName= "movie")
+@Entity(tableName = "movie")
 public class MovieEntity implements Parcelable {
     @PrimaryKey
     @NonNull
-    @ColumnInfo(name="movieId")
+    @ColumnInfo(name = "movieId")
     int id;
 
-    @ColumnInfo(name="image")
+    @ColumnInfo(name = "image")
     String image;
 
-    @ColumnInfo(name="judul")
+    @ColumnInfo(name = "judul")
     String judul;
 
-    @ColumnInfo(name="deskripsi")
+    @ColumnInfo(name = "deskripsi")
     String deskripsi;
 
-    @ColumnInfo(name="tanggalRilis")
+    @ColumnInfo(name = "tanggalRilis")
     String tanggalRilis;
 
-    public MovieEntity(int id, String image, String judul, String deskripsi, String tanggalRilis) {
+    @ColumnInfo(name = "favorite")
+    private boolean favorite = false;
+
+    public MovieEntity(int id, String image, String judul, String deskripsi, String tanggalRilis, Boolean favorite) {
         this.id = id;
         this.image = image;
         this.judul = judul;
         this.deskripsi = deskripsi;
         this.tanggalRilis = tanggalRilis;
+        if (favorite != null) {
+            this.favorite = favorite;
+        }
     }
 
     public int getId() {
@@ -75,9 +81,13 @@ public class MovieEntity implements Parcelable {
         this.tanggalRilis = tanggalRilis;
     }
 
-    public MovieEntity() {
+    public boolean isFavorite() {
+        return favorite;
     }
 
+    public void setFavorite(boolean favorite) {
+        this.favorite = favorite;
+    }
 
     @Override
     public int describeContents() {
@@ -91,6 +101,7 @@ public class MovieEntity implements Parcelable {
         dest.writeString(this.judul);
         dest.writeString(this.deskripsi);
         dest.writeString(this.tanggalRilis);
+        dest.writeByte(this.favorite ? (byte) 1 : (byte) 0);
     }
 
     protected MovieEntity(Parcel in) {
@@ -99,6 +110,7 @@ public class MovieEntity implements Parcelable {
         this.judul = in.readString();
         this.deskripsi = in.readString();
         this.tanggalRilis = in.readString();
+        this.favorite = in.readByte() != 0;
     }
 
     public static final Creator<MovieEntity> CREATOR = new Creator<MovieEntity>() {

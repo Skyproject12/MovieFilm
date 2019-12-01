@@ -8,11 +8,11 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName="tvshow")
+@Entity(tableName = "tvshow")
 public class TvshowEntity implements Parcelable {
     @PrimaryKey
     @NonNull
-    @ColumnInfo(name="tvshowId")
+    @ColumnInfo(name = "tvshowId")
     int id;
 
     @ColumnInfo(name = "image")
@@ -27,12 +27,19 @@ public class TvshowEntity implements Parcelable {
     @ColumnInfo(name = "tanggalRilis")
     String tanggalRilis;
 
-    public TvshowEntity(int id, String image, String judul, String deskripsi, String tanggalRilis) {
+    @ColumnInfo(name = "favorite")
+    boolean favorite;
+
+    public TvshowEntity(int id, String image, String judul, String deskripsi, String tanggalRilis, Boolean favorite) {
         this.id = id;
         this.image = image;
         this.judul = judul;
         this.deskripsi = deskripsi;
         this.tanggalRilis = tanggalRilis;
+        if (favorite != null) {
+            this.favorite = favorite;
+        }
+
     }
 
     public int getId() {
@@ -75,7 +82,12 @@ public class TvshowEntity implements Parcelable {
         this.tanggalRilis = tanggalRilis;
     }
 
-    public TvshowEntity() {
+    public boolean getFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        this.favorite = favorite;
     }
 
 
@@ -91,6 +103,7 @@ public class TvshowEntity implements Parcelable {
         dest.writeString(this.judul);
         dest.writeString(this.deskripsi);
         dest.writeString(this.tanggalRilis);
+        dest.writeByte(this.favorite ? (byte) 1 : (byte) 0);
     }
 
     protected TvshowEntity(Parcel in) {
@@ -99,6 +112,7 @@ public class TvshowEntity implements Parcelable {
         this.judul = in.readString();
         this.deskripsi = in.readString();
         this.tanggalRilis = in.readString();
+        this.favorite = in.readByte() != 0;
     }
 
     public static final Creator<TvshowEntity> CREATOR = new Creator<TvshowEntity>() {

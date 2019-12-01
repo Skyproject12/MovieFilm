@@ -11,8 +11,8 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.moviefilm.R;
-import com.example.moviefilm.Ui.Main.Fragment.Favorite.MovieFavorite.MovieFragment;
-import com.example.moviefilm.Ui.Main.Fragment.Favorite.TvshowFavorite.TvshowFragment;
+import com.example.moviefilm.Ui.Main.Fragment.Favorite.MovieFavorite.MovieFavoriteFragment;
+import com.example.moviefilm.Ui.Main.Fragment.Favorite.TvshowFavorite.TvshowFavoriteFragment;
 import com.google.android.material.tabs.TabLayout;
 
 public class FavoriteFragment extends Fragment {
@@ -29,8 +29,8 @@ public class FavoriteFragment extends Fragment {
 
     private void profilViewPager() {
         PagerAdapter adapter = new PagerAdapter(getChildFragmentManager());
-        adapter.addFragment(new MovieFragment()); // index 2
-        adapter.addFragment(new TvshowFragment()); //index 1
+        adapter.addFragment(new MovieFavoriteFragment()); // index 2
+        adapter.addFragment(new TvshowFavoriteFragment()); //index 1
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.profil_viewPager);
         viewPager.setAdapter(adapter);
 

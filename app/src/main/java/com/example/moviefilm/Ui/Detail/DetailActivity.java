@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.moviefilm.Data.source.local.Room.Entity.MovieEntity;
@@ -19,6 +20,10 @@ import com.example.moviefilm.ViewModel.Detail.DetailViewModel;
 import com.example.moviefilm.ViewModel.ViewModelFactory;
 import com.squareup.picasso.Picasso;
 
+import static com.example.moviefilm.ValueObject.Status.ERROR;
+import static com.example.moviefilm.ValueObject.Status.LOADING;
+import static com.example.moviefilm.ValueObject.Status.SUCCESS;
+
 public class DetailActivity extends AppCompatActivity {
 
     MovieEntity movieEntity;
@@ -27,6 +32,7 @@ public class DetailActivity extends AppCompatActivity {
     TextView texttanggalMovie;
     TextView textDeskripsiMovie;
     private DetailViewModel detailViewModel;
+    private Menu menu;
 
 
     @Override
@@ -49,7 +55,8 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void setText() {
-        detailViewModel.getMovieId(movieEntity.getId()).observe(this, movieId -> {
+        detailViewModel.setMovieId(movieEntity.getId());
+        detailViewModel.getMovieId.observe(this, movieId->{
             if (movieId != null) {
                 switch (movieId.status) {
                     case LOADING:
@@ -69,6 +76,7 @@ public class DetailActivity extends AppCompatActivity {
                 }
             }
         });
+
     }
 
     private static DetailViewModel obtainViewModel(AppCompatActivity activity) {
@@ -78,15 +86,32 @@ public class DetailActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        //this.menu= menu;
+        this.menu= menu;
         getMenuInflater().inflate(R.menu.menu_favorite, menu);
-        MenuItem menuItem = menu.findItem(R.id.favorite);
-//        if(favoriteHelper.getAllByMovieId(movieEntity.getId())){
-//            menuItem.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_star));
-//        }else if(!favoriteHelper.getAllByMovieId(movieEntity.getId())){
-//            menuItem.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_border));
-//        }
+        detailViewModel.getMovieId.observe(this, movieId->{
+            if(movieId!=null){
+                switch (movieId.status){
+                    case LOADING:
+                        break;
+                    case SUCCESS:
+                        // menyelect status dari favorite
+                        boolean state=movieId.data.get(0).isFavorite();
+                        setFavoriteState(state);
+                }
+            }
+        });
         return super.onCreateOptionsMenu(menu);
+    }
+
+    private void setFavoriteState(boolean state){
+        if(menu==null) return;
+        MenuItem menuItem=menu.findItem(R.id.favorite);
+        if(state){
+            menuItem.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_border));
+        }
+        else{
+            menuItem.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_star));
+        }
     }
 
     @Override
@@ -94,15 +119,8 @@ public class DetailActivity extends AppCompatActivity {
         //MenuItem menuItem= menu.findItem(R.id.favorite);
         switch (item.getItemId()) {
             case R.id.favorite:
-//                if(favoriteHelper.getAllByMovieId(movieEntity.getId())){
-//                    Toast.makeText(this, "delete", Toast.LENGTH_SHORT).show();
-//                    menuItem.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_border));
-//                    favoriteHelper.deleteFavoriteMovie(movieEntity.getId());
-//                }else if(!favoriteHelper.getAllByMovieId(movieEntity.getId())){
-//                    Toast.makeText(this, "masuk", Toast.LENGTH_SHORT).show();
-//                    menuItem.setIcon(ContextCompat.getDrawable(this,R.drawable.ic_star));
-//                    favoriteHelper.insertFavoriteMovie(movieEntity);
-//                }
+                // ketika favorite dipilih maka akan merubah status dari favorite
+                detailViewModel.setFavorite();
                 break;
             case R.id.home:
                 Intent intent = new Intent(DetailActivity.this, MainActivity.class);

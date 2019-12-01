@@ -1,8 +1,12 @@
 package com.example.moviefilm.Data.source;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.paging.LivePagedListBuilder;
+import androidx.paging.PagedList;
 
 import com.example.moviefilm.Data.source.local.LocalRepository;
 import com.example.moviefilm.Data.source.local.Room.Entity.MovieEntity;
@@ -74,7 +78,8 @@ public class MovieFilmRepository implements MovieFilmDataSource {
                             movieResponse.getImage(),
                             movieResponse.getJudul(),
                             movieResponse.getDeskripsi(),
-                            movieResponse.getTanggalRilis()
+                            movieResponse.getTanggalRilis(),
+                            null
                     ));
                 }
                 localRepository.insertMovie(movieEntityList);
@@ -110,7 +115,8 @@ public class MovieFilmRepository implements MovieFilmDataSource {
                             tvShowResponse.getImage(),
                             tvShowResponse.getJudul(),
                             tvShowResponse.getDeskripsi(),
-                            tvShowResponse.getTanggalRilis()
+                            tvShowResponse.getTanggalRilis(),
+                            null
                     ));
                     localRepository.insertTvshow(tvshowEntityList);
                 }
@@ -160,7 +166,8 @@ public class MovieFilmRepository implements MovieFilmDataSource {
                             movieResponse.getImage(),
                             movieResponse.getJudul(),
                             movieResponse.getDeskripsi(),
-                            movieResponse.getTanggalRilis()
+                            movieResponse.getTanggalRilis(),
+                            null
                     ));
                 }
                 localRepository.insertMovie(movieEntityList);
@@ -213,7 +220,8 @@ public class MovieFilmRepository implements MovieFilmDataSource {
                             tvShowResponse.getImage(),
                             tvShowResponse.getJudul(),
                             tvShowResponse.getDeskripsi(),
-                            tvShowResponse.getTanggalRilis()
+                            tvShowResponse.getTanggalRilis(),
+                            null
                     ));
                 }
                 localRepository.insertTvshow(tvshowEntityList);
@@ -221,5 +229,72 @@ public class MovieFilmRepository implements MovieFilmDataSource {
             }
         }.asLiveData();
 
+    }
+
+    @Override
+    public LiveData<Resource<PagedList<MovieEntity>>> getFavoriteMoviePage() {
+        return new NetworkBoundResource<PagedList<MovieEntity>, List<MovieResponse>>(appExecutor) {
+            @Override
+            protected LiveData<PagedList<MovieEntity>> loadFromDB() {
+                return new LivePagedListBuilder<>(localRepository.getFavoritePaged(), 20).build();
+
+            }
+
+            @Override
+            protected Boolean shouldFetch(PagedList<MovieEntity> data) {
+                return false;
+            }
+
+            @Override
+            protected LiveData<ApiResponse<List<MovieResponse>>> createCall() {
+                return null;
+            }
+
+            @Override
+            protected void saveCallResult(List<MovieResponse> data) {
+
+            }
+        }.asLiveData();
+
+    }
+
+    @Override
+    public void setMovieFavorite(MovieEntity movie, boolean state) {
+        Runnable runnable = () -> localRepository.setMovieFavorite(movie, state);
+        appExecutor.diskIO().execute(runnable);
+
+    }
+
+    @Override
+    public void setTvshowFavorite(TvshowEntity tvshow, boolean state) {
+        Runnable runnable = () -> localRepository.setTvshowFavorite(tvshow, state);
+        appExecutor.diskIO().execute(runnable);
+
+    }
+
+    @Override
+    public LiveData<Resource<PagedList<TvshowEntity>>> getFavoriteTvshowPage() {
+        return new NetworkBoundResource<PagedList<TvshowEntity>, List<TvShowResponse>>(appExecutor) {
+            @Override
+            protected LiveData<PagedList<TvshowEntity>> loadFromDB() {
+                Log.d("favoritepage", "loadFromDB: "+localRepository.getTvshowFavoritePage());
+                return new LivePagedListBuilder<>(localRepository.getTvshowFavoritePage(), 20).build();
+            }
+
+            @Override
+            protected Boolean shouldFetch(PagedList<TvshowEntity> data) {
+                return false;
+            }
+
+            @Override
+            protected LiveData<ApiResponse<List<TvShowResponse>>> createCall() {
+                return null;
+            }
+
+            @Override
+            protected void saveCallResult(List<TvShowResponse> data) {
+
+            }
+        }.asLiveData();
     }
 }
