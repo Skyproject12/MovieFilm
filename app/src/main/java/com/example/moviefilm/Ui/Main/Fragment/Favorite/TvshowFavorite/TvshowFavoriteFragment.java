@@ -17,9 +17,6 @@ import com.example.moviefilm.R;
 import com.example.moviefilm.ViewModel.Favorite.TvshowFavoriteViewModel;
 import com.example.moviefilm.ViewModel.ViewModelFactory;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class TvshowFavoriteFragment extends Fragment {
 
     private RecyclerView recyclers;
