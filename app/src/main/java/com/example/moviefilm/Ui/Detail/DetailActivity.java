@@ -1,14 +1,15 @@
 package com.example.moviefilm.Ui.Detail;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProviders;
@@ -19,10 +20,6 @@ import com.example.moviefilm.Ui.Main.MainActivity;
 import com.example.moviefilm.ViewModel.Detail.DetailViewModel;
 import com.example.moviefilm.ViewModel.ViewModelFactory;
 import com.squareup.picasso.Picasso;
-
-import static com.example.moviefilm.ValueObject.Status.ERROR;
-import static com.example.moviefilm.ValueObject.Status.LOADING;
-import static com.example.moviefilm.ValueObject.Status.SUCCESS;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -56,19 +53,20 @@ public class DetailActivity extends AppCompatActivity {
 
     private void setText() {
         detailViewModel.setMovieId(movieEntity.getId());
-        detailViewModel.getMovieId.observe(this, movieId->{
+        detailViewModel.getMovieId.observe(this, movieId -> {
             if (movieId != null) {
                 switch (movieId.status) {
                     case LOADING:
                         break;
                     case SUCCESS:
-                        Log.d("DetailActivity", "setText: " + movieId.data.get(0).getImage());
-                        Picasso.get().load(movieId.data.get(0).getImage()).into(imageMovie);
-                        textJudulMovie.setText(movieId.data.get(0).getJudul());
-                        texttanggalMovie.setText(movieId.data.get(0).getTanggalRilis());
-                        textDeskripsiMovie.setText(movieId.data.get(0).getDeskripsi());
-                        getSupportActionBar().setTitle("Detail MovieEntity");
-                        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                        if (movieId != null) {
+                            Picasso.get().load(movieId.data.get(0).getImage()).into(imageMovie);
+                            textJudulMovie.setText(movieId.data.get(0).getJudul());
+                            texttanggalMovie.setText(movieId.data.get(0).getTanggalRilis());
+                            textDeskripsiMovie.setText(movieId.data.get(0).getDeskripsi());
+                            getSupportActionBar().setTitle("Detail MovieEntity");
+                            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                        }
                         break;
                     case ERROR:
                         break;
@@ -86,16 +84,16 @@ public class DetailActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        this.menu= menu;
+        this.menu = menu;
         getMenuInflater().inflate(R.menu.menu_favorite, menu);
-        detailViewModel.getMovieId.observe(this, movieId->{
-            if(movieId!=null){
-                switch (movieId.status){
+        detailViewModel.getMovieId.observe(this, movieId -> {
+            if (movieId != null) {
+                switch (movieId.status) {
                     case LOADING:
                         break;
                     case SUCCESS:
-                        // menyelect status dari favorite
-                        boolean state=movieId.data.get(0).isFavorite();
+//                         menyelect status dari favorite
+                        boolean state = movieId.data.get(0).isFavorite();
                         setFavoriteState(state);
                 }
             }
@@ -103,13 +101,12 @@ public class DetailActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    private void setFavoriteState(boolean state){
-        if(menu==null) return;
-        MenuItem menuItem=menu.findItem(R.id.favorite);
-        if(state){
+    private void setFavoriteState(boolean state) {
+        if (menu == null) return;
+        MenuItem menuItem = menu.findItem(R.id.favorite);
+        if (state) {
             menuItem.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_border));
-        }
-        else{
+        } else {
             menuItem.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_star));
         }
     }
@@ -122,6 +119,7 @@ public class DetailActivity extends AppCompatActivity {
                 // ketika favorite dipilih maka akan merubah status dari favorite
                 detailViewModel.setFavorite();
                 break;
+
             case R.id.home:
                 Intent intent = new Intent(DetailActivity.this, MainActivity.class);
                 startActivity(intent);
@@ -130,5 +128,28 @@ public class DetailActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    public void delete(int movieId) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(DetailActivity.this);
+        builder.setTitle("apa kamu_yakin");
+        builder.setMessage("Menghapus kontent");
+        builder.setPositiveButton("Hapus", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //detailViewModel.deleteById(movieId);
+                Intent intent = new Intent(DetailActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+        builder.setNegativeButton("batal", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
 
 }

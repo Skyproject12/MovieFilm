@@ -49,12 +49,9 @@ public class DetailActivityTest {
 
     }
     @Test
-    public void loadMovie(){
+    public void loadDetailMovie(){
         onView(withId(R.id.tex_judulmovie)).check(matches(isDisplayed()));
         onView(withId(R.id.tex_judulmovie)).check(matches(withText(movieEntity.getJudul())));
-
-        onView(withId(R.id.text_deskripsimovie)).check(matches(isDisplayed()));
-        onView(withId(R.id.text_deskripsimovie)).check(matches(withText(movieEntity.getDeskripsi())));
 
     }
 

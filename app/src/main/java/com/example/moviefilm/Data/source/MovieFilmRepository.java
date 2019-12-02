@@ -16,6 +16,7 @@ import com.example.moviefilm.Data.source.remote.RemoteRepository;
 import com.example.moviefilm.Data.source.remote.Response.MovieResponse;
 import com.example.moviefilm.Data.source.remote.Response.TvShowResponse;
 import com.example.moviefilm.Util.AppExecutors;
+import com.example.moviefilm.Util.IddlingTesting;
 import com.example.moviefilm.ValueObject.Resource;
 
 import java.util.ArrayList;
@@ -51,6 +52,7 @@ public class MovieFilmRepository implements MovieFilmDataSource {
 
     @Override
     public LiveData<Resource<List<MovieEntity>>> getMovieAll() {
+        IddlingTesting.increment();
         return new NetworkBoundResource<List<MovieEntity>, List<MovieResponse>>(appExecutor) {
             @Override
             protected LiveData<List<MovieEntity>> loadFromDB() {
@@ -83,15 +85,24 @@ public class MovieFilmRepository implements MovieFilmDataSource {
                     ));
                 }
                 localRepository.insertMovie(movieEntityList);
+                Log.d("MovieTesting", "saveCallResult: masuk");
+                if (!IddlingTesting.getIddlingTesting().isIdleNow()) {
+                    IddlingTesting.decrement();
+                }
             }
         }.asLiveData();
     }
 
     @Override
     public LiveData<Resource<List<TvshowEntity>>> getTvshowAll() {
+        IddlingTesting.increment();
         return new NetworkBoundResource<List<TvshowEntity>, List<TvShowResponse>>(appExecutor) {
             @Override
             protected LiveData<List<TvshowEntity>> loadFromDB() {
+                if (!IddlingTesting.getIddlingTesting().isIdleNow()) {
+                    Log.d("TvshowTesting", "saveCallResult: decrement");
+                    IddlingTesting.decrement();
+                }
                 return localRepository.getAllTvshow();
 
             }
@@ -118,7 +129,15 @@ public class MovieFilmRepository implements MovieFilmDataSource {
                             tvShowResponse.getTanggalRilis(),
                             null
                     ));
-                    localRepository.insertTvshow(tvshowEntityList);
+                }
+                localRepository.insertTvshow(tvshowEntityList);
+                Log.d("TvshowTesting", "saveCallResult: masuk");
+                if (!IddlingTesting.getIddlingTesting().isIdleNow()) {
+                    Log.d("TvshowTesting", "saveCallResult: decrement");
+                    IddlingTesting.decrement();
+                }
+                else{
+                    Log.d("TvshowTesting", "saveCallResult: error");
                 }
             }
         }.asLiveData();
@@ -225,7 +244,6 @@ public class MovieFilmRepository implements MovieFilmDataSource {
                     ));
                 }
                 localRepository.insertTvshow(tvshowEntityList);
-
             }
         }.asLiveData();
 
@@ -296,5 +314,12 @@ public class MovieFilmRepository implements MovieFilmDataSource {
 
             }
         }.asLiveData();
+    }
+
+    @Override
+    public void deleteById(int movieId) {
+        Runnable runnable= () -> localRepository.deleteMovie(movieId);
+        appExecutor.diskIO().execute(runnable);
+
     }
 }

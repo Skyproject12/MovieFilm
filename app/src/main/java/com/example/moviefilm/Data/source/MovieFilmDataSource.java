@@ -20,5 +20,6 @@ public interface MovieFilmDataSource {
     void setMovieFavorite(MovieEntity movie, boolean state);
     void setTvshowFavorite(TvshowEntity tvshow, boolean state);
     LiveData<Resource<PagedList<TvshowEntity>>> getFavoriteTvshowPage();
+    void deleteById(int movieId);
 
 }

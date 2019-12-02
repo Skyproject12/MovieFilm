@@ -52,6 +52,9 @@ public interface MovieFilmDao {
     @Update(onConflict = OnConflictStrategy.FAIL)
     int updateTvshow(TvshowEntity tvshowy);
 
+    @Query("DELETE from movie where movieId= :movieId")
+    void deleteId(int movieId);
+
 
 
 }

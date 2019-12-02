@@ -23,11 +23,11 @@ public class TvShowFragmentTest {
 
         @Rule
         public ActivityTestRule<SingleFragmentActivity> activityTestRule= new ActivityTestRule<>(SingleFragmentActivity.class);
-        private TvShowFragment academyFragment= new TvShowFragment();
+        private TvShowFragment tvShowFragment= new TvShowFragment();
         @Before
         public void setUp(){
             // set fragment to until tes
-            activityTestRule.getActivity().setFragment(academyFragment);
+            activityTestRule.getActivity().setFragment(tvShowFragment);
             IdlingRegistry.getInstance().register(IddlingTesting.getIddlingTesting());
         }
         @After
@@ -36,7 +36,7 @@ public class TvShowFragmentTest {
 
         }
         @Test
-        public void loadCourses(){
+        public void loadTvshow(){
             onView(withId(R.id.recycler_tvshow)).check(matches(isDisplayed()));
             // membandingkan jumlah item dalam recyclerview
             onView(withId(R.id.recycler_tvshow)).check(new RecyclerViewItemCountAssertion(20));

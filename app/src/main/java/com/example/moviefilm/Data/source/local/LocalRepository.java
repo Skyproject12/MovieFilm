@@ -77,4 +77,8 @@ public class LocalRepository {
         movieFilmDao.updateTvshow(tvshow);
 
     }
+
+    public void deleteMovie(int movieId){
+        movieFilmDao.deleteId(movieId);
+    }
 }

@@ -52,4 +52,8 @@ public class DetailViewModel extends ViewModel {
         movieFilmRepository.setMovieFavorite(movieEntity, newState);
 
     }
+
+    public void deleteById(int movieId){
+        movieFilmRepository.deleteById(movieId);
+    }
 }
