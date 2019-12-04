@@ -48,6 +48,49 @@ public class MovieFilmRepository implements MovieFilmDataSource {
 
     }
 
+    @Override
+    public LiveData<Resource<List<TvshowEntity>>> getTvshowAll() {
+        IddlingTesting.increment();
+        return new NetworkBoundResource<List<TvshowEntity>, List<TvShowResponse>>(appExecutor) {
+            @Override
+            protected LiveData<List<TvshowEntity>> loadFromDB() {
+                return localRepository.getAllTvshow();
+
+            }
+
+            @Override
+            protected Boolean shouldFetch(List<TvshowEntity> data) {
+                return true;
+            }
+
+            @Override
+            protected LiveData<ApiResponse<List<TvShowResponse>>> createCall() {
+                return remoteRepository.getAllTvshow();
+
+            }
+
+            @Override
+            protected void saveCallResult(List<TvShowResponse> data) {
+                List<TvshowEntity> movieEntityList = new ArrayList<>();
+                for (TvShowResponse movieResponse : data) {
+                    movieEntityList.add(new TvshowEntity(
+                            movieResponse.getId(),
+                            movieResponse.getImage(),
+                            movieResponse.getJudul(),
+                            movieResponse.getDeskripsi(),
+                            movieResponse.getTanggalRilis(),
+                            null
+                    ));
+                }
+                localRepository.insertTvshow(movieEntityList);
+                Log.d("MovieTesting", "saveCallResult: masuk");
+                if (!IddlingTesting.getIddlingTesting().isIdleNow()) {
+                    IddlingTesting.decrement();
+                }
+            }
+        }.asLiveData();
+    }
+
 
     @Override
     public LiveData<Resource<List<MovieEntity>>> getMovieAll() {
@@ -92,51 +135,53 @@ public class MovieFilmRepository implements MovieFilmDataSource {
         }.asLiveData();
     }
 
-    @Override
-    public LiveData<Resource<List<TvshowEntity>>> getTvshowAll() {
-        IddlingTesting.increment();
-        return new NetworkBoundResource<List<TvshowEntity>, List<TvShowResponse>>(appExecutor) {
-            @Override
-            protected LiveData<List<TvshowEntity>> loadFromDB() {
-                Log.d("TvshowTesting", "saveCallResult: masuk");
-                if (!IddlingTesting.getIddlingTesting().isIdleNow()) {
-                    Log.d("TvshowTesting", "saveCallResult: decrement");
-                    IddlingTesting.decrement();
-                } else {
-                    Log.d("TvshowTesting", "saveCallResult: error");
-                }
-                return localRepository.getAllTvshow();
 
-            }
 
-            @Override
-            protected Boolean shouldFetch(List<TvshowEntity> data) {
-                return (data == null) || (data.size() == 0);
-            }
-
-            @Override
-            protected LiveData<ApiResponse<List<TvShowResponse>>> createCall() {
-                return remoteRepository.getAllTvshow();
-            }
-
-            @Override
-            protected void saveCallResult(List<TvShowResponse> data) {
-                List<TvshowEntity> tvshowEntityList = new ArrayList<>();
-                for (TvShowResponse tvShowResponse : data) {
-                    tvshowEntityList.add(new TvshowEntity(
-                            tvShowResponse.getId(),
-                            tvShowResponse.getImage(),
-                            tvShowResponse.getJudul(),
-                            tvShowResponse.getDeskripsi(),
-                            tvShowResponse.getTanggalRilis(),
-                            null
-                    ));
-                }
-                localRepository.insertTvshow(tvshowEntityList);
-            }
-        }.asLiveData();
-
-    }
+//    @Override
+//    public LiveData<Resource<List<TvshowEntity>>> getTvshowAll() {
+//        IddlingTesting.increment();
+//        return new NetworkBoundResource<List<TvshowEntity>, List<TvShowResponse>>(appExecutor) {
+//            @Override
+//            protected LiveData<List<TvshowEntity>> loadFromDB() {
+//                return localRepository.getAllMovie();
+//
+//            }
+//
+//            @Override
+//            protected Boolean shouldFetch(List<TvshowEntity> data) {
+//                return true;
+//            }
+//
+//            @Override
+//            protected LiveData<ApiResponse<List<TvShowResponse>>> createCall() {
+//                return remoteRepository.getAllMovie();
+//            }
+//
+//            @Override
+//            protected void saveCallResult(List<TvShowResponse> data) {
+//                List<TvshowEntity> tvshowEntityList = new ArrayList<>();
+//                for (TvShowResponse tvShowResponse : data) {
+//                    tvshowEntityList.add(new TvshowEntity(
+//                            tvShowResponse.getId(),
+//                            tvShowResponse.getImage(),
+//                            tvShowResponse.getJudul(),
+//                            tvShowResponse.getDeskripsi(),
+//                            tvShowResponse.getTanggalRilis(),
+//                            null
+//                    ));
+//                }
+//                localRepository.insertTvshow(tvshowEntityList);
+//                Log.d("TvshowTesting", "saveCallResult: masuk");
+//                if (!IddlingTesting.getIddlingTesting().isIdleNow()) {
+//                    Log.d("TvshowTesting", "saveCallResult: decrement");
+//                    IddlingTesting.decrement();
+//                } else {
+//                    Log.d("TvshowTesting", "saveCallResult: error");
+//                }
+//            }
+//        }.asLiveData();
+//
+//    }
 
     @Override
     public LiveData<Resource<List<MovieEntity>>> getMovieId(int id) {

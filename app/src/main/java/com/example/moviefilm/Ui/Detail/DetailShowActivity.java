@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.moviefilm.Data.source.local.Room.Entity.MovieEntity;
 import com.example.moviefilm.Data.source.local.Room.Entity.TvshowEntity;
 import com.example.moviefilm.R;
 import com.example.moviefilm.Ui.Main.MainActivity;
@@ -21,7 +22,7 @@ import com.squareup.picasso.Picasso;
 
 public class DetailShowActivity extends AppCompatActivity {
 
-    TvshowEntity movie;
+    MovieEntity movie;
     ImageView imageMovie;
     TextView textJudulMovie;
     TextView texttanggalMovie;
@@ -87,7 +88,7 @@ public class DetailShowActivity extends AppCompatActivity {
                     case LOADING:
                         break;
                     case SUCCESS:
-                        boolean state = tvshowId.data.get(0).getFavorite();
+                        boolean state = tvshowId.data.get(0).isFavorite();
                         setFavoriteState(state);
                         break;
                     case ERROR:

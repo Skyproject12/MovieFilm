@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.moviefilm.Data.source.local.Room.Entity.MovieEntity;
 import com.example.moviefilm.Data.source.local.Room.Entity.TvshowEntity;
 import com.example.moviefilm.R;
 import com.example.moviefilm.Ui.Detail.DetailShowActivity;

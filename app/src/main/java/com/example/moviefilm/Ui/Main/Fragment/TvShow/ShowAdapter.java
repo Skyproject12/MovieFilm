@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.moviefilm.Data.source.local.Room.Entity.MovieEntity;
 import com.example.moviefilm.Data.source.local.Room.Entity.TvshowEntity;
 import com.example.moviefilm.R;
 import com.squareup.picasso.Picasso;

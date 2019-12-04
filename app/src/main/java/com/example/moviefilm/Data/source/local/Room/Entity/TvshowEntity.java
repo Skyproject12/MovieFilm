@@ -28,7 +28,11 @@ public class TvshowEntity implements Parcelable {
     String tanggalRilis;
 
     @ColumnInfo(name = "favorite")
-    boolean favorite;
+    private boolean favorite = false;
+
+    public TvshowEntity() {
+
+    }
 
     public TvshowEntity(int id, String image, String judul, String deskripsi, String tanggalRilis, Boolean favorite) {
         this.id = id;
@@ -39,7 +43,6 @@ public class TvshowEntity implements Parcelable {
         if (favorite != null) {
             this.favorite = favorite;
         }
-
     }
 
     public int getId() {
@@ -82,14 +85,13 @@ public class TvshowEntity implements Parcelable {
         this.tanggalRilis = tanggalRilis;
     }
 
-    public boolean getFavorite() {
+    public boolean isFavorite() {
         return favorite;
     }
 
     public void setFavorite(boolean favorite) {
         this.favorite = favorite;
     }
-
 
     @Override
     public int describeContents() {
@@ -115,15 +117,15 @@ public class TvshowEntity implements Parcelable {
         this.favorite = in.readByte() != 0;
     }
 
-    public static final Creator<TvshowEntity> CREATOR = new Creator<TvshowEntity>() {
+    public static final Creator<MovieEntity> CREATOR = new Creator<MovieEntity>() {
         @Override
-        public TvshowEntity createFromParcel(Parcel source) {
-            return new TvshowEntity(source);
+        public MovieEntity createFromParcel(Parcel source) {
+            return new MovieEntity(source);
         }
 
         @Override
-        public TvshowEntity[] newArray(int size) {
-            return new TvshowEntity[size];
+        public MovieEntity[] newArray(int size) {
+            return new MovieEntity[size];
         }
     };
 }
