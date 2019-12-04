@@ -16,6 +16,7 @@ import com.example.moviefilm.Data.source.remote.RemoteRepository;
 import com.example.moviefilm.Data.source.remote.Response.MovieResponse;
 import com.example.moviefilm.Data.source.remote.Response.TvShowResponse;
 import com.example.moviefilm.Util.AppExecutors;
+import com.example.moviefilm.Util.IddlingTesting;
 import com.example.moviefilm.ValueObject.Resource;
 
 import java.util.ArrayList;
@@ -50,6 +51,7 @@ public class FakeMovieFilmRepository implements MovieFilmDataSource {
 
     @Override
     public LiveData<Resource<List<MovieEntity>>> getMovieAll() {
+        IddlingTesting.increment();
         return new NetworkBoundResource<List<MovieEntity>, List<MovieResponse>>(appExecutor) {
             @Override
             protected LiveData<List<MovieEntity>> loadFromDB() {
@@ -82,15 +84,27 @@ public class FakeMovieFilmRepository implements MovieFilmDataSource {
                     ));
                 }
                 localRepository.insertMovie(movieEntityList);
+                Log.d("MovieTesting", "saveCallResult: masuk");
+                if (!IddlingTesting.getIddlingTesting().isIdleNow()) {
+                    IddlingTesting.decrement();
+                }
             }
         }.asLiveData();
     }
 
     @Override
     public LiveData<Resource<List<TvshowEntity>>> getTvshowAll() {
+        IddlingTesting.increment();
         return new NetworkBoundResource<List<TvshowEntity>, List<TvShowResponse>>(appExecutor) {
             @Override
             protected LiveData<List<TvshowEntity>> loadFromDB() {
+                Log.d("TvshowTesting", "saveCallResult: masuk");
+                if (!IddlingTesting.getIddlingTesting().isIdleNow()) {
+                    Log.d("TvshowTesting", "saveCallResult: decrement");
+                    IddlingTesting.decrement();
+                } else {
+                    Log.d("TvshowTesting", "saveCallResult: error");
+                }
                 return localRepository.getAllTvshow();
 
             }
@@ -117,8 +131,8 @@ public class FakeMovieFilmRepository implements MovieFilmDataSource {
                             tvShowResponse.getTanggalRilis(),
                             null
                     ));
-                    localRepository.insertTvshow(tvshowEntityList);
                 }
+                localRepository.insertTvshow(tvshowEntityList);
             }
         }.asLiveData();
 
@@ -140,19 +154,7 @@ public class FakeMovieFilmRepository implements MovieFilmDataSource {
 
             @Override
             protected LiveData<ApiResponse<List<MovieResponse>>> createCall() {
-                MutableLiveData<ApiResponse<List<MovieResponse>>> movieResponse = new MutableLiveData<>();
-                remoteRepository.getMovieById(id, new RemoteRepository.LoadMovieCallback() {
-                    @Override
-                    public void onSuccess(ApiResponse<List<MovieResponse>> movieSend) {
-                        movieResponse.setValue(movieSend);
-                    }
-
-                    @Override
-                    public void onNotAvailable() {
-
-                    }
-                });
-                return movieResponse;
+                return remoteRepository.getIdMovie(id);
 
             }
 
@@ -192,21 +194,7 @@ public class FakeMovieFilmRepository implements MovieFilmDataSource {
 
             @Override
             protected LiveData<ApiResponse<List<TvShowResponse>>> createCall() {
-                MutableLiveData<ApiResponse<List<TvShowResponse>>> tvshowResponse = new MutableLiveData<>();
-
-                remoteRepository.getTvshowById(id, new RemoteRepository.LoadTvshowCallback() {
-                    @Override
-                    public void onSuccess(ApiResponse<List<TvShowResponse>> tvshowSend) {
-                        tvshowResponse.setValue(tvshowSend);
-
-                    }
-
-                    @Override
-                    public void onNotAvailbale() {
-
-                    }
-                });
-                return tvshowResponse;
+                return remoteRepository.getIdTvshow(id);
 
             }
 
@@ -224,7 +212,6 @@ public class FakeMovieFilmRepository implements MovieFilmDataSource {
                     ));
                 }
                 localRepository.insertTvshow(tvshowEntityList);
-
             }
         }.asLiveData();
 
@@ -276,7 +263,7 @@ public class FakeMovieFilmRepository implements MovieFilmDataSource {
         return new NetworkBoundResource<PagedList<TvshowEntity>, List<TvShowResponse>>(appExecutor) {
             @Override
             protected LiveData<PagedList<TvshowEntity>> loadFromDB() {
-                Log.d("favoritepage", "loadFromDB: "+localRepository.getTvshowFavoritePage());
+                Log.d("favoritepage", "loadFromDB: " + localRepository.getTvshowFavoritePage());
                 return new LivePagedListBuilder<>(localRepository.getTvshowFavoritePage(), 20).build();
             }
 
@@ -295,5 +282,12 @@ public class FakeMovieFilmRepository implements MovieFilmDataSource {
 
             }
         }.asLiveData();
+    }
+
+    @Override
+    public void deleteById(int movieId) {
+        Runnable runnable = () -> localRepository.deleteMovie(movieId);
+        appExecutor.diskIO().execute(runnable);
+
     }
 }

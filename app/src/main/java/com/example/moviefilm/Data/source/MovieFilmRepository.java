@@ -4,7 +4,6 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.paging.LivePagedListBuilder;
 import androidx.paging.PagedList;
 
@@ -62,7 +61,7 @@ public class MovieFilmRepository implements MovieFilmDataSource {
 
             @Override
             protected Boolean shouldFetch(List<MovieEntity> data) {
-                return (data == null) || (data.size() == 0);
+                return true;
             }
 
             @Override
@@ -99,9 +98,12 @@ public class MovieFilmRepository implements MovieFilmDataSource {
         return new NetworkBoundResource<List<TvshowEntity>, List<TvShowResponse>>(appExecutor) {
             @Override
             protected LiveData<List<TvshowEntity>> loadFromDB() {
+                Log.d("TvshowTesting", "saveCallResult: masuk");
                 if (!IddlingTesting.getIddlingTesting().isIdleNow()) {
                     Log.d("TvshowTesting", "saveCallResult: decrement");
                     IddlingTesting.decrement();
+                } else {
+                    Log.d("TvshowTesting", "saveCallResult: error");
                 }
                 return localRepository.getAllTvshow();
 
@@ -131,14 +133,6 @@ public class MovieFilmRepository implements MovieFilmDataSource {
                     ));
                 }
                 localRepository.insertTvshow(tvshowEntityList);
-                Log.d("TvshowTesting", "saveCallResult: masuk");
-                if (!IddlingTesting.getIddlingTesting().isIdleNow()) {
-                    Log.d("TvshowTesting", "saveCallResult: decrement");
-                    IddlingTesting.decrement();
-                }
-                else{
-                    Log.d("TvshowTesting", "saveCallResult: error");
-                }
             }
         }.asLiveData();
 
@@ -160,19 +154,7 @@ public class MovieFilmRepository implements MovieFilmDataSource {
 
             @Override
             protected LiveData<ApiResponse<List<MovieResponse>>> createCall() {
-                MutableLiveData<ApiResponse<List<MovieResponse>>> movieResponse = new MutableLiveData<>();
-                remoteRepository.getMovieById(id, new RemoteRepository.LoadMovieCallback() {
-                    @Override
-                    public void onSuccess(ApiResponse<List<MovieResponse>> movieSend) {
-                        movieResponse.setValue(movieSend);
-                    }
-
-                    @Override
-                    public void onNotAvailable() {
-
-                    }
-                });
-                return movieResponse;
+                return remoteRepository.getIdMovie(id);
 
             }
 
@@ -212,21 +194,7 @@ public class MovieFilmRepository implements MovieFilmDataSource {
 
             @Override
             protected LiveData<ApiResponse<List<TvShowResponse>>> createCall() {
-                MutableLiveData<ApiResponse<List<TvShowResponse>>> tvshowResponse = new MutableLiveData<>();
-
-                remoteRepository.getTvshowById(id, new RemoteRepository.LoadTvshowCallback() {
-                    @Override
-                    public void onSuccess(ApiResponse<List<TvShowResponse>> tvshowSend) {
-                        tvshowResponse.setValue(tvshowSend);
-
-                    }
-
-                    @Override
-                    public void onNotAvailbale() {
-
-                    }
-                });
-                return tvshowResponse;
+                return remoteRepository.getIdTvshow(id);
 
             }
 
@@ -295,7 +263,7 @@ public class MovieFilmRepository implements MovieFilmDataSource {
         return new NetworkBoundResource<PagedList<TvshowEntity>, List<TvShowResponse>>(appExecutor) {
             @Override
             protected LiveData<PagedList<TvshowEntity>> loadFromDB() {
-                Log.d("favoritepage", "loadFromDB: "+localRepository.getTvshowFavoritePage());
+                Log.d("favoritepage", "loadFromDB: " + localRepository.getTvshowFavoritePage());
                 return new LivePagedListBuilder<>(localRepository.getTvshowFavoritePage(), 20).build();
             }
 
@@ -318,7 +286,7 @@ public class MovieFilmRepository implements MovieFilmDataSource {
 
     @Override
     public void deleteById(int movieId) {
-        Runnable runnable= () -> localRepository.deleteMovie(movieId);
+        Runnable runnable = () -> localRepository.deleteMovie(movieId);
         appExecutor.diskIO().execute(runnable);
 
     }
