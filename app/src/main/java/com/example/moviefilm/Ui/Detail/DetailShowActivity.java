@@ -88,7 +88,7 @@ public class DetailShowActivity extends AppCompatActivity {
                     case LOADING:
                         break;
                     case SUCCESS:
-                        boolean state = tvshowId.data.get(0).isFavorite();
+                        boolean state = tvshowId.data.get(0).getFavorite();
                         setFavoriteState(state);
                         break;
                     case ERROR:

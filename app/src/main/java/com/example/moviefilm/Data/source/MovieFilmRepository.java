@@ -55,12 +55,11 @@ public class MovieFilmRepository implements MovieFilmDataSource {
             @Override
             protected LiveData<List<TvshowEntity>> loadFromDB() {
                 return localRepository.getAllTvshow();
-
             }
 
             @Override
             protected Boolean shouldFetch(List<TvshowEntity> data) {
-                return true;
+                return  data.size()<20;
             }
 
             @Override
@@ -104,7 +103,7 @@ public class MovieFilmRepository implements MovieFilmDataSource {
 
             @Override
             protected Boolean shouldFetch(List<MovieEntity> data) {
-                return true;
+                return (data.size()==0) || (data.size() < 20);
             }
 
             @Override

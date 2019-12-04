@@ -85,7 +85,7 @@ public class TvshowEntity implements Parcelable {
         this.tanggalRilis = tanggalRilis;
     }
 
-    public boolean isFavorite() {
+    public boolean getFavorite() {
         return favorite;
     }
 

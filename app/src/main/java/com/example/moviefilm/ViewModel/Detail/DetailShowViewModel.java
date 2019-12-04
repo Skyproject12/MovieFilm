@@ -42,10 +42,10 @@ public class DetailShowViewModel extends ViewModel {
                     list.get(i).getJudul(),
                     list.get(i).getDeskripsi(),
                     list.get(i).getTanggalRilis(),
-                    list.get(i).isFavorite()
+                    list.get(i).getFavorite()
             );
         }
-        boolean newState = !tvshowEntity.isFavorite();
+        boolean newState = !tvshowEntity.getFavorite();
         tvshowMovieFilmRepository.setTvshowFavorite(tvshowEntity, newState);
 
     }
